@@ -1,2968 +1,1540 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Robert Tapangan | Automation Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
-<style>
-  :root {
-    --bg: #F5F3EF;
-    --surface: #fbf8f2;
-    --surface-strong: #f0ebe2;
-    --text: #111111;
-    --muted: #6B665F;
-    --accent: #F26A21;
-    --border: #D9D3CC;
-    --shadow: 0 18px 42px rgba(17, 17, 17, 0.06);
-    --radius-xl: 34px;
-    --radius-lg: 26px;
-    --radius-md: 20px;
-    --max: 1240px;
-  }
-
-  body[data-theme="dark"] {
-    --bg: #14110e;
-    --surface: #1c1714;
-    --surface-strong: #241d18;
-    --text: #f5efe7;
-    --muted: #c6b9ab;
-    --accent: #ff8a3d;
-    --border: rgba(255, 255, 255, 0.12);
-    --shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
-  }
-
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    font-family: "DM Sans", sans-serif;
-    color: var(--text);
-    background:
-      radial-gradient(circle at top left, rgba(242, 106, 33, 0.1), transparent 28%),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.35), transparent 18%),
-      var(--bg);
-    line-height: 1.6;
-    overflow-x: hidden;
-    transition: background-color 0.28s ease, color 0.28s ease;
-  }
-
-  body[data-theme="dark"] {
-    background:
-      radial-gradient(circle at top left, rgba(255, 138, 61, 0.14), transparent 24%),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.02), transparent 18%),
-      var(--bg);
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(17, 17, 17, 0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(17, 17, 17, 0.025) 1px, transparent 1px);
-    background-size: 78px 78px;
-    pointer-events: none;
-    opacity: 0.5;
-    transition: opacity 0.28s ease;
-  }
-
-  body[data-theme="dark"]::before {
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    opacity: 0.38;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  img,
-  video {
-    display: block;
-    width: 100%;
-  }
-
-  button,
-  input,
-  textarea,
-  select {
-    font: inherit;
-  }
-
-  .page {
-    position: relative;
-    z-index: 1;
-  }
-
-  .shell {
-    width: min(var(--max), calc(100vw - 40px));
-    margin: 0 auto;
-  }
-
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    border-bottom: 1px solid rgba(217, 211, 204, 0.88);
-    background: rgba(245, 243, 239, 0.86);
-    backdrop-filter: blur(18px);
-  }
-
-  .topbar-inner {
-    width: min(var(--max), calc(100vw - 40px));
-    margin: 0 auto;
-    padding: 18px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-  }
-
-  .brand,
-  .hero-title,
-  .section-title,
-  .card-title,
-  .contact-title,
-  .proof-block-label {
-    font-family: "Syne", sans-serif;
-    letter-spacing: -0.05em;
-  }
-
-  .label,
-  .micro,
-  .chip,
-  .profile-key,
-  .eyebrow {
-    font-family: "Space Mono", monospace;
-  }
-
-  .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 14px;
-    border: 1px solid rgba(217, 211, 204, 0.9);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.62);
-    box-shadow: 0 10px 20px rgba(17, 17, 17, 0.04);
-    color: var(--text);
-  }
-
-  .brand-bracket,
-  .brand-tail {
-    font-family: "Space Mono", monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-  }
-
-  .brand-mark {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 6px;
-  }
-
-  .brand-mark strong {
-    font-size: 1rem;
-    font-weight: 800;
-  }
-
-  .brand-mark span {
-    font-family: "Space Mono", monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-
-
-  .brand-cluster {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 0 0 auto;
-  }
-
-  .theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-height: 44px;
-    padding: 0 14px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.62);
-    color: var(--text);
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    box-shadow: 0 10px 20px rgba(17, 17, 17, 0.04);
-  }
-
-  .theme-toggle:hover {
-    transform: translateY(-1px);
-  }
-
-  .theme-toggle-icon {
-    font-size: 0.92rem;
-    line-height: 1;
-  }
-
-  .theme-toggle-label {
-    font-family: "Space Mono", monospace;
-    font-size: 0.76rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  body[data-theme="dark"] .theme-toggle,
-  body[data-theme="dark"] .brand,
-  body[data-theme="dark"] .btn-secondary,
-  body[data-theme="dark"] .contact-link,
-  body[data-theme="dark"] .eyebrow,
-  body[data-theme="dark"] .chip,
-  body[data-theme="dark"] .asset-shell,
-  body[data-theme="dark"] .subflow-card,
-  body[data-theme="dark"] .project-card,
-  body[data-theme="dark"] .skill-card,
-  body[data-theme="dark"] .proof-block,
-  body[data-theme="dark"] .profile-card,
-  body[data-theme="dark"] .contact-card,
-  body[data-theme="dark"] .story-copy,
-  body[data-theme="dark"] .flagship,
-  body[data-theme="dark"] .proof-card,
-  body[data-theme="dark"] .outcome,
-  body[data-theme="dark"] .demo-card {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--border);
-    box-shadow: var(--shadow);
-  }
-
-  body[data-theme="dark"] .topbar {
-    background: rgba(20, 17, 14, 0.82);
-    border-bottom-color: rgba(255, 255, 255, 0.08);
-  }
-
-
-  body[data-theme="dark"] .hero-status {
-    background: linear-gradient(180deg, rgba(34, 26, 20, 0.92), rgba(26, 20, 16, 0.88));
-    border-color: rgba(255, 138, 61, 0.28);
-    color: #f4e1d1;
-    box-shadow:
-      0 12px 28px rgba(0, 0, 0, 0.26),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  }
-
-  body[data-theme="dark"] .hero-status-label {
-    color: #f4e1d1;
-  }
-
-  body[data-theme="dark"] .profile-topbar {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
-    border-bottom-color: rgba(255, 255, 255, 0.08);
-  }
-
-  body[data-theme="dark"] .profile-command,
-  body[data-theme="dark"] .profile-group + .profile-group,
-  body[data-theme="dark"] .profile-window-title {
-    border-color: rgba(255, 255, 255, 0.08);
-    color: var(--muted);
-  }
-
-  body[data-theme="dark"] .profile-line .token {
-    color: #f5efe7;
-  }
-
-  body[data-theme="dark"] .profile-line .value,
-  body[data-theme="dark"] .profile-command {
-    color: #d6ece7;
-  }
-
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1 1 auto;
-    gap: 28px;
-    min-width: 0;
-  }
-
-  .nav a,
-  .profile-link {
-    color: var(--muted);
-    font-size: 0.93rem;
-    transition: color 0.2s ease;
-  }
-
-  .nav a:hover,
-  .profile-link:hover {
-    color: var(--text);
-  }
-
-  .top-actions {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex: 0 0 auto;
-  }
-
-  .btn,
-  .btn-secondary,
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-height: 50px;
-    padding: 0 18px;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-  }
-
-  .btn:hover,
-  .btn-secondary:hover,
-  .contact-link:hover {
-    transform: translateY(-1px);
-  }
-
-  .btn {
-    background: var(--accent);
-    color: #fff;
-    border-color: rgba(242, 106, 33, 0.22);
-    box-shadow: 0 14px 28px rgba(242, 106, 33, 0.22);
-  }
-
-  .btn:hover {
-    background: color-mix(in srgb, var(--accent) 88%, #000 12%);
-  }
-
-  .btn-secondary,
-  .contact-link {
-    background: rgba(255, 255, 255, 0.62);
-    border-color: var(--border);
-    color: var(--text);
-  }
-
-  .section {
-    padding: 92px 0;
-  }
-
-  .eyebrow {
-    display: inline-flex;
-    align-items: center;
-    justify-self: start;
-    width: fit-content;
-    max-width: 100%;
-    gap: 10px;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.56);
-    color: var(--muted);
-    font-size: 0.73rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .eyebrow::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(242, 106, 33, 0.18);
-    animation: orangeBadgePulse 2.6s ease-in-out infinite;
-  }
-
-  @keyframes orangeBadgePulse {
-    0%,
-    100% {
-      transform: scale(0.92);
-      box-shadow:
-        0 0 0 0 rgba(242, 106, 33, 0.12),
-        0 0 0 0 rgba(242, 106, 33, 0);
-      opacity: 0.92;
-    }
-    50% {
-      transform: scale(1.14);
-      box-shadow:
-        0 0 14px 4px rgba(242, 106, 33, 0.28),
-        0 0 0 6px rgba(242, 106, 33, 0.10);
-      opacity: 1;
-    }
-  }
-
-  .hero-status {
-    position: relative;
-    gap: 12px;
-    padding: 12px 18px 12px 16px;
-    border-color: rgba(217, 211, 204, 0.96);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.62));
-    box-shadow: 0 10px 24px rgba(17, 17, 17, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.72);
-    color: #4d463e;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: none;
-    white-space: nowrap;
-  }
-
-  .hero-status::before {
-    display: none;
-  }
-
-  .hero-status-dot {
-    position: relative;
-    flex: 0 0 auto;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(242, 106, 33, 0.45);
-    animation: heroStatusDot 2.2s ease-in-out infinite;
-  }
-
-  .hero-status-dot::after {
-    content: "";
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(242, 106, 33, 0.28) 0%, rgba(242, 106, 33, 0.08) 48%, transparent 72%);
-    opacity: 0.18;
-    transform: scale(0.55);
-    animation: heroStatusGlow 2.2s ease-in-out infinite;
-  }
-
-  .hero-status-label {
-    display: inline-block;
-    line-height: 1;
-  }
-
-  @keyframes heroStatusDot {
-    0%,
-    100% {
-      transform: scale(0.92);
-      box-shadow: 0 0 0 0 rgba(242, 106, 33, 0.14);
-      opacity: 0.9;
-    }
-    50% {
-      transform: scale(1.08);
-      box-shadow: 0 0 18px 4px rgba(242, 106, 33, 0.32);
-      opacity: 1;
-    }
-  }
-
-  @keyframes heroStatusGlow {
-    0%,
-    100% {
-      transform: scale(0.55);
-      opacity: 0.12;
-    }
-    50% {
-      transform: scale(1.7);
-      opacity: 0.52;
-    }
-  }
-
-  .hero {
-    padding: 18px 0 48px;
-  }
-
-  .hero-grid {
-    display: grid;
-    gap: 18px;
-  }
-
-  .hero-stage {
-    display: grid;
-    grid-template-columns: minmax(0, 0.7fr) minmax(420px, 0.9fr);
-    align-items: start;
-    gap: 8px 28px;
-  }
-
-  .hero-block {
-    display: grid;
-    gap: 0;
-    min-width: 0;
-  }
-
-  .hero-block--top {
-    grid-column: 1 / span 2;
-    align-self: start;
-  }
-
-  .hero-block--bottom {
-    grid-column: 1;
-    align-self: end;
-    width: min(520px, 100%);
-    margin-top: 0;
-    padding-top: 8px;
-  }
-
-  .hero-title {
-    margin-top: 10px;
-    font-size: clamp(3.75rem, 7.1vw, 6.4rem);
-    line-height: 0.84;
-    letter-spacing: -0.062em;
-  }
-
-  .hero-title span {
-    display: block;
-  }
-
-  .hero-title--top {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: baseline;
-    gap: 0.14em;
-    max-width: none;
-    white-space: nowrap;
-  }
-
-  .hero-title--top span {
-    display: inline-block;
-  }
-
-  .accent-line {
-    color: var(--accent);
-  }
-
-  .hero-support {
-    display: grid;
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 0.9fr);
-    gap: 18px 28px;
-    align-items: start;
-    margin-top: -2px;
-  }
-
-  .copy {
-    margin-top: 2px;
-    max-width: 520px;
-    color: var(--muted);
-    font-size: 1.02rem;
-    line-height: 1.68;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 10px;
-  }
-
-  .trust-row {
-    margin-top: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 11px 14px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.68);
-    color: var(--muted);
-    font-size: 0.78rem;
-    letter-spacing: 0.02em;
-  }
-
-  .hero-visual {
-    position: relative;
-    grid-column: 2;
-    grid-row: 2;
-    align-self: center;
-    justify-self: end;
-    width: 100%;
-    max-width: 660px;
-    margin-top: -6px;
-  }
-
-  .hero-visual::before {
-    content: "";
-    position: absolute;
-    inset: 9% 7% 12%;
-    border-radius: 52px;
-    background: radial-gradient(circle at center, rgba(242, 106, 33, 0.17), transparent 62%);
-    filter: blur(28px);
-    z-index: 0;
-  }
-
-  .hero-support-side {
-    display: grid;
-    gap: 12px;
-    align-content: start;
-    justify-self: start;
-    min-width: 0;
-  }
-  .asset-shell {
-    position: relative;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(240, 235, 226, 0.9));
-    box-shadow: var(--shadow);
-  }
-
-  .asset-shell--plain {
-    box-shadow: none;
-    background: rgba(255, 255, 255, 0.45);
-  }
-
-  .asset-media {
-    width: 100%;
-    height: 100%;
-  }
-
-  .illustration-frame {
-    aspect-ratio: 4 / 3;
-    padding: 14px;
-  }
-
-  .illustration-frame--embedded {
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-    overflow: visible;
-  }
-
-  .illustration-frame--embedded.missing .asset-fallback {
-    border: 1px dashed rgba(217, 211, 204, 0.92);
-    border-radius: 24px;
-    background: radial-gradient(circle at center, rgba(242, 106, 33, 0.08), rgba(255, 255, 255, 0.54));
-  }
-
-  .illustration-frame--hero {
-    aspect-ratio: 16 / 11.2;
-    padding: 0;
-    z-index: 1;
-    border: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    overflow: visible;
-  }
-
-  .hero-visual .asset-shell {
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .hero-visual .illustration-media {
-    background: transparent;
-    object-fit: contain;
-  }
-
-  .illustration-frame--flagship {
-    aspect-ratio: 16 / 9.6;
-    min-height: 340px;
-    padding: 0;
-    background: #F5F3EF;
-    border: 1px solid rgba(217, 211, 204, 0.78);
-    overflow: hidden;
-  }
-
-  .illustration-frame--subflow {
-    aspect-ratio: 16 / 11.4;
-    min-height: 200px;
-    padding: 0;
-    border-radius: 20px;
-    margin-bottom: 12px;
-    background: #F5F3EF;
-    border-color: rgba(217, 211, 204, 0.78);
-    overflow: hidden;
-  }
-
-  .illustration-frame--contact {
-    aspect-ratio: 6 / 4.2;
-    padding: 0;
-  }
-
-  .illustration-media {
-    object-fit: contain;
-    object-position: center;
-  }
-
-  .illustration-frame--flagship .illustration-media {
-    object-fit: cover;
-    object-position: center;
-    transform: scale(1.04);
-    transition: transform 0.24s ease;
-  }
-
-  .illustration-frame--subflow .illustration-media {
-    object-fit: cover;
-    object-position: center;
-    transform: scale(1.08);
-    transition: transform 0.24s ease;
-  }
-
-  .asset-shell.js-lightbox:not(.missing):hover .illustration-media,
-  .asset-shell.js-lightbox:not(.missing):focus-visible .illustration-media {
-    transform: scale(1.11);
-  }
-
-  .asset-shell.js-lightbox:not(.missing) {
-    cursor: zoom-in;
-  }
-
-  .proof-frame {
-    aspect-ratio: 16 / 10;
-    padding: 0;
-    cursor: zoom-in;
-    background: #ece6dc;
-  }
-
-  .proof-media {
-    object-fit: cover;
-    object-position: top center;
-    transition: transform 0.24s ease;
-  }
-
-  .proof-frame:hover .proof-media {
-    transform: scale(1.02);
-  }
-
-  .video-frame {
-    aspect-ratio: 16 / 9;
-    padding: 0;
-    background: #d9d3cc;
-  }
-
-  .video-frame.youtube-embed {
-    aspect-ratio: 16 / 9;
-    width: 100%;
-    overflow: hidden;
-    background: #11100f;
-  }
-
-  .youtube-embed iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    border-radius: inherit;
-    background: #11100f;
-  }
-
-  .demo-card .video-frame {
-    max-width: 920px;
-    margin: 0 auto;
-  }
-
-  .video-media {
-    object-fit: cover;
-    background: #d9d3cc;
-  }
-
-  .asset-fallback {
-    position: absolute;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 28px;
-    text-align: center;
-    color: var(--muted);
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 235, 226, 0.94));
-  }
-
-  .asset-fallback strong {
-    display: block;
-    margin-bottom: 8px;
-    font-family: "Syne", sans-serif;
-    font-size: 1.1rem;
-    color: var(--text);
-  }
-
-  .asset-shell.missing .asset-media {
-    display: none;
-  }
-
-  .asset-shell.missing .asset-fallback {
-    display: flex;
-  }
-
-  .illustration-frame--hero.missing .asset-fallback,
-  .illustration-frame--flagship.missing .asset-fallback,
-  .illustration-frame--subflow.missing .asset-fallback {
-    padding: 20px;
-    text-align: center;
-    line-height: 1.6;
-  }
-
-  .section-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    gap: 24px;
-    margin-bottom: 18px;
-  }
-
-  .section-intro {
-    max-width: 760px;
-  }
-
-  .section-title {
-    margin-top: 10px;
-    font-size: clamp(2.6rem, 4.5vw, 4.6rem);
-    line-height: 0.95;
-  }
-
-  .section-copy {
-    max-width: 430px;
-    color: var(--muted);
-    font-size: 0.98rem;
-    line-height: 1.68;
-  }
-
-  .contact-links {
-    margin-top: 22px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .contact-link {
-    justify-content: flex-start;
-    min-height: 54px;
-    padding: 10px 14px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .contact-link-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    padding: 6px;
-    border-radius: 10px;
-    background: rgba(245, 243, 239, 0.96);
-    border: 1px solid rgba(217, 211, 204, 0.92);
-    flex: 0 0 auto;
-  }
-
-  .contact-link-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .contact-link-copy {
-    display: grid;
-    gap: 0;
-    min-width: 0;
-  }
-
-  .contact-link-label {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .contact-link-meta {
-    font-size: 0.76rem;
-    color: var(--muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .contact-link.logo-missing .contact-link-logo {
-    display: none;
-  }
-
-  .flagship {
-    padding: 26px;
-    border: 1px solid var(--border);
-    border-radius: 38px;
-    background: rgba(255, 255, 255, 0.62);
-    box-shadow: var(--shadow);
-  }
-
-  .flagship-top {
-    display: grid;
-    grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
-    gap: 20px;
-    align-items: center;
-  }
-
-  .flagship-copy p {
-    margin-top: 14px;
-    max-width: 560px;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.72;
-  }
-
-  .outcomes {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
-    margin-top: 18px;
-  }
-
-  .outcome {
-    padding: 16px 18px;
-    border-radius: 18px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.7);
-  }
-
-  .outcome strong {
-    display: block;
-    font-size: 0.95rem;
-    margin-bottom: 4px;
-  }
-
-  .outcome span {
-    color: var(--muted);
-    font-size: 0.93rem;
-  }
-
-  .subflow-grid {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .subflow-card,
-  .project-card,
-  .skill-card,
-  .proof-block,
-  .profile-card,
-  .contact-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    background: rgba(255, 255, 255, 0.62);
-    box-shadow: var(--shadow);
-  }
-
-  .subflow-card {
-    padding: 16px;
-  }
-
-  .micro {
-    display: inline-block;
-    color: var(--muted);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .card-title {
-    margin-top: 12px;
-    font-size: 1.5rem;
-    line-height: 1.05;
-  }
-
-  .summary {
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 0.98rem;
-    line-height: 1.7;
-  }
-
-  .outcome-line {
-    margin-top: 12px;
-    color: var(--text);
-    font-size: 0.95rem;
-    font-weight: 700;
-  }
-
-  .supporting-wrap {
-    margin-top: 26px;
-  }
-
-  .supporting-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  .project-card {
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .project-card.lead-focus {
-    grid-column: span 2;
-  }
-
-  .project-copy {
-    color: var(--muted);
-    font-size: 0.98rem;
-    line-height: 1.72;
-  }
-
-  .chip-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .chip-row .chip {
-    padding: 10px 12px;
-    font-size: 0.72rem;
-  }
-  .evidence-stack {
-    display: grid;
-    gap: 18px;
-  }
-
-  .proof-block {
-    padding: 20px;
-  }
-
-  .proof-block-header {
-    display: flex;
-    justify-content: space-between;
-    gap: 18px;
-    align-items: end;
-    margin-bottom: 14px;
-  }
-
-  .proof-block-header p {
-    max-width: 520px;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.72;
-  }
-
-  .proof-grid {
-    display: grid;
-    gap: 14px;
-  }
-
-  .proof-grid--dental {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .proof-grid--support {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .proof-gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .lead-proof-stack {
-    display: grid;
-    gap: 14px;
-  }
-
-  .lead-proof-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .proof-card {
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .proof-card-copy {
-    padding: 14px 16px 16px;
-  }
-
-  .proof-card-copy h3 {
-    font-family: "Syne", sans-serif;
-    font-size: 1.35rem;
-    line-height: 1.06;
-  }
-
-  .proof-card-copy p {
-    margin-top: 10px;
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-
-  .proof-block-header--compact {
-    margin-bottom: 16px;
-  }
-
-  .proof-block-label {
-    font-size: clamp(2rem, 3vw, 2.8rem);
-    line-height: 0.98;
-  }
-
-  .demo-highlight {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-    padding: 10px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(242, 106, 33, 0.22);
-    background: rgba(242, 106, 33, 0.08);
-    color: var(--accent);
-    font-family: "Space Mono", monospace;
-    font-size: 0.74rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .demo-card {
-    margin-top: 12px;
-    padding: 18px;
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .demo-card p {
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 0.96rem;
-    line-height: 1.7;
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .skill-card {
-    padding: 18px;
-  }
-
-  .skill-card p {
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 0.97rem;
-    line-height: 1.72;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.98fr) minmax(320px, 1.02fr);
-    gap: 16px;
-    align-items: start;
-  }
-
-  .story-copy {
-    padding: 22px;
-    border: 1px solid var(--border);
-    border-radius: 34px;
-    background: rgba(255, 255, 255, 0.62);
-    box-shadow: var(--shadow);
-  }
-
-  .story-copy p + p {
-    margin-top: 16px;
-  }
-
-  .story-copy p {
-    color: var(--muted);
-    font-size: 0.98rem;
-    line-height: 1.74;
-  }
-
-  .profile-card {
-    overflow: hidden;
-    padding: 0;
-    background:
-      radial-gradient(circle at 25% 25%, rgba(242, 106, 33, 0.06), transparent 26%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(247, 243, 236, 0.92));
-  }
-
-  .profile-topbar {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 22px;
-    border-bottom: 1px solid rgba(217, 211, 204, 0.9);
-    background: linear-gradient(180deg, rgba(250, 248, 243, 0.96), rgba(243, 238, 230, 0.92));
-  }
-
-  .profile-dots {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 0 0 auto;
-  }
-
-  .profile-dots span {
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow:
-      inset 0 1px 1px rgba(255, 255, 255, 0.38),
-      0 1px 1px rgba(17, 17, 17, 0.08);
-  }
-
-  .profile-dots span:nth-child(1) {
-    background: linear-gradient(180deg, #ff7a66, #f45c46);
-  }
-
-  .profile-dots span:nth-child(2) {
-    background: linear-gradient(180deg, #f5ca56, #efb53e);
-  }
-
-  .profile-dots span:nth-child(3) {
-    background: linear-gradient(180deg, #54d674, #39b95a);
-  }
-
-  .profile-window-title {
-    font-family: "Space Mono", monospace;
-    font-size: 0.92rem;
-    letter-spacing: 0.02em;
-    color: #4d4942;
-  }
-
-  .profile-layout {
-    position: relative;
-    padding: 18px 22px 20px;
-  }
-
-  .profile-command {
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-    border-bottom: 1px solid rgba(217, 211, 204, 0.86);
-    font-family: "Space Mono", monospace;
-    font-size: 0.95rem;
-    color: #4b6763;
-  }
-
-  .profile-command span {
-    color: var(--text);
-  }
-
-  .profile-badge {
-    position: absolute;
-    top: 16px;
-    right: 22px;
-    width: 158px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: 4px solid rgba(160, 156, 149, 0.45);
-    background: #F5F3EF;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: box-shadow 0.24s ease, border-color 0.24s ease, transform 0.24s ease;
-  }
-
-  .profile-badge img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    padding: 0;
-    transform: scale(1.04);
-    transition: transform 0.24s ease;
-  }
-
-  .profile-badge.js-lightbox:not(.missing):hover,
-  .profile-badge.js-lightbox:not(.missing):focus-visible {
-    border-color: rgba(242, 106, 33, 0.34);
-    box-shadow:
-      0 14px 28px rgba(17, 17, 17, 0.10),
-      0 0 0 6px rgba(242, 106, 33, 0.08);
-  }
-
-  .profile-badge.js-lightbox:not(.missing):hover img,
-  .profile-badge.js-lightbox:not(.missing):focus-visible img {
-    transform: scale(1.1);
-  }
-
-  body[data-theme="dark"] .profile-badge {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.22);
-  }
-
-  .profile-badge .asset-fallback {
-    padding: 14px;
-    font-size: 0.72rem;
-    line-height: 1.45;
-  }
-
-  .profile-badge .asset-fallback strong {
-    font-size: 0.82rem;
-  }
-
-  .profile-json {
-    display: grid;
-    gap: 14px;
-    padding-right: 166px;
-  }
-
-  .profile-group {
-    display: grid;
-    gap: 10px;
-  }
-
-  .profile-group + .profile-group {
-    padding-top: 14px;
-    border-top: 1px solid rgba(217, 211, 204, 0.86);
-  }
-
-  .profile-line {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 12px;
-    align-items: start;
-    font-family: "Space Mono", monospace;
-    font-size: 0.88rem;
-    line-height: 1.66;
-    color: #355654;
-  }
-
-  .profile-line .token {
-    color: #2f2f2f;
-    white-space: nowrap;
-  }
-
-  .profile-line .value {
-    color: #355654;
-  }
-
-  .lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 120;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-
-  .lightbox.is-open {
-    display: flex;
-  }
-
-  .lightbox-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(17, 17, 17, 0.78);
-    backdrop-filter: blur(6px);
-  }
-
-  .lightbox-dialog {
-    position: relative;
-    z-index: 1;
-    width: min(1080px, calc(100vw - 36px));
-    max-height: calc(100vh - 36px);
-    border-radius: 24px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    background: #191919;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-  }
-
-  .lightbox-image {
-    width: 100%;
-    max-height: calc(100vh - 120px);
-    object-fit: contain;
-    background: #111;
-  }
-
-  .lightbox-caption {
-    padding: 14px 18px 16px;
-    color: rgba(255, 255, 255, 0.84);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    background: rgba(17, 17, 17, 0.96);
-  }
-
-  .lightbox-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 2;
-    width: 42px;
-    height: 42px;
-    border: 0;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    cursor: pointer;
-    font-size: 1.4rem;
-  }
-
-  .contact-card {
-    padding: 28px;
-  }
-
-  .contact-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.84fr);
-    gap: 20px;
-    align-items: center;
-  }
-
-  .contact-title {
-    margin-top: 14px;
-    font-size: clamp(2.8rem, 5vw, 5.2rem);
-    line-height: 0.95;
-  }
-
-  .contact-copy {
-    margin-top: 14px;
-    max-width: 620px;
-    color: var(--muted);
-    font-size: 0.98rem;
-    line-height: 1.72;
-  }
-
-  .contact-links {
-    margin-top: 22px;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .contact-link {
-    justify-content: flex-start;
-    min-height: 54px;
-    padding: 10px 14px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.72);
-  }
-
-  .contact-link-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
-    border: 1px solid rgba(217, 211, 204, 0.92);
-    background: rgba(245, 243, 239, 0.92);
-    flex: 0 0 auto;
-    padding: 6px;
-  }
-
-  .contact-link-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .contact-link-copy {
-    display: grid;
-    gap: 0;
-    min-width: 0;
-  }
-
-  .contact-link-label {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .contact-link-meta {
-    font-size: 0.76rem;
-    color: var(--muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .evidence-heading {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .footer {
-    padding: 0 0 44px;
-    color: var(--muted);
-    text-align: center;
-    font-size: 0.92rem;
-  }
-
-  #evidence .section-head {
-    margin-bottom: 12px;
-  }
-
-  #skills {
-    padding-top: 64px;
-    padding-bottom: 68px;
-  }
-
-  #skills .section-head {
-    margin-bottom: 14px;
-  }
-
-  #about {
-    padding-top: 70px;
-    padding-bottom: 72px;
-  }
-
-  #about .section-head {
-    margin-bottom: 14px;
-  }
-
-  #about .section-intro {
-    max-width: 620px;
-  }
-
-
-  .metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 2px;
-  }
-
-  .metric-card {
-    min-height: 102px;
-    padding: 14px 14px 12px;
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.74);
-    display: grid;
-    align-content: start;
-    gap: 8px;
-  }
-
-  .metric-label {
-    font-family: "Space Mono", monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  .metric-value {
-    font-size: 0.98rem;
-    line-height: 1.34;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  #how-i-work {
-    padding-top: 68px;
-    padding-bottom: 72px;
-  }
-
-  #how-i-work .section-head {
-    margin-bottom: 14px;
-  }
-
-  body[data-theme="dark"] .metric-card {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: var(--border);
-    box-shadow: var(--shadow);
-  }
-
-  #contact {
-    padding-top: 72px;
-    padding-bottom: 64px;
-  }
-
-  .fade {
-    opacity: 0;
-    transform: translateY(22px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .fade.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  @media (max-width: 1180px) {
-    .hero-grid,
-    .flagship-top,
-    .about-grid,
-    .contact-layout,
-    .lead-proof-grid {
-      grid-template-columns: 1fr;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RT Automate - AI Automation Systems</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "forged-iron": "#16181A",
+            "deep-blueprint": "#264653",
+            "machine-off-white": "#F4F4F0",
+            "action-coral": "#FF5722",
+            "drafting-blue": "#8AB4F8",
+            "muted-text": "rgba(244, 244, 240, 0.68)",
+            "border-subtle": "rgba(244, 244, 240, 0.12)",
+            "soft-surface": "rgba(38, 70, 83, 0.55)",
+            "dark-panel": "#101214"
+          },
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            mono: ["Space Grotesk", "sans-serif"]
+          },
+          maxWidth: {
+            "container-max": "1280px"
+          },
+          spacing: {
+            "margin-page": "32px",
+            "stack-xl": "80px"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "sm": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "9999px"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
     }
 
-    .hero-stage {
-      grid-template-columns: minmax(0, 0.72fr) minmax(320px, 0.88fr);
-      gap: 10px 22px;
+    body {
+      background-color: #f5f3ef;
+      color: #16181a;
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
     }
 
-    .hero-title {
-      font-size: clamp(3.4rem, 6.6vw, 5.8rem);
+    .dark body {
+      background-color: #16181a;
+      color: #f4f4f0;
     }
 
-    .hero-title--top {
-      flex-wrap: wrap;
-      white-space: normal;
+    .theme-switching *,
+    .theme-switching *::before,
+    .theme-switching *::after {
+      transition-duration: 0.16s !important;
     }
 
-    .hero-block--bottom {
-      width: min(500px, 100%);
+    @keyframes typewriter-cursor-blink {
+      0%, 45% { border-right-color: #ff5722; }
+      46%, 100% { border-right-color: transparent; }
     }
 
-    .hero-support {
-      grid-template-columns: minmax(0, 0.72fr) minmax(0, 0.88fr);
-      gap: 16px 22px;
-    }
-
-    .section-head,
-    .proof-block-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .section-copy,
-    .proof-block-header p {
-      max-width: 720px;
-    }
-
-    .profile-badge {
-      width: 132px;
-    }
-
-    .profile-json {
-      padding-right: 150px;
-    }
-  }
-
-  @media (max-width: 980px) {
-    .shell,
-    .topbar-inner {
-      width: min(var(--max), calc(100vw - 28px));
+    .typewriter-logo {
+      width: 150px;
+      min-width: 150px;
+      max-width: 150px;
+      flex: 0 0 150px;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
     }
 
     .topbar-inner {
-      flex-wrap: wrap;
+      display: grid !important;
+      grid-template-columns: 174px minmax(0, 1fr) 174px;
+      align-items: center;
+      position: relative;
     }
 
-    .brand-cluster {
-      width: 100%;
-      justify-content: space-between;
+    .topbar-inner > .brand-lockup {
+      grid-column: 1;
+      justify-self: start;
     }
 
-    .nav {
-      order: 3;
-      width: 100%;
-      justify-content: flex-start;
-      overflow: auto;
-      padding-bottom: 4px;
-    }
-
-    .subflow-grid,
-    .skills-grid,
-    .proof-grid--dental,
-    .proof-grid--support,
-    .supporting-grid,
-    .outcomes,
-    .proof-gallery-grid,
-    .lead-proof-grid,
-    .metrics-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .project-card.lead-focus {
-      grid-column: span 2;
-    }
-
-    .contact-links {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .hero-stage,
-    .hero-support {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-visual {
-      max-width: 640px;
+    .topbar-inner > .hidden {
+      grid-column: 2;
       justify-self: center;
-      margin-top: 0;
     }
 
-    .hero-block--bottom,
-    .hero-support-side {
+    .topbar-inner > .flex:last-child {
+      grid-column: 3;
+      justify-self: end;
+      min-width: 0;
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #typewriter {
+      display: inline-block;
+      min-height: 1em;
+      border-right: 2px solid #ff5722;
+      padding-right: 3px;
+      line-height: 1;
+      animation: typewriter-cursor-blink 0.9s steps(1, end) infinite;
+    }
+
+    .hero-beams {
+      --beam-blue-soft: rgba(37, 99, 235, 0.20);
+      --beam-blue-strong: rgba(138, 180, 248, 0.38);
+      --beam-orange-soft: rgba(255, 87, 34, 0.18);
+      --beam-dot-blue: rgba(138, 180, 248, 0.72);
+      --beam-dot-orange: rgba(255, 87, 34, 0.56);
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      contain: layout paint;
+      pointer-events: none;
+      isolation: isolate;
+    }
+
+    .dark .hero-beams {
+      --beam-blue-soft: rgba(138, 180, 248, 0.18);
+      --beam-blue-strong: rgba(138, 180, 248, 0.46);
+      --beam-orange-soft: rgba(255, 87, 34, 0.23);
+      --beam-dot-blue: rgba(138, 180, 248, 0.86);
+      --beam-dot-orange: rgba(255, 87, 34, 0.68);
+    }
+
+    .hero-beams::before {
+      content: "";
+      position: absolute;
+      inset: -18%;
+      background:
+        radial-gradient(circle at 48% 42%, rgba(138, 180, 248, 0.10), transparent 34%),
+        radial-gradient(circle at 68% 58%, rgba(255, 87, 34, 0.06), transparent 28%);
+      opacity: 0.72;
+    }
+
+    .hero-beams-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(22, 24, 26, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22, 24, 26, 0.045) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 1;
+    }
+
+    .dark .hero-beams-grid {
+      background-image:
+        linear-gradient(rgba(244, 244, 240, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244, 244, 240, 0.025) 1px, transparent 1px);
+      opacity: 0.82;
+    }
+
+    .hero-beams-svg {
+      position: absolute;
+      inset: 0;
       width: 100%;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .profile-topbar {
-      padding: 14px 18px;
-      gap: 12px;
+      height: 100%;
+      opacity: 0.82;
     }
 
-    .profile-dots {
-      gap: 10px;
+    .hero-beam-path {
+      fill: none;
+      stroke-linecap: round;
+      stroke-width: 1.2;
+      stroke-dasharray: 18 46;
+      animation: hero-beam-flow 34s linear infinite;
+      vector-effect: non-scaling-stroke;
     }
 
-    .profile-dots span {
-      width: 15px;
-      height: 15px;
-    }
-    body::before {
-      background-size: 54px 54px;
+    .hero-beam-path.is-quiet {
+      opacity: 0.46;
+      animation-duration: 42s;
     }
 
-    .hero {
-      padding-top: 24px;
-      padding-bottom: 58px;
+    .hero-beam-path.is-accent {
+      opacity: 0.58;
+      stroke-dasharray: 10 60;
+      animation-duration: 48s;
     }
 
-    .brand-cluster {
-      gap: 8px;
+    .hero-beam-dot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 9999px;
+      background: var(--beam-dot-blue);
+      box-shadow: 0 0 16px var(--beam-dot-blue), 0 0 32px rgba(138, 180, 248, 0.26);
+      opacity: 0;
+      offset-rotate: 0deg;
+      animation: hero-beam-dot-travel var(--beam-dot-duration, 28s) linear infinite;
+      animation-delay: var(--beam-dot-delay, 0s);
+      will-change: offset-distance, opacity;
     }
 
-    .theme-toggle {
-      min-height: 40px;
-      padding: 0 12px;
+    .hero-beam-dot.is-orange {
+      width: 4px;
+      height: 4px;
+      background: var(--beam-dot-orange);
+      box-shadow: 0 0 14px var(--beam-dot-orange), 0 0 28px rgba(255, 87, 34, 0.20);
     }
 
-    .theme-toggle-label {
-      font-size: 0.68rem;
+    .hero-beam-dot.path-a {
+      offset-path: path("M -180 210 C 180 76 416 112 690 242 C 940 360 1130 292 1620 126");
+      --beam-dot-duration: 30s;
     }
 
-    .section {
-      padding: 72px 0;
+    .hero-beam-dot.path-b {
+      offset-path: path("M -120 520 C 240 392 512 418 760 560 C 1018 708 1216 642 1560 438");
+      --beam-dot-duration: 36s;
+      --beam-dot-delay: -10s;
     }
 
-    .hero-title {
-      font-size: clamp(2.85rem, 13vw, 4.15rem);
-      line-height: 0.91;
+    .hero-beam-dot.path-c {
+      offset-path: path("M 1580 270 C 1210 354 1030 228 790 172 C 512 106 322 208 -120 362");
+      --beam-dot-duration: 40s;
+      --beam-dot-delay: -18s;
     }
 
-    .hero-stage {
-      grid-template-columns: 1fr;
-      gap: 14px;
+    .hero-beam-dot.path-d {
+      offset-path: path("M 140 800 C 368 622 602 642 782 454 C 946 282 1142 250 1336 132");
+      --beam-dot-duration: 44s;
+      --beam-dot-delay: -26s;
     }
 
-    .hero-status {
-      white-space: normal;
-      line-height: 1.35;
+    @keyframes hero-beam-flow {
+      to { stroke-dashoffset: -420; }
     }
 
-    .hero-block--top {
-      grid-column: auto;
+    @keyframes hero-beam-dot-travel {
+      0% { offset-distance: 0%; opacity: 0; }
+      9% { opacity: 0.86; }
+      84% { opacity: 0.72; }
+      100% { offset-distance: 100%; opacity: 0; }
     }
 
-    .hero-visual {
-      grid-column: auto;
-      grid-row: auto;
+    @keyframes rotate-clockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
-    .hero-block--bottom {
-      grid-column: auto;
+    @keyframes rotate-counter {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    .orbit-container {
+      animation: rotate-clockwise 120s linear infinite;
+      transform-origin: center;
+    }
+
+    .orbit-container.reverse {
+      animation-name: rotate-counter;
+      animation-duration: 150s;
+    }
+
+    .keep-upright {
+      animation: rotate-counter 120s linear infinite;
+      transform-origin: center;
+    }
+
+    .orbit-container.reverse .keep-upright {
+      animation-name: rotate-clockwise;
+      animation-duration: 150s;
+    }
+
+    .orbit-ring {
+      border: 1px solid rgba(37, 99, 235, 0.15);
+      border-radius: 9999px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .dark .orbit-ring {
+      border-color: rgba(138, 180, 248, 0.18);
+    }
+
+    .tool-node {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 52px;
+      height: 52px;
+      margin: -26px 0 0 -26px;
+      transform: rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle)));
+      display: grid;
+      place-items: center;
+    }
+
+    .tool-logo-card {
+      width: 52px;
+      height: 52px;
+      padding: 10px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      border: 1px solid rgba(22, 24, 26, 0.12);
+      background: #ffffff;
+      box-shadow: 0 14px 30px rgba(22, 24, 26, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .dark .tool-logo-card {
+      border-color: rgba(244, 244, 240, 0.14);
+      background: #ffffff;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .tool-logo-card:hover {
+      transform: scale(1.08);
+      border-color: rgba(255, 87, 34, 0.7);
+      box-shadow: 0 0 22px rgba(255, 87, 34, 0.18);
+    }
+
+    .tool-logo-card img,
+    .social-logo img {
       width: 100%;
-      margin-top: 0;
-      padding-top: 0;
+      height: 100%;
+      object-fit: contain;
     }
 
-    .hero-title--top {
+    .stack-logo {
+      min-height: 38px;
+      overflow: hidden;
+      background: #ffffff !important;
+      border-color: rgba(22, 24, 26, 0.12) !important;
+      color: #16181a !important;
+      box-shadow: 0 10px 22px rgba(22, 24, 26, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .dark .stack-logo {
+      background: #ffffff !important;
+      border-color: rgba(244, 244, 240, 0.14) !important;
+      color: #16181a !important;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .stack-logo img,
+    #proof-tools img {
+      width: 20px !important;
+      height: 20px !important;
+      max-width: 20px !important;
+      max-height: 20px !important;
+      flex: 0 0 20px;
+      object-fit: contain;
+    }
+
+    .social-logo {
+      background: #ffffff !important;
+      border-color: rgba(22, 24, 26, 0.12) !important;
+      box-shadow: 0 10px 22px rgba(22, 24, 26, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .dark .social-logo {
+      background: #ffffff !important;
+      border-color: rgba(244, 244, 240, 0.14) !important;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.30), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+    }
+
+    .automation-core {
+      width: 128px;
+      height: 128px;
+      border: 2px solid #ff5722;
+      border-radius: 9999px;
+      background: #16181a;
+      color: #ff5722;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 10;
+      box-shadow: 0 0 20px rgba(255, 87, 34, 0.30), inset 0 0 18px rgba(255, 87, 34, 0.04);
+    }
+
+    .dark .automation-core {
+      background: #16181a;
+      box-shadow: 0 0 22px rgba(255, 87, 34, 0.34), inset 0 0 18px rgba(255, 87, 34, 0.04);
+    }
+
+    .automation-core-icon {
       display: block;
-      white-space: normal;
+      margin-bottom: 4px;
+      font-size: 2rem;
+      line-height: 1;
+      color: #ff5722;
     }
 
-    .hero-title--top span {
-      display: inline;
+    .automation-core-label {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      line-height: 1.35;
+      text-transform: uppercase;
+      color: #ff5722;
     }
 
-    .hero-support {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-
-    .btn,
-    .btn-secondary,
-    .contact-link {
+    .proof-image {
       width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #101214;
     }
 
-    .subflow-grid,
-    .skills-grid,
-    .proof-grid--dental,
-    .proof-grid--support,
-    .supporting-grid,
-    .outcomes,
-    .proof-gallery-grid,
-    .lead-proof-grid,
-    .metrics-grid {
-      grid-template-columns: 1fr;
+    .thumbnail.is-active {
+      border-color: #ff5722;
+      box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.18);
     }
 
-    .project-card.lead-focus {
-      grid-column: auto;
-    }
-
-    .contact-card,
-    .flagship,
-    .story-copy,
-    .proof-block {
-      padding: 22px;
-    }
-
-    .profile-layout {
-      padding: 20px 20px 22px;
-    }
-
-    .profile-badge {
-      position: static;
-      width: 124px;
-      margin: 0 auto 16px;
-    }
-
-    .profile-json {
-      padding-right: 0;
-    }
-
-    .contact-links {
-      grid-template-columns: 1fr;
-    }
-
-    .evidence-heading {
-      align-items: flex-start;
-    }
-
-    .profile-line {
-      grid-template-columns: 1fr;
-      gap: 4px;
+    .proof-open {
+      cursor: zoom-in;
     }
 
     .lightbox {
-      padding: 14px;
-    }
-
-    .lightbox-dialog {
-      width: calc(100vw - 28px);
-      max-height: calc(100vh - 28px);
-    }
-  }
-
-  @media (max-width: 720px) {
-    .topbar-inner {
-      padding: 12px 0 14px;
-      gap: 12px;
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
       align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, 0.84);
+      backdrop-filter: blur(10px);
     }
 
-    .topbar-inner {
-      flex-wrap: wrap;
+    .lightbox.is-open {
+      display: flex;
     }
 
-    .brand-cluster {
-      width: auto;
-      flex: 1 1 auto;
-      justify-content: flex-start;
+    .lightbox-panel {
+      position: relative;
+      width: min(1320px, calc(100vw - 32px));
+      max-height: calc(100vh - 32px);
+      border: 1px solid rgba(244, 244, 240, 0.16);
+      background: #101214;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.46);
+      overflow: hidden;
+    }
+
+    .lightbox-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      min-height: min(760px, calc(100vh - 32px));
+      max-height: calc(100vh - 32px);
+    }
+
+    .lightbox-media {
+      display: flex;
       min-width: 0;
+      flex-direction: column;
+      background: #0d0f11;
     }
 
-    .brand {
-      padding: 7px 12px;
-      gap: 8px;
-    }
-
-    .brand-mark strong {
-      font-size: 0.94rem;
-    }
-
-    .brand-mark span,
-    .brand-bracket,
-    .brand-tail {
-      font-size: 0.72rem;
-    }
-
-    .top-actions {
-      order: 2;
-      width: auto;
-      flex: 0 0 auto;
-      justify-content: flex-end;
-      flex-wrap: nowrap;
-      gap: 8px;
-    }
-
-    .profile-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 40px;
-      white-space: nowrap;
-    }
-
-    .top-actions .btn {
-      width: auto;
-      flex: 0 0 auto;
-      min-height: 40px;
-      padding: 0 16px;
-    }
-
-    .nav {
-      gap: 8px 10px;
-      flex-wrap: wrap;
-      overflow: visible;
-      padding-bottom: 0;
-    }
-
-    .nav a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      white-space: nowrap;
-    }
-
-    .hero {
-      padding-top: 28px;
-    }
-
-    .hero-grid {
-      gap: 12px;
-    }
-
-    .hero-status {
-      gap: 10px;
-      padding: 10px 14px 10px 14px;
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-title {
-      margin-top: 4px;
-      font-size: clamp(2.55rem, 12vw, 3.85rem);
-      line-height: 0.89;
-      letter-spacing: -0.055em;
-    }
-
-    .hero-stage {
-      gap: 6px;
-    }
-
-    .hero-visual {
-      width: min(82vw, 320px);
-      max-width: 100%;
-    }
-
-    .illustration-frame--hero {
-      aspect-ratio: 16 / 9.8;
-    }
-
-    .hero-support {
-      gap: 8px;
-      margin-top: -2px;
-    }
-
-    .copy {
-      margin-top: 0;
-      font-size: 0.96rem;
-      line-height: 1.58;
-    }
-
-    .trust-row {
-      gap: 8px;
-    }
-
-    .chip {
-      padding: 9px 12px;
-      font-size: 0.7rem;
-    }
-
-    .hero-actions {
-      gap: 10px;
-      margin-top: 4px;
-    }
-
-    .section {
-      padding: 58px 0;
-    }
-
-    .section-head {
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .section-copy,
-    .proof-block-header p,
-    .contact-copy,
-    .story-copy p,
-    .project-copy,
-    .skill-card p {
-      font-size: 0.95rem;
-      line-height: 1.62;
-    }
-
-    .flagship {
-      padding: 18px;
-    }
-
-    .flagship-top {
-      gap: 14px;
-    }
-
-    .flagship-copy p {
-      margin-top: 10px;
-      font-size: 0.95rem;
-      line-height: 1.62;
-    }
-
-    .illustration-frame--flagship {
+    .lightbox-image-frame {
+      display: grid;
       min-height: 0;
-      aspect-ratio: 16 / 11.4;
+      height: min(76vh, 760px);
+      place-items: center;
+      padding: 16px;
+      background: #0d0f11;
     }
 
-    .illustration-frame--flagship .illustration-media {
+    .lightbox img#lightboxImage {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: min(76vh, 760px);
       object-fit: contain;
       object-position: center;
-      transform: scale(1);
+      background: #0d0f11;
     }
 
-    .subflow-grid {
+    .lightbox-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 4;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(244, 244, 240, 0.18);
+      border-radius: 999px;
+      background: rgba(16, 18, 20, 0.86);
+      color: #f4f4f0;
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .lightbox-caption {
+      padding: 12px 16px;
+      border-top: 1px solid rgba(244, 244, 240, 0.10);
+      color: rgba(244, 244, 240, 0.78);
+      font-size: 0.9rem;
+    }
+
+    .lightbox-gallery {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 0 16px 16px;
+      background: #101214;
+    }
+
+    .lightbox-gallery button {
+      width: 98px;
+      height: 64px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      border: 1px solid rgba(244, 244, 240, 0.16);
+      background: #0d0f11;
+      opacity: 0.72;
+      transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .lightbox-gallery button:hover {
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+
+    .lightbox-gallery button.is-active {
+      border-color: #ff5722;
+      opacity: 1;
+      box-shadow: 0 0 0 1px rgba(255, 87, 34, 0.25);
+    }
+
+    .lightbox-gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #0d0f11;
+    }
+
+    .lightbox-info {
+      border-left: 1px solid rgba(244, 244, 240, 0.12);
+      background: #101214;
+      padding: 28px 24px;
+      overflow-y: auto;
+    }
+
+    .lightbox-info-label {
+      display: block;
+      margin-bottom: 10px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #ff5722;
+    }
+
+    .lightbox-info-title {
+      margin-bottom: 20px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #f4f4f0;
+    }
+
+    .lightbox-info-block {
+      padding-top: 16px;
       margin-top: 16px;
-      gap: 14px;
+      border-top: 1px solid rgba(244, 244, 240, 0.10);
     }
 
-    .subflow-card,
-    .skill-card,
-    .proof-card,
-    .project-card {
-      padding: 16px;
+    .lightbox-info-heading {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #8ab4f8;
     }
 
-    .illustration-frame--subflow {
-      min-height: 0;
-      aspect-ratio: 16 / 10.8;
-      padding: 8px;
+    .lightbox-info-text {
+      font-size: 0.92rem;
+      line-height: 1.72;
+      color: rgba(244, 244, 240, 0.78);
+    }
+
+
+
+    .lightbox-panel,
+    #proof,
+    #process,
+    #stack {
+      contain: layout paint;
+    }
+
+    .lightbox-image-frame {
+      position: relative;
+    }
+
+    .lightbox-media,
+    .lightbox-info {
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .lightbox.is-changing .lightbox-media {
+      opacity: 0.78;
+      transform: translateX(-4px);
+    }
+
+    .lightbox.is-changing .lightbox-info {
+      opacity: 0.72;
+      transform: translateX(4px);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      display: grid;
+      width: 44px;
+      height: 44px;
+      place-items: center;
+      border: 1px solid rgba(244, 244, 240, 0.18);
+      border-radius: 999px;
+      background: rgba(16, 18, 20, 0.74);
+      color: #f4f4f0;
+      font-size: 1.8rem;
+      line-height: 1;
+      transform: translateY(-50%);
+      transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    .lightbox-nav:hover {
+      border-color: rgba(255, 87, 34, 0.78);
+      background: rgba(255, 87, 34, 0.92);
+      color: #fff;
+      transform: translateY(-50%) scale(1.04);
+    }
+
+    .lightbox-nav.prev {
+      left: 18px;
+    }
+
+    .lightbox-nav.next {
+      right: 18px;
+    }
+
+    .lightbox-index {
+      margin-bottom: 10px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(244, 244, 240, 0.52);
+    }
+
+    .lightbox-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .lightbox {
+        padding: 12px;
+      }
+
+      .lightbox-layout {
+        grid-template-columns: 1fr;
+        max-height: calc(100vh - 24px);
+        overflow-y: auto;
+      }
+
+      .lightbox-image-frame {
+        height: min(56vh, 520px);
+        padding: 12px;
+      }
+
+      .lightbox img#lightboxImage {
+        max-height: min(56vh, 520px);
+      }
+
+      .lightbox-info {
+        border-left: 0;
+        border-top: 1px solid rgba(244, 244, 240, 0.12);
+        padding: 22px 18px;
+      }
+    }
+
+    /* -------------------------------------------
+       Stable synchronized glow timeline for How I Work
+       Uses CSS variables so dark/light mode does not swap animation names.
+    ------------------------------------------- */
+    html {
+      --process-idle-border: rgba(22, 24, 26, 0.12);
+      --process-idle-color: #2563eb;
+      --process-icon-bg: #f5f3ef;
+    }
+
+    html.dark {
+      --process-idle-border: rgba(244, 244, 240, 0.12);
+      --process-idle-color: #8ab4f8;
+      --process-icon-bg: #16181a;
+    }
+
+    @keyframes sync-glow {
+      0%, 20% {
+        border-color: rgba(255, 87, 34, 1);
+        box-shadow: 0 0 0 1px rgba(255, 87, 34, 0.20), 0 0 20px rgba(255, 87, 34, 0.40);
+        color: #ff5722;
+      }
+      21%, 100% {
+        border-color: var(--process-idle-border);
+        box-shadow: 0 0 0 rgba(255, 87, 34, 0);
+        color: var(--process-idle-color);
+      }
+    }
+
+    @keyframes live-search {
+      0% { transform: translate(0, 0) scale(1); }
+      5% { transform: translate(-4px, -4px) scale(1.15); }
+      10% { transform: translate(4px, 4px) scale(1.15); }
+      15% { transform: translate(4px, -4px) scale(1.15); }
+      20%, 100% { transform: translate(0, 0) scale(1); }
+    }
+
+    @keyframes live-map {
+      0% { transform: scale(1) rotateY(0deg); }
+      10% { transform: scale(1.1) perspective(200px) rotateY(25deg) rotateX(10deg); }
+      20%, 100% { transform: scale(1) rotateY(0deg); }
+    }
+
+    @keyframes live-gear {
+      0% { transform: rotate(0deg); }
+      20% { transform: rotate(360deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes live-bug {
+      0% { transform: translateX(0); opacity: 1; }
+      8% { transform: translateX(25px); opacity: 0; }
+      9% { transform: translateX(-25px); opacity: 0; }
+      12% { transform: translateX(-25px); opacity: 1; }
+      20%, 100% { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes live-rocket {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      8% { transform: translate(30px, -30px) scale(0.5); opacity: 0; }
+      9% { transform: translate(-30px, 30px) scale(0.5); opacity: 0; }
+      12% { transform: translate(-30px, 30px) scale(0.5); opacity: 1; }
+      20%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+    }
+
+    .process-flow {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 28px;
+      padding-top: 18px;
+    }
+
+    .process-flow::before {
+      content: "";
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      top: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(37, 99, 235, 0.18), rgba(255, 87, 34, 0.42), rgba(37, 99, 235, 0.18));
+      transition: background 0.3s ease;
+    }
+
+    .dark .process-flow::before {
+      background: linear-gradient(90deg, rgba(138, 180, 248, 0.14), rgba(255, 87, 34, 0.40), rgba(138, 180, 248, 0.14));
+    }
+
+    .process-step {
+      position: relative;
+      text-align: center;
+      padding-top: 0;
+    }
+
+    .process-icon {
+      position: relative;
+      z-index: 2;
+      width: 60px;
+      height: 60px;
+      display: grid;
+      place-items: center;
+      border-radius: 9999px;
+      border: 1px solid var(--process-idle-border);
+      background: var(--process-icon-bg);
+      color: var(--process-idle-color);
+      margin: 0 auto 22px;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      will-change: box-shadow, border-color, color, transform;
+    }
+
+    .step-container,
+    .step-icon {
+      animation-duration: 10s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+
+    .step-container {
+      animation-name: sync-glow;
+    }
+
+
+    .process-icon .material-symbols-outlined {
+      display: block;
+      will-change: transform, opacity;
+    }
+
+    .delay-1 { animation-delay: 0s; }
+    .delay-2 { animation-delay: 2s; }
+    .delay-3 { animation-delay: 4s; }
+    .delay-4 { animation-delay: 6s; }
+    .delay-5 { animation-delay: 8s; }
+
+    .anim-search { animation-name: live-search; }
+    .anim-map { animation-name: live-map; }
+    .anim-gear { animation-name: live-gear; }
+    .anim-bug { animation-name: live-bug; }
+    .anim-rocket { animation-name: live-rocket; }
+
+    .process-step-number {
+      position: absolute;
+      z-index: 3;
+      top: -6px;
+      left: calc(50% + 16px);
+      display: grid;
+      width: 22px;
+      height: 22px;
+      place-items: center;
+      border-radius: 999px;
+      background: #ff5722;
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .process-step h3 {
       margin-bottom: 10px;
     }
 
-    .illustration-frame--subflow .illustration-media {
+    .process-step p {
+      max-width: 220px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tool-logo-card img {
+      width: 32px !important;
+      height: 32px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
       object-fit: contain;
-      object-position: center;
-      transform: scale(1);
-    }
-
-    .proof-block {
-      padding: 20px;
-    }
-
-    .demo-card {
-      padding: 16px;
-    }
-
-    .demo-highlight {
-      margin-bottom: 12px;
-    }
-
-    .video-frame.youtube-embed {
-      aspect-ratio: 16 / 9;
-      border-radius: 22px;
-    }
-
-    .contact-card {
-      padding: 22px;
-    }
-
-    .contact-layout {
-      gap: 16px;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .topbar-inner {
-      width: min(var(--max), calc(100vw - 22px));
-      padding: 10px 0 12px;
-      gap: 10px;
-    }
-
-    .brand-cluster {
-      gap: 6px;
-      align-items: center;
-      flex: 1 1 auto;
-    }
-
-    .brand {
-      flex: 0 0 auto;
-      width: auto;
-      max-width: max-content;
-      min-width: 0;
-      padding: 6px 9px;
-    }
-
-    .brand-mark {
-      gap: 4px;
-      min-width: 0;
-    }
-
-    .brand-mark strong {
-      font-size: 0.88rem;
-    }
-
-    .brand-mark span {
-      font-size: 0.66rem;
-      letter-spacing: 0.1em;
-    }
-
-    .theme-toggle {
-      min-height: 36px;
-      padding: 0 9px;
-      gap: 0;
-      flex: 0 0 auto;
-    }
-
-    .theme-toggle-label {
-      display: none;
-    }
-
-    .top-actions {
-      align-items: center;
-      width: auto;
-      flex: 0 0 auto;
-      gap: 6px;
-    }
-
-    .profile-link,
-    .top-actions .btn {
-      min-height: 38px;
-      justify-content: center;
-      width: auto;
-      flex: 0 0 auto;
-      padding-inline: 12px;
-      font-size: 0.84rem;
-    }
-
-    .nav {
-      gap: 8px;
-    }
-
-    .nav a {
-      font-size: 0.84rem;
-      min-height: 36px;
-    }
-
-    .hero {
-      padding-top: 22px;
-    }
-
-    .hero-grid {
-      gap: 10px;
-    }
-
-    .hero-status {
-      padding: 9px 12px;
-      font-size: 0.68rem;
-      gap: 8px;
-    }
-
-    .hero-block--top .hero-title {
-      font-size: clamp(2.1rem, 10.8vw, 2.95rem);
-      line-height: 0.9;
-    }
-
-    .hero-title--top {
-      display: grid;
-      gap: 0;
-    }
-
-    .hero-title--top span {
       display: block;
     }
 
-    .hero-stage {
-      gap: 4px;
+    .stack-logo img,
+    #proof-tools img {
+      width: 20px !important;
+      height: 20px !important;
+      max-width: 20px !important;
+      max-height: 20px !important;
+      object-fit: contain !important;
+      display: block;
     }
 
-    .hero-visual {
-      width: min(74vw, 280px);
+    .social-logo img {
+      width: 22px !important;
+      height: 22px !important;
+      max-width: 22px !important;
+      max-height: 22px !important;
+      object-fit: contain !important;
+      display: block;
     }
 
-    .illustration-frame--hero {
-      aspect-ratio: 16 / 8.8;
+
+    /* Hard lock Tool Stack logo sizing so light/dark navigation never reverts to oversized logos. */
+    #stack .stack-logo {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      width: auto !important;
+      max-width: max-content !important;
+      min-height: 34px !important;
+      overflow: hidden !important;
+      line-height: 1 !important;
     }
 
-    .hero-block--bottom {
-      margin-top: -8px;
+    #stack .stack-logo > img,
+    #stack .stack-logo img,
+    #proof-tools img {
+      width: 20px !important;
+      height: 20px !important;
+      min-width: 20px !important;
+      min-height: 20px !important;
+      max-width: 20px !important;
+      max-height: 20px !important;
+      flex: 0 0 20px !important;
+      object-fit: contain !important;
+      display: block !important;
     }
 
-    .hero-block--bottom .hero-title {
-      font-size: clamp(1.78rem, 8.7vw, 2.5rem);
-      line-height: 0.9;
+    #stack .tool-logo-card {
+      overflow: hidden !important;
     }
 
-    .copy {
-      font-size: 0.92rem;
-      line-height: 1.54;
+    #stack .tool-logo-card > img,
+    #stack .tool-logo-card img {
+      width: 28px !important;
+      height: 28px !important;
+      min-width: 28px !important;
+      min-height: 28px !important;
+      max-width: 28px !important;
+      max-height: 28px !important;
+      object-fit: contain !important;
+      display: block !important;
     }
 
-    .chip {
-      width: auto;
-      padding: 7px 10px;
-      font-size: 0.68rem;
+    #stack .orbit-logo-tile {
+      width: 48px !important;
+      height: 48px !important;
+      min-width: 48px !important;
+      min-height: 48px !important;
+      max-width: 48px !important;
+      max-height: 48px !important;
+      padding: 0 !important;
+      display: grid !important;
+      place-items: center !important;
+      border-radius: 12px !important;
+      border: 1px solid rgba(22, 24, 26, 0.12) !important;
+      background: #ffffff !important;
+      box-shadow: 0 12px 26px rgba(22, 24, 26, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
+      overflow: hidden !important;
     }
 
-    .btn,
-    .btn-secondary,
-    .contact-link {
-      min-height: 48px;
+    .dark #stack .orbit-logo-tile {
+      border-color: rgba(244, 244, 240, 0.14) !important;
+      background: #ffffff !important;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.88) !important;
     }
 
-    .flagship,
-    .story-copy,
-    .proof-block,
-    .contact-card {
-      padding: 18px;
+    #stack .orbit-logo-tile:hover {
+      border-color: rgba(255, 87, 34, 0.7) !important;
+      box-shadow: 0 0 22px rgba(255, 87, 34, 0.18), 0 14px 30px rgba(22, 24, 26, 0.10) !important;
     }
 
-    .demo-card {
-      padding: 12px;
-      border-radius: 20px;
+    #stack .orbit-logo-img {
+      display: block !important;
+      width: auto !important;
+      height: auto !important;
+      min-width: 0 !important;
+      min-height: 0 !important;
+      max-width: 72% !important;
+      max-height: 72% !important;
+      object-fit: contain !important;
     }
 
-    .demo-highlight {
-      margin-bottom: 10px;
-      padding: 8px 10px;
-      font-size: 0.66rem;
-      line-height: 1.3;
+    #stack .orbit-logo-img--dark {
+      max-width: 84% !important;
+      max-height: 84% !important;
     }
 
-    .video-frame.youtube-embed {
-      border-radius: 18px;
+    @media (max-width: 900px) {
+      .topbar-inner {
+        display: flex !important;
+        justify-content: space-between;
+        position: relative;
+        padding-left: 16px;
+        padding-right: 16px;
+        gap: 10px;
+      }
+
+      .brand-lockup {
+        padding-right: 12px;
+        font-size: 1rem;
+      }
+
+      .topbar-inner > .hidden {
+        display: none !important;
+      }
+
+      .nav-book-label {
+        display: none;
+      }
+
+      .topbar-inner > .flex:last-child {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        gap: 8px;
+        margin-left: auto;
+      }
+
+      .topbar-inner > .flex:last-child > a:last-child {
+        width: 44px;
+        height: 36px;
+        justify-content: center;
+        padding: 0 !important;
+      }
+
+      @media (max-width: 480px) {
+        .topbar-inner > .flex:last-child > a:last-child {
+          display: none;
+        }
+      }
+
+      .hero-badge {
+        width: min(300px, calc(100vw - 32px)) !important;
+        max-width: min(300px, calc(100vw - 32px)) !important;
+        flex-wrap: wrap;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.35;
+      }
+
+      .hero-badge span:last-child {
+        min-width: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .hero-title-text {
+        width: min(360px, calc(100vw - 32px)) !important;
+        max-width: min(360px, calc(100vw - 32px)) !important;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 2.25rem !important;
+        line-height: 1.1 !important;
+        overflow-wrap: anywhere;
+        text-wrap: balance;
+      }
+
+      .hero-copy {
+        width: min(320px, calc(100vw - 48px)) !important;
+        max-width: min(320px, calc(100vw - 48px)) !important;
+        font-size: 1rem !important;
+      }
+
+      #process h2,
+      #proof h2,
+      #stack h2,
+      #book h2 {
+        width: min(300px, calc(100vw - 64px));
+        max-width: min(300px, calc(100vw - 64px));
+        font-size: 2.1rem !important;
+        line-height: 1.08 !important;
+      }
+
+      .process-flow {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .process-flow::before {
+        left: 30px;
+        right: auto;
+        top: 28px;
+        bottom: 28px;
+        width: 1px;
+        height: auto;
+        background: linear-gradient(180deg, rgba(255, 87, 34, 0.4), rgba(138, 180, 248, 0.35));
+      }
+
+      .process-step {
+        min-height: 82px;
+        padding-left: 92px;
+        text-align: left;
+      }
+
+      .process-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+      }
+
+      .process-step-number {
+        left: 44px;
+        top: -6px;
+      }
+
+      .process-step p {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .orbit-field {
+        width: 100%;
+        height: auto;
+        display: grid;
+        gap: 16px;
+      }
+
+      .orbit-container,
+      .orbit-container.reverse,
+      .keep-upright {
+        animation: none;
+      }
+
+      .orbit-ring {
+        display: none;
+      }
+
+      .orbit-layer {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .tool-node {
+        position: static;
+        width: 100%;
+        height: 62px;
+        margin: 0;
+        transform: none;
+      }
+
+      .tool-logo-card {
+        width: 100%;
+        height: 62px;
+      }
+
+      .automation-core {
+        position: static;
+        width: 100%;
+        height: 150px;
+        transform: none;
+      }
+
+      #stack .orbit-logo-tile {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        max-width: 36px !important;
+        max-height: 36px !important;
+        border-radius: 10px !important;
+      }
     }
 
-    .illustration-frame--flagship {
-      aspect-ratio: 16 / 12.2;
+    @media (min-width: 901px) and (max-width: 1100px) {
+      #stack .orbit-logo-tile {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        max-width: 42px !important;
+        max-height: 42px !important;
+      }
     }
 
-    .illustration-frame--subflow {
-      aspect-ratio: 16 / 11.6;
-      padding: 6px;
+    @media (max-width: 768px) {
+      .hero-beams {
+        opacity: 0.52;
+      }
+
+      .hero-beams::before {
+        opacity: 0.48;
+      }
+
+      .hero-beams-svg {
+        opacity: 0.58;
+      }
+
+      .hero-beam-path {
+        stroke-width: 0.85;
+        stroke-dasharray: 12 66;
+        animation-duration: 54s;
+      }
+
+      .hero-beam-path.is-extra,
+      .hero-beam-dot.is-extra {
+        display: none;
+      }
+
+      .hero-beam-dot {
+        width: 4px;
+        height: 4px;
+        animation-duration: 52s;
+      }
     }
 
-    #skills {
-      padding-top: 48px;
-      padding-bottom: 52px;
-    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-beam-path,
+      .hero-beam-dot {
+        animation: none !important;
+      }
 
-    #skills .section-head,
-    #about .section-head,
-    #evidence .section-head,
-    #contact .section-head {
-      margin-bottom: 12px;
+      .hero-beam-dot {
+        opacity: 0;
+      }
     }
-
-    .skill-card p,
-    .project-copy,
-    .proof-card-copy p,
-    .story-copy p,
-    .contact-copy {
-      font-size: 0.92rem;
-      line-height: 1.58;
-    }
-
-    .contact-links {
-      gap: 8px;
-    }
-  }
-</style>
+  </style>
 </head>
-<body>
-<div class="page">
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand-cluster">
-        <a href="#top" class="brand" aria-label="RT Automate home">
-          <span class="brand-bracket">[</span>
-          <span class="brand-mark"><strong>RT.</strong><span>Automate</span></span>
-          <span class="brand-tail">]</span>
-        </a>
-        <button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle dark and light mode" aria-pressed="false">
-          <span class="theme-toggle-icon" aria-hidden="true">◐</span>
-          <span class="theme-toggle-label">Light mode</span>
-        </button>
+<body class="min-h-screen antialiased transition-colors duration-300">
+  <nav class="sticky top-0 z-50 w-full border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]">
+    <div class="topbar-inner mx-auto flex h-16 w-full max-w-container-max items-center justify-between gap-4 px-8">
+      <a href="#top" class="brand-lockup typewriter-logo border-r border-[rgba(22,24,26,0.12)] pr-6 font-display text-xl font-black tracking-tighter text-[#16181A] transition-colors duration-300 dark:border-border-subtle dark:text-white" aria-label="RT Automate home">
+        <span id="typewriter">RT_AUTOMATE</span>
+      </a>
+      <div class="hidden items-center space-x-8 font-display text-sm font-bold uppercase tracking-tight md:flex">
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="#process">Process</a>
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="#proof">Proof</a>
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="#stack">Stack</a>
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="./about.html">About</a>
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="#book">Book</a>
       </div>
-      <nav class="nav" aria-label="Primary">
-        <a href="#workflows">Workflows</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#skills">Skills</a>
-        <a href="#how-i-work">How I Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="top-actions">
-        <a class="profile-link" href="https://ph.linkedin.com/in/robert-tapangan-automation-specialist" target="_blank" rel="noopener noreferrer">Profile</a>
-        <a class="btn" href="#contact">Hire me</a>
+      <div class="flex items-center gap-3">
+        <button class="rounded-full p-2 text-[#5F676D] transition-colors hover:bg-[rgba(22,24,26,0.05)] hover:text-[#16181A] dark:text-zinc-500 dark:hover:bg-white/5 dark:hover:text-zinc-200" id="theme-toggle" type="button" aria-label="Toggle dark and light mode">
+          <span class="material-symbols-outlined hidden text-xl dark:block">light_mode</span>
+          <span class="material-symbols-outlined block text-xl dark:hidden">dark_mode</span>
+        </button>
+        <a class="flex items-center gap-2 rounded-sm bg-action-coral px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-all hover:brightness-110 active:scale-95" href="#book">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span class="nav-book-label">Book</span>
+        </a>
       </div>
     </div>
-  </header>
+  </nav>
 
-  <main id="top">
-    <section class="hero shell">
-      <div class="hero-grid">
-        <div class="hero-stage fade">
-          <div class="hero-block hero-block--top">
-            <div class="eyebrow hero-status"><span class="hero-status-dot" aria-hidden="true"></span><span class="hero-status-label">Available for Work — Remote / Freelance</span></div>
-            <h1 class="hero-title hero-title--top">
-              <span>I build</span>
-              <span class="accent-line">automation systems</span>
-            </h1>
-          </div>
-
-          <div class="hero-visual">
-            <!-- Hero illustration asset -->
-            <div class="asset-shell illustration-frame illustration-frame--hero illustration-frame--embedded" data-asset-wrapper>
-              <img class="asset-media illustration-media" data-asset-type="image" src="./assets/illustrations/Hero illustration.png" alt="Editorial line illustration representing business automation systems" />
-              <div class="asset-fallback">
-                <div>
-                  <strong>Hero illustration slot</strong>
-                  Add <span class="label">./assets/illustrations/Hero illustration.png</span> to show the final editorial visual here.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-block hero-block--bottom">
-            <div class="hero-title">
-              <span>for</span>
-              <span>smarter business</span>
-              <span>follow-through.</span>
-            </div>
-          </div>
+  <main id="top" class="flex-grow">
+    <section class="relative isolate flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-32 transition-colors duration-300 dark:border-border-subtle dark:bg-forged-iron">
+      <div class="hero-beams" aria-hidden="true">
+        <div class="hero-beams-grid"></div>
+        <svg class="hero-beams-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="heroBeamBlue" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="transparent" />
+              <stop offset="42%" stop-color="var(--beam-blue-soft)" />
+              <stop offset="58%" stop-color="var(--beam-blue-strong)" />
+              <stop offset="100%" stop-color="transparent" />
+            </linearGradient>
+            <linearGradient id="heroBeamOrange" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="transparent" />
+              <stop offset="48%" stop-color="var(--beam-orange-soft)" />
+              <stop offset="100%" stop-color="transparent" />
+            </linearGradient>
+          </defs>
+          <path class="hero-beam-path" stroke="url(#heroBeamBlue)" d="M -180 210 C 180 76 416 112 690 242 C 940 360 1130 292 1620 126" />
+          <path class="hero-beam-path is-quiet" stroke="url(#heroBeamBlue)" d="M -120 520 C 240 392 512 418 760 560 C 1018 708 1216 642 1560 438" />
+          <path class="hero-beam-path is-quiet is-extra" stroke="url(#heroBeamBlue)" d="M 1580 270 C 1210 354 1030 228 790 172 C 512 106 322 208 -120 362" />
+          <path class="hero-beam-path is-accent is-extra" stroke="url(#heroBeamOrange)" d="M 140 800 C 368 622 602 642 782 454 C 946 282 1142 250 1336 132" />
+        </svg>
+        <span class="hero-beam-dot path-a"></span>
+        <span class="hero-beam-dot path-b"></span>
+        <span class="hero-beam-dot path-c is-extra"></span>
+        <span class="hero-beam-dot path-d is-orange is-extra"></span>
+      </div>
+      <div class="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
+        <div class="hero-badge mb-8 inline-flex items-center justify-center gap-2 rounded-sm border border-[#2563EB]/20 bg-[#2563EB]/5 px-3 py-1 transition-colors duration-300 dark:border-drafting-blue/20 dark:bg-drafting-blue/5">
+          <span class="h-2 w-2 rounded-full bg-action-coral"></span>
+          <span class="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#2563EB] transition-colors duration-300 dark:text-drafting-blue">n8n - GoHighLevel - AI Workflow Systems</span>
         </div>
-
-        <div class="hero-support fade">
-          <p class="copy">I build n8n workflows, AI-assisted automations, lead intake systems, and internal tools that help service businesses respond faster, capture more opportunities, and keep operations cleaner behind the scenes.</p>
-          <div class="hero-support-side">
-            <div class="trust-row" aria-label="Trust statements">
-              <div class="chip">Real workflow demos</div>
-              <div class="chip">Proof-backed portfolio builds</div>
-              <div class="chip">Multi-step business automations</div>
-              <div class="chip">AI-assisted workflow systems</div>
-            </div>
-            <div class="hero-actions">
-              <a class="btn" href="#workflows">View selected systems</a>
-              <a class="btn-secondary" href="#evidence">See proof of work</a>
-            </div>
-          </div>
+        <h1 class="hero-title-text mb-6 max-w-5xl font-display text-4xl font-bold tracking-[-0.04em] text-[#16181A] transition-colors duration-300 dark:text-machine-off-white sm:text-6xl md:text-7xl lg:text-8xl">
+          AI Automation Systems for Service Businesses
+        </h1>
+        <div class="mb-8 h-1 w-24 bg-action-coral"></div>
+        <p class="hero-copy mb-10 max-w-[calc(100vw-32px)] font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text md:max-w-2xl md:text-xl">
+          I build n8n automations, GoHighLevel agency systems, CRM workflows, funnel designs, AI-assisted operations, and no-code/vibe-coded tools that help teams capture leads, follow up faster, reduce admin work, and keep their business processes organized.
+        </p>
+        <div class="flex flex-col gap-4 sm:flex-row">
+          <a class="flex items-center justify-center gap-2 rounded-sm bg-action-coral px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest text-white transition-all hover:brightness-110 active:scale-95" href="#book">
+            Book Consultation
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+          <a class="flex items-center justify-center gap-2 rounded-sm border border-[#2563EB]/30 px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB] transition-colors hover:bg-[#2563EB]/10 dark:border-drafting-blue/30 dark:text-drafting-blue dark:hover:bg-drafting-blue/10" href="#proof">
+            View Proof Folder
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section shell" id="workflows">
-      <div class="section-head fade">
-        <div class="section-intro">
-          <div class="micro">Flagship case study</div>
-          <h2 class="section-title">Dental Clinic Automation Suite</h2>
-        </div>
-        <p class="section-copy">An end-to-end patient inquiry, booking, and reminder system built to improve response time, reduce admin work, and help prevent appointment no-shows.</p>
-      </div>
-
-      <div class="flagship fade">
-        <div class="flagship-top">
-          <div class="flagship-copy">
-            <div class="eyebrow">Inquiry &rarr; Booking &rarr; Reminder</div>
-            <p>The system is framed around the front-desk problems clinics feel most often: missed calls that turn into lost leads, incomplete inquiry details, booking back-and-forth, and appointments that slip because reminders were inconsistent or manual.</p>
-          </div>
-
-          <!-- Main flagship illustration asset -->
-          <div class="asset-shell illustration-frame illustration-frame--flagship illustration-frame--embedded js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open dental clinic automation suite illustration">
-            <img class="asset-media illustration-media" data-asset-type="image" src="./assets/illustrations/Dental Clinic Automation Suite.png" alt="Illustration of a connected dental clinic automation suite" />
-            <div class="asset-fallback">
-              <div>
-                <strong>Dental suite illustration slot</strong>
-                Add <span class="label">./assets/illustrations/Dental Clinic Automation Suite.png</span> to display the flagship system visual.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="subflow-grid">
-          <article class="subflow-card fade">
-            <!-- Dental subflow illustration asset: New Patient Intake -->
-            <div class="asset-shell asset-shell--plain illustration-frame illustration-frame--subflow js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open new patient intake illustration">
-              <img class="asset-media illustration-media" data-asset-type="image" src="./assets/illustrations/New Patient Intake.png" alt="Illustration representing new patient intake automation" />
-              <div class="asset-fallback">
-                <div>
-                  <strong>New Patient Intake</strong>
-                  Place <span class="label">./assets/illustrations/New Patient Intake.png</span> here.
-                </div>
-              </div>
-            </div>
-            <div class="micro">01 / Intake</div>
-            <h3 class="card-title">New Patient Intake</h3>
-            <p class="summary">Captures inquiries, normalizes patient details, uses AI-assisted parsing, and routes the next action for staff follow-up.</p>
-            <div class="metrics-grid" aria-label="Estimated operational impact for new patient intake">
-              <div class="metric-card"><div class="metric-label">Time</div><div class="metric-value">2–4 hrs/week saved</div></div>
-              <div class="metric-card"><div class="metric-label">Quality</div><div class="metric-value">Cleaner patient details</div></div>
-              <div class="metric-card"><div class="metric-label">Cost</div><div class="metric-value">Less intake rework</div></div>
-            </div>
-            <div class="outcome-line">Outcome: Faster intake with cleaner lead details.</div>
-          </article>
-
-          <article class="subflow-card fade">
-            <!-- Dental subflow illustration asset: Appointment Booking Confirmation -->
-            <div class="asset-shell asset-shell--plain illustration-frame illustration-frame--subflow js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open appointment booking confirmation illustration">
-              <img class="asset-media illustration-media" data-asset-type="image" src="./assets/illustrations/Appointment Booking Confirmation.png" alt="Illustration representing appointment booking confirmation automation" />
-              <div class="asset-fallback">
-                <div>
-                  <strong>Booking confirmation</strong>
-                  Place <span class="label">./assets/illustrations/Appointment Booking Confirmation.png</span> here.
-                </div>
-              </div>
-            </div>
-            <div class="micro">02 / Booking</div>
-            <h3 class="card-title">Appointment Booking Confirmation</h3>
-            <p class="summary">Turns confirmed booking details into structured appointment records and keeps the lead status updated for the clinic team.</p>
-            <div class="metrics-grid" aria-label="Estimated operational impact for appointment booking confirmation">
-              <div class="metric-card"><div class="metric-label">Time</div><div class="metric-value">2–3 hrs/week saved</div></div>
-              <div class="metric-card"><div class="metric-label">Quality</div><div class="metric-value">Cleaner scheduling handoff</div></div>
-              <div class="metric-card"><div class="metric-label">Cost</div><div class="metric-value">Less coordination waste</div></div>
-            </div>
-            <div class="outcome-line">Outcome: Less scheduling back-and-forth for staff.</div>
-          </article>
-
-          <article class="subflow-card fade">
-            <!-- Dental subflow illustration asset: Reminder + No-Show Prevention -->
-            <div class="asset-shell asset-shell--plain illustration-frame illustration-frame--subflow js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open reminder and no-show prevention illustration">
-              <img class="asset-media illustration-media" data-asset-type="image" src="./assets/illustrations/Reminder + No-Show Prevention.png" alt="Illustration representing dental reminder and no-show prevention automation" />
-              <div class="asset-fallback">
-                <div>
-                  <strong>Reminder flow</strong>
-                  Place <span class="label">./assets/illustrations/Reminder + No-Show Prevention.png</span> here.
-                </div>
-              </div>
-            </div>
-            <div class="micro">03 / Reminder</div>
-            <h3 class="card-title">Reminder + No-Show Prevention</h3>
-            <p class="summary">Checks upcoming appointments, chooses the right contact path, sends reminders, and flags cases that need a manual call.</p>
-            <div class="metrics-grid" aria-label="Estimated operational impact for reminder and no-show prevention">
-              <div class="metric-card"><div class="metric-label">Time</div><div class="metric-value">2–3 hrs/week saved</div></div>
-              <div class="metric-card"><div class="metric-label">Quality</div><div class="metric-value">Better reminder consistency</div></div>
-              <div class="metric-card"><div class="metric-label">Cost</div><div class="metric-value">Lower no-show risk</div></div>
-            </div>
-            <div class="outcome-line">Outcome: Better follow-through before appointment day.</div>
-          </article>
-        </div>
-
-        <div class="outcomes fade">
-          <div class="outcome"><strong>Faster response</strong><span>Missed calls become trackable intake instead of dropped demand.</span></div>
-          <div class="outcome"><strong>Cleaner intake</strong><span>Patient details and admin notes land in a usable format.</span></div>
-          <div class="outcome"><strong>Better handoff</strong><span>Staff see what happened and what to do next without guesswork.</span></div>
-          <div class="outcome"><strong>Reduced no-shows</strong><span>Reminder logic supports follow-through before appointments slip.</span></div>
-        </div>
-
-      </div>
-
-      <div class="supporting-wrap">
-        <div class="section-head fade">
-          <div class="section-intro">
-            <div class="micro">Supporting systems</div>
-            <h2 class="section-title">Additional workflows that show operational depth.</h2>
-          </div>
-          <p class="section-copy">Lead Capture remains the strongest secondary case study because it also has execution proof, while the other builds show coverage across summaries, inbox automation, and internal knowledge support.</p>
-        </div>
-
-        <div class="supporting-grid">
-          <article class="project-card lead-focus fade">
-            <div class="micro">Lead Capture, Qualification &amp; Follow-Up System</div>
-            <h3 class="card-title">Lead capture that turns inquiries into visible next steps.</h3>
-            <p class="project-copy">A front-door workflow for capturing inquiries, identifying lead warmth, sending immediate responses, creating follow-up tasks, and keeping the team from losing momentum once a form is submitted.</p>
-            <div class="chip-row">
-              <div class="chip">Webhook intake</div>
-              <div class="chip">Lead routing</div>
-              <div class="chip">Sheets + Notion handoff</div>
-            </div>
-            <div class="metrics-grid" aria-label="Estimated operational impact for lead capture">
-              <div class="metric-card"><div class="metric-label">Time</div><div class="metric-value">4–8 hrs/week saved</div></div>
-              <div class="metric-card"><div class="metric-label">Quality</div><div class="metric-value">Cleaner lead routing</div></div>
-              <div class="metric-card"><div class="metric-label">Loss</div><div class="metric-value">Lower lead leakage risk</div></div>
-            </div>
-            <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open lead capture workflow proof">
-              <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/lead-capture/lead-capture-workflow-structure.png" alt="Lead capture workflow proof" />
-              <div class="asset-fallback">
-                <div>
-                  <strong>Lead capture proof</strong>
-                  Add or restore the lead capture screenshot under <span class="label">./assets/screenshots/lead-capture/</span>.
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card fade">
-            <div class="micro">Daily Lead Summary Report</div>
-            <h3 class="card-title">Daily reporting that keeps lead activity visible.</h3>
-            <p class="project-copy">Pulls the latest lead activity into a simple summary so the business sees what came in, what needs response, and where follow-up is still pending.</p>
-            <div class="chip-row">
-              <div class="chip">Daily digest</div>
-              <div class="chip">Email summary</div>
-            </div>
-            <div class="metrics-grid" aria-label="Estimated operational impact for daily lead summary reporting">
-              <div class="metric-card"><div class="metric-label">Time</div><div class="metric-value">2–4 hrs/week saved</div></div>
-              <div class="metric-card"><div class="metric-label">Quality</div><div class="metric-value">Better daily visibility</div></div>
-              <div class="metric-card"><div class="metric-label">Delay</div><div class="metric-value">Reduced reporting lag</div></div>
-            </div>
-          </article>
-
-          <article class="project-card fade">
-            <div class="micro">AI Email Triage Agent</div>
-            <h3 class="card-title">Inbox triage that flags what needs attention first.</h3>
-            <p class="project-copy">Classifies incoming emails, drafts replies, pushes priority alerts, and creates tasks so important requests do not get buried in the inbox.</p>
-            <div class="chip-row">
-              <div class="chip">AI parsing</div>
-              <div class="chip">Priority routing</div>
-            </div>
-            <div class="metrics-grid" aria-label="Estimated operational impact for AI email triage">
-              <div class="metric-card"><div class="metric-label">Time</div><div class="metric-value">5–8 hrs/week saved</div></div>
-              <div class="metric-card"><div class="metric-label">Quality</div><div class="metric-value">Priority inbox visibility</div></div>
-              <div class="metric-card"><div class="metric-label">Delay</div><div class="metric-value">Reduced response lag</div></div>
-            </div>
-          </article>
-
-          <article class="project-card fade">
-            <div class="micro">Knowledge Base / AI Memory Assistant</div>
-            <h3 class="card-title">Internal support answers grounded in company documents.</h3>
-            <p class="project-copy">Turns SOPs and handbooks into a practical assistant so teams can retrieve answers faster without repeatedly escalating routine questions.</p>
-            <div class="chip-row">
-              <div class="chip">RAG workflow</div>
-              <div class="chip">Internal FAQ</div>
-            </div>
-            <div class="metrics-grid" aria-label="Estimated operational impact for knowledge base assistant">
-              <div class="metric-card"><div class="metric-label">Time</div><div class="metric-value">3–6 hrs/week saved</div></div>
-              <div class="metric-card"><div class="metric-label">Quality</div><div class="metric-value">Grounded internal answers</div></div>
-              <div class="metric-card"><div class="metric-label">Interruptions</div><div class="metric-value">Fewer repeat questions</div></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section shell" id="evidence">
-      <div class="section-head fade">
-        <div class="section-intro evidence-heading">
+    <section class="w-full border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]" id="process">
+      <div class="mx-auto max-w-container-max px-margin-page">
+        <div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <div class="micro">Proof / Evidence / Demo</div>
-            <h2 class="section-title">Execution proof designed to answer client questions fast.</h2>
+            <span class="mb-3 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-action-coral">How I Work</span>
+            <h2 class="font-display text-4xl font-bold tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">A clear build process for practical automation systems.</h2>
           </div>
-
+          <p class="max-w-xl text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Each build starts with the real workflow, then moves into structured mapping, careful connection, testing, and handoff.</p>
         </div>
-        <p class="section-copy">This section keeps screenshots and demos ahead of decoration so clients can see what the systems look like, how outputs land, and where the operational value shows up in practice.</p>
-      </div>
-
-      <div class="evidence-stack">
-        <article class="proof-block fade">
-          <div class="proof-block-header">
-            <div>
-              <div class="micro">Dental Clinic Automation Suite</div>
-              <h3 class="card-title">Flagship proof lane</h3>
-            </div>
-            <p>Dental proof is organized around intake, booking, and reminder follow-through, while the additional workflows help show broader operational range across lead capture, AI-assisted email triage, reporting, and internal knowledge support.</p>
-          </div>
-
-          <div class="proof-grid proof-grid--dental">
-            <article class="proof-card">
-              <!-- Dental screenshot asset -->
-              <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open dental intake screenshot">
-                <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/dental/dental-new-patient-intake.png" alt="Dental intake screenshot" />
-                <div class="asset-fallback">
-                  <div>
-                    <strong>Dental intake proof</strong>
-                    Add the intake screenshot under <span class="label">./assets/screenshots/dental/</span>.
-                  </div>
-                </div>
-              </div>
-              <div class="proof-card-copy">
-                <h3>Intake proof</h3>
-                <p>Shows how new patient details and inquiry context are turned into cleaner admin-ready records.</p>
-              </div>
-            </article>
-
-            <article class="proof-card">
-              <!-- Dental screenshot asset -->
-              <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open dental booking screenshot">
-                <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/dental/dental-booking-confirmation.png" alt="Dental booking screenshot" />
-                <div class="asset-fallback">
-                  <div>
-                    <strong>Dental booking proof</strong>
-                    Add the booking screenshot under <span class="label">./assets/screenshots/dental/</span>.
-                  </div>
-                </div>
-              </div>
-              <div class="proof-card-copy">
-                <h3>Booking proof</h3>
-                <p>Shows the structured handoff once booking details are confirmed and need to become visible work.</p>
-              </div>
-            </article>
-
-            <article class="proof-card">
-              <!-- Dental screenshot asset -->
-              <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open dental reminder screenshot">
-                <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/dental/dental-reminder-no-show-prevention.png" alt="Dental reminder screenshot" />
-                <div class="asset-fallback">
-                  <div>
-                    <strong>Reminder proof</strong>
-                    Add the reminder screenshot under <span class="label">./assets/screenshots/dental/</span>.
-                  </div>
-                </div>
-              </div>
-              <div class="proof-card-copy">
-                <h3>Reminder proof</h3>
-                <p>Shows the path for reminder delivery and staff visibility before an appointment turns into a no-show risk.</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="demo-card">
-            <div class="demo-highlight">Dental walkthrough demo</div>
-            <!-- Dental demo YouTube embed -->
-            <div class="asset-shell video-frame youtube-embed">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/omId-HbzvGk"
-                title="Dental walkthrough demo video"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </div>
-        </article>
-
-        <article class="proof-block fade">
-          <div class="proof-block-header proof-block-header--compact">
-            <div class="proof-block-label">Lead Capture System</div>
-          </div>
-
-          <div class="lead-proof-stack">
-            <div class="demo-card">
-              <div class="demo-highlight">Lead Capture walkthrough demo</div>
-              <!-- Lead Capture demo YouTube embed -->
-              <div class="asset-shell video-frame youtube-embed">
-                <iframe
-                  src="https://www.youtube-nocookie.com/embed/Xy2pqWaI9Dw"
-                  title="Lead Capture walkthrough demo video"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-
-            <div class="lead-proof-grid">
-              <article class="proof-card">
-                <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open lead tasks screenshot">
-                  <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/lead-capture/notion-auto-task-capture.png" alt="Lead tasks captured in Notion" />
-                  <div class="asset-fallback">
-                    <div>
-                      <strong>Lead tasks proof</strong>
-                      Add the Notion task screenshot under <span class="label">./assets/screenshots/lead-capture/</span>.
-                    </div>
-                  </div>
-                </div>
-                <div class="proof-card-copy">
-                  <h3>Task capture</h3>
-                  <p>Lead details are turned into visible follow-up work instead of sitting unread in a form inbox.</p>
-                </div>
-              </article>
-
-              <article class="proof-card">
-                <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open lead dashboard screenshot">
-                  <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/lead-capture/auto-capture-lead-dashboard.png" alt="Lead dashboard screenshot" />
-                  <div class="asset-fallback">
-                    <div>
-                      <strong>Lead dashboard proof</strong>
-                      Add the dashboard screenshot under <span class="label">./assets/screenshots/lead-capture/</span>.
-                    </div>
-                  </div>
-                </div>
-                <div class="proof-card-copy">
-                  <h3>Lead visibility</h3>
-                  <p>Warm and cold inquiries stay organized in a format the team can review quickly.</p>
-                </div>
-              </article>
-
-              <article class="proof-card">
-                <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open lead capture workflow screenshot">
-                  <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/lead-capture/lead-capture-workflow-structure.png" alt="Lead capture workflow screenshot" />
-                  <div class="asset-fallback">
-                    <div>
-                      <strong>Lead workflow proof</strong>
-                      Add the workflow screenshot under <span class="label">./assets/screenshots/lead-capture/</span>.
-                    </div>
-                  </div>
-                </div>
-                <div class="proof-card-copy">
-                  <h3>Workflow structure</h3>
-                  <p>The system logic stays understandable even when the automation handles several follow-up steps.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </article>
-
-        <article class="proof-block fade">
-          <div class="proof-block-header proof-block-header--compact">
-            <div class="proof-block-label">Additional workflow proof</div>
-          </div>
-
-          <div class="proof-grid proof-grid--support">
-            <article class="proof-card">
-              <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open AI email triage log screenshot">
-                <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/ai-email/ai-email-triage-log.png" alt="AI email triage log screenshot" />
-                <div class="asset-fallback">
-                  <div>
-                    <strong>AI email proof</strong>
-                    Add the AI email log screenshot under <span class="label">./assets/screenshots/ai-email/</span>.
-                  </div>
-                </div>
-              </div>
-              <div class="proof-card-copy">
-                <h3>AI Email Triage</h3>
-                <p>Priority, draft output, and review logging stay visible for inbox-heavy admin work.</p>
-              </div>
-            </article>
-
-            <article class="proof-card">
-              <div class="asset-shell asset-shell--plain proof-frame js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open knowledge base answer screenshot">
-                <img class="asset-media proof-media" data-asset-type="image" src="./assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-complex-question-example.png" alt="Knowledge base answer screenshot" />
-                <div class="asset-fallback">
-                  <div>
-                    <strong>Knowledge base proof</strong>
-                    Add the answer screenshot under <span class="label">./assets/screenshots/knowledge-base/</span>.
-                  </div>
-                </div>
-              </div>
-              <div class="proof-card-copy">
-                <h3>Knowledge Base Assistant</h3>
-                <p>Internal answers stay grounded in company documents instead of relying on generic chat output.</p>
-              </div>
-            </article>
-          </div>
-        </article>
+        <div class="process-flow">
+          <article class="process-step" data-motion="audit">
+            <div class="process-icon step-container delay-1"><span class="material-symbols-outlined step-icon anim-search delay-1 text-2xl">search</span></div>
+            <span class="process-step-number">1</span>
+            <h3 class="font-display text-lg font-bold text-[#16181A] dark:text-machine-off-white">Process Audit</h3>
+            <p class="text-sm leading-relaxed text-[#5F676D] dark:text-muted-text">Review the current workflow, tools, bottlenecks, handoff points, and follow-up gaps.</p>
+          </article>
+          <article class="process-step" data-motion="map">
+            <div class="process-icon step-container delay-2"><span class="material-symbols-outlined step-icon anim-map delay-2 text-2xl">map</span></div>
+            <span class="process-step-number">2</span>
+            <h3 class="font-display text-lg font-bold text-[#16181A] dark:text-machine-off-white">System Map</h3>
+            <p class="text-sm leading-relaxed text-[#5F676D] dark:text-muted-text">Plan the logic before building so triggers, data, routing, and exceptions are clear.</p>
+          </article>
+          <article class="process-step" data-motion="connect">
+            <div class="process-icon step-container delay-3"><span class="material-symbols-outlined step-icon anim-gear delay-3 text-2xl">settings</span></div>
+            <span class="process-step-number">3</span>
+            <h3 class="font-display text-lg font-bold text-[#16181A] dark:text-machine-off-white">Build & Connect</h3>
+            <p class="text-sm leading-relaxed text-[#5F676D] dark:text-muted-text">Connect forms, CRM, databases, email, notifications, AI steps, and webhooks.</p>
+          </article>
+          <article class="process-step" data-motion="bug">
+            <div class="process-icon step-container delay-4"><span class="material-symbols-outlined step-icon anim-bug delay-4 text-2xl">bug_report</span></div>
+            <span class="process-step-number">4</span>
+            <h3 class="font-display text-lg font-bold text-[#16181A] dark:text-machine-off-white">Test & Fix</h3>
+            <p class="text-sm leading-relaxed text-[#5F676D] dark:text-muted-text">Test edge cases, failed runs, duplicate records, missing fields, and handoff issues.</p>
+          </article>
+          <article class="process-step" data-motion="rocket">
+            <div class="process-icon step-container delay-5"><span class="material-symbols-outlined step-icon anim-rocket delay-5 text-2xl">rocket_launch</span></div>
+            <span class="process-step-number">5</span>
+            <h3 class="font-display text-lg font-bold text-[#16181A] dark:text-machine-off-white">Launch & Handoff</h3>
+            <p class="text-sm leading-relaxed text-[#5F676D] dark:text-muted-text">Document the system, explain the workflow, and provide practical improvement notes.</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="section shell" id="skills">
-      <div class="section-head fade">
-        <div class="section-intro">
-          <div class="micro">Skills / Capabilities</div>
-          <h2 class="section-title">Practical automation capabilities built around operations, not novelty.</h2>
-        </div>
-        <p class="section-copy">The goal is to make the process easier for the business to run: cleaner intake, clearer routing, better handoff, and fewer manual touches that slow the team down.</p>
-      </div>
-
-      <div class="skills-grid">
-        <article class="skill-card fade">
-          <div class="micro">Intake systems</div>
-          <h3 class="card-title">Lead capture and form normalization</h3>
-          <p>Turn inbound forms, inquiries, and admin details into structured records that are easier to route and act on.</p>
-        </article>
-        <article class="skill-card fade">
-          <div class="micro">AI-assisted admin</div>
-          <h3 class="card-title">Classification, summarization, and routing</h3>
-          <p>Use AI where it helps staff move faster, especially for parsing, triage, summarization, and next-step visibility.</p>
-        </article>
-        <article class="skill-card fade">
-          <div class="micro">Follow-up logic</div>
-          <h3 class="card-title">Reminder flows and delayed follow-up</h3>
-          <p>Keep leads and appointments from falling through with simple reminder logic and time-based follow-through.</p>
-        </article>
-        <article class="skill-card fade">
-          <div class="micro">Operational tracking</div>
-          <h3 class="card-title">Sheets, Notion, and internal handoff views</h3>
-          <p>Build logs, dashboards, and handoff views that help teams see what happened without digging through raw automation steps.</p>
-        </article>
-        <article class="skill-card fade">
-          <div class="micro">Knowledge systems</div>
-          <h3 class="card-title">FAQ and document-grounded assistants</h3>
-          <p>Turn internal docs into more usable answers for onboarding, SOP retrieval, and repetitive support questions.</p>
-        </article>
-        <article class="skill-card fade">
-          <div class="micro">Workflow delivery</div>
-          <h3 class="card-title">Client-friendly design and handoff</h3>
-          <p>Keep workflows understandable enough for a client to approve and practical enough for a team to use day to day.</p>
-        </article>
-      </div>
-    </section>
-
-
-    <section class="section shell" id="how-i-work">
-      <div class="section-head fade">
-        <div class="section-intro">
-          <div class="micro">How I Work</div>
-          <h2 class="section-title">A clear process built around practical business value.</h2>
-        </div>
-        <p class="section-copy">I keep projects collaborative, realistic, and focused on reducing friction in day-to-day operations. The goal is not to add complexity. It is to build workflows that are easier to trust, easier to use, and more useful to the team behind them.</p>
-      </div>
-
-      <div class="skills-grid">
-        <article class="skill-card fade">
-          <div class="micro">01 / Discovery</div>
-          <h3 class="card-title">Understand the real workflow problem</h3>
-          <p>We review your current process, identify where the bottlenecks are happening, and define what success should look like. This helps make sure the solution addresses the real operational issue, not just the surface-level symptom.</p>
-        </article>
-
-        <article class="skill-card fade">
-          <div class="micro">02 / Workflow Design</div>
-          <h3 class="card-title">Plan the logic before the build</h3>
-          <p>I map the workflow structure, define how the tools should connect, and plan the routing, handoff points, and edge cases before build-out. This keeps the system more organized and easier to understand once it goes live.</p>
-        </article>
-
-        <article class="skill-card fade">
-          <div class="micro">03 / Build and Testing</div>
-          <h3 class="card-title">Build for real operations, not just the canvas</h3>
-          <p>I build the workflow, test each path carefully, and make sure it works in a way that is practical in real use. I focus on reliability, clean logic, and reducing repetitive admin work without making the process harder to manage.</p>
-        </article>
-
-        <article class="skill-card fade">
-          <div class="micro">04 / Launch and Handoff</div>
-          <h3 class="card-title">Support the rollout and next steps</h3>
-          <p>Once the workflow is ready, I help move it into use with walkthrough guidance, practical handoff support, and clear documentation. I welcome feedback because good systems are improved through real-world use, careful refinement, and resolving small issues that appear during transition.</p>
-        </article>
-
-        <article class="skill-card fade">
-          <div class="micro">What clients can expect</div>
-          <h3 class="card-title">Clear communication and practical collaboration</h3>
-          <p>I value transparent updates, realistic problem-solving, and dependable support throughout the project. My goal is to help clients feel informed, supported, and confident in the workflow being built.</p>
-        </article>
-
-        <article class="skill-card fade">
-          <div class="micro">Best fit</div>
-          <h3 class="card-title">Clients who value clarity and outcomes</h3>
-          <p>I work best with clients who communicate clearly, avoid unnecessary micromanagement, and want workflows that improve consistency, save time, reduce friction, and support the team behind the scenes.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section shell" id="about">
-      <div class="section-head fade">
-        <div class="section-intro">
-          <div class="micro">Story behind the automation</div>
-          <h2 class="section-title">Built from real process friction, not theory.</h2>
-        </div>
-        <p class="section-copy">My background is grounded in admin-heavy operational work, which is why the systems I build are framed around reducing friction for the person actually doing the job.</p>
-      </div>
-
-      <div class="about-grid">
-        <article class="story-copy fade">
-          <p>Before I built automations, I was the one doing the manual work. From medical billing to frontline support, I know exactly what it feels like when systems break down—when details slip through the cracks, follow-ups stall, and teams spend hours organizing work instead of actually doing it.</p>
-          <p>That experience is why I transitioned into automation. I am passionate about rescuing teams from broken processes. I hunt down inefficiencies and build structured solutions that reduce human error and restore peace of mind behind the scenes. While n8n is my preferred platform, I can also work with tools like GoHighLevel, Make, and Zapier depending on the business setup and what the workflow needs.</p>
-          <p>In my client partnerships, I prioritize clear communication, transparency, and mutual trust. I thrive in autonomous environments where we can focus on the impact of the work rather than micromanaging the steps to get there.</p>
-          <p>My portfolio reflects this practical, human-centered approach. Whether it is an intake system, AI-assisted triage, or missed-call recovery, I build workflows designed to make daily operations smoother and genuinely easier for the team using them. I welcome feedback because good systems are improved through real-world use, careful refinement, and resolving small issues that appear during transition.</p>
-        </article>
-
-        <aside class="profile-card fade" aria-label="profile.json summary card">
-          <div class="profile-topbar">
-            <div class="profile-dots" aria-hidden="true">
-              <span></span><span></span><span></span>
-            </div>
-            <div class="profile-window-title">profile.json</div>
-          </div>
-          <div class="profile-layout">
-            <div class="profile-command">$ <span>cat profile.json</span></div>
-
-            <!-- Composite profile visual with embedded portrait -->
-            <div class="profile-badge asset-shell asset-shell--plain js-lightbox" data-asset-wrapper role="button" tabindex="0" aria-label="Open profile portrait illustration">
-              <img class="asset-media illustration-media" data-asset-type="image" src="./assets/illustrations/Storyprofile portrait.png" alt="Portrait illustration used inside the profile summary card" />
-              <div class="asset-fallback">
-                <div>
-                  <strong>Portrait slot</strong>
-                  Add <span class="label">./assets/illustrations/Storyprofile portrait.png</span>.
-                </div>
-              </div>
-            </div>
-
-            <div class="profile-json">
-              <div class="profile-group">
-                <div class="profile-line"><span class="token">"name":</span><span class="value">"Robert Tapangan"</span></div>
-                <div class="profile-line"><span class="token">"role":</span><span class="value">"Automation Specialist"</span></div>
-                <div class="profile-line"><span class="token">"specialization":</span><span class="value">"n8n Workflows &amp; AI Automation"</span></div>
-                <div class="profile-line"><span class="token">"background":</span><span class="value">"Operations Support / Former VA"</span></div>
-                <div class="profile-line"><span class="token">"based":</span><span class="value">"Philippines"</span></div>
-              </div>
-
-              <div class="profile-group">
-                <div class="profile-line"><span class="token">"previous_work":</span><span class="value">["Data Entry", "Data Validation", "CSR", "Medical Billing"]</span></div>
-                <div class="profile-line"><span class="token">"focus":</span><span class="value">"Lead capture, follow-up systems, admin routing"</span></div>
-                <div class="profile-line"><span class="token">"stack":</span><span class="value">["n8n", "OpenAI", "Gmail", "Sheets", "Notion"]</span></div>
-                <div class="profile-line"><span class="token">"tools":</span><span class="value">["n8n (preferred)", "GoHighLevel", "Make", "Zapier"]</span></div>
-              </div>
-
-              <div class="profile-group">
-                <div class="profile-line"><span class="token">"open_to":</span><span class="value">"Freelance / Remote / Contract Work"</span></div>
-                <div class="profile-line"><span class="token">"availability":</span><span class="value">"Immediate"</span></div>
-                <div class="profile-line"><span class="token">"email":</span><span class="value">"roberttapangan.va@gmail.com"</span></div>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section shell" id="contact">
-      <div class="contact-card fade">
-        <div class="contact-layout">
+    <section class="w-full border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]" id="proof">
+      <div class="mx-auto max-w-container-max px-margin-page">
+        <div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <div class="micro">Get in touch</div>
-            <h2 class="contact-title">Let's build the workflow that keeps your operations moving.</h2>
-            <p class="contact-copy">If your business is losing time to repetitive admin work, slow follow-up, or scattered operational tasks, I can help turn that process into a cleaner system your team can actually use.</p>
-            <div class="contact-links">
-              <a class="contact-link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=roberttapangan.va@gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Open Gmail compose to contact Robert Tapangan">
-                <span class="contact-link-logo">
-                  <img data-contact-logo src="./assets/logo/Gmail Logo.png" alt="" />
-                </span>
-                <span class="contact-link-copy">
-                  <span class="contact-link-label">Gmail</span>
-                </span>
-              </a>
-              <a class="contact-link" href="https://www.upwork.com/freelancers/~017429a849b97624af?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Open Upwork profile">
-                <span class="contact-link-logo">
-                  <img data-contact-logo src="./assets/logo/Upwork Logo.png" alt="" />
-                </span>
-                <span class="contact-link-copy">
-                  <span class="contact-link-label">Upwork</span>
-                </span>
-              </a>
-              <a class="contact-link" href="https://ph.linkedin.com/in/robert-tapangan-automation-specialist" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile">
-                <span class="contact-link-logo">
-                  <img data-contact-logo src="./assets/logo/Linkedin Logo.png" alt="" />
-                </span>
-                <span class="contact-link-copy">
-                  <span class="contact-link-label">LinkedIn</span>
-                </span>
-              </a>
-              <a class="contact-link" href="https://www.onlinejobs.ph/jobseekers/info/4877103" target="_blank" rel="noopener noreferrer" aria-label="Open OnlineJobs profile">
-                <span class="contact-link-logo">
-                  <img data-contact-logo src="./assets/logo/Onlinejobs Logo.png" alt="" />
-                </span>
-                <span class="contact-link-copy">
-                  <span class="contact-link-label">OnlineJobs</span>
-                </span>
-              </a>
+            <span class="mb-3 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-action-coral">Proof Folder</span>
+            <h2 class="font-display text-4xl font-bold tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Browse real workflow evidence.</h2>
+          </div>
+          <p class="max-w-xl text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Screenshots and workflow previews are organized by system type so clients can inspect the work quickly.</p>
+        </div>
+
+        <div class="mb-6 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Proof folder tabs">
+          <button class="proof-tab whitespace-nowrap rounded-sm border border-action-coral bg-action-coral/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-action-coral" data-tab="n8n" type="button">n8n Workflow Systems</button>
+          <button class="proof-tab whitespace-nowrap rounded-sm border border-[rgba(22,24,26,0.12)] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[#5F676D] dark:border-border-subtle dark:text-muted-text" data-tab="ghl" type="button">Funnel Systems</button>
+          <button class="proof-tab whitespace-nowrap rounded-sm border border-[rgba(22,24,26,0.12)] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[#5F676D] dark:border-border-subtle dark:text-muted-text" data-tab="crm" type="button">Lead Capture + CRM</button>
+          <button class="proof-tab whitespace-nowrap rounded-sm border border-[rgba(22,24,26,0.12)] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[#5F676D] dark:border-border-subtle dark:text-muted-text" data-tab="ai" type="button">AI Admin Workflows</button>
+        </div>
+
+        <div class="grid gap-8 border border-[rgba(22,24,26,0.12)] bg-white p-4 transition-colors duration-300 dark:border-border-subtle dark:bg-deep-blueprint/30 lg:grid-cols-12 lg:p-6">
+          <div class="lg:col-span-8">
+            <button class="proof-open aspect-[16/10] w-full overflow-hidden rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#101214] dark:border-border-subtle" id="proof-main-open" type="button">
+              <img class="proof-image" id="proof-main-image" src="./assets/screenshots/dental/dental-new-patient-intake.png" alt="Dental Clinic Automation Suite proof screenshot" />
+            </button>
+            <div class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-4 py-3 dark:border-border-subtle dark:bg-dark-panel">
+              <p class="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[#5F676D] dark:text-muted-text" id="proof-image-count">Gallery ready</p>
+              <button class="rounded-sm border border-action-coral px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-action-coral transition-colors hover:bg-action-coral hover:text-white" id="proof-gallery-open" type="button">View Gallery</button>
             </div>
           </div>
 
-          <!-- Contact illustration asset -->
-          <div class="asset-shell illustration-frame illustration-frame--contact illustration-frame--embedded" data-asset-wrapper>
-            <img class="asset-media illustration-media" data-asset-type="image" src="./assets/illustrations/Contact CTA illustration.png" alt="Illustration supporting the contact call to action" />
-            <div class="asset-fallback">
-              <div>
-                <strong>Contact illustration slot</strong>
-                Add <span class="label">./assets/illustrations/Contact CTA illustration.png</span> to complete the closing section visual.
+          <div class="flex flex-col gap-4 lg:col-span-4">
+            <div class="border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] p-5 transition-colors duration-300 dark:border-border-subtle dark:bg-dark-panel">
+              <h3 class="mb-3 font-display text-2xl font-bold text-[#16181A] transition-colors duration-300 dark:text-machine-off-white" id="proof-title">Dental Clinic Automation Suite</h3>
+              <div class="space-y-4">
+                <div>
+                  <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue" id="proof-primary-label">Problem</span>
+                  <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80" id="proof-problem"></p>
+                </div>
+                <div>
+                  <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue" id="proof-secondary-label">System Built</span>
+                  <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80" id="proof-system"></p>
+                </div>
+                <div>
+                  <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue">What This Proves</span>
+                  <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80" id="proof-proves"></p>
+                </div>
               </div>
             </div>
+            <div class="border border-[rgba(22,24,26,0.12)] bg-white p-5 transition-colors duration-300 dark:border-border-subtle dark:bg-dark-panel">
+              <span class="mb-3 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#2563EB] dark:text-drafting-blue">Tools Used</span>
+              <div class="flex flex-wrap gap-2" id="proof-tools"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-forged-iron" id="stack">
+      <div class="mx-auto max-w-container-max px-margin-page">
+        <div class="mb-16">
+          <h2 class="mb-4 font-display text-4xl font-bold tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Connected tools. Cleaner workflows.</h2>
+          <p class="max-w-3xl font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text">I connect the tools your business already uses into structured automation systems for lead capture, CRM updates, follow-up, reporting, and AI-assisted admin work.</p>
+        </div>
+
+        <div class="flex flex-col items-center gap-16 lg:flex-row">
+          <div class="orbit-wrap flex min-h-[600px] w-full items-center justify-center lg:w-1/2">
+            <div class="orbit-field relative h-[550px] w-[550px] max-w-full">
+              <div class="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+                <div class="automation-core" aria-label="Automation Core">
+                  <div class="text-center">
+                    <span class="material-symbols-outlined automation-core-icon">precision_manufacturing</span>
+                    <span class="automation-core-label">Automation<br />Core</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="orbit-layer absolute inset-0">
+                <div class="orbit-ring h-[280px] w-[280px]"></div>
+                <div class="orbit-container absolute inset-0">
+                  <div class="tool-node" style="--angle: 270deg; --radius: 140px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/n8n-color.svg" alt="n8n" /></div></div></div>
+                  <div class="tool-node" style="--angle: 30deg; --radius: 140px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Highlevel.png" alt="GoHighLevel" /></div></div></div>
+                  <div class="tool-node" style="--angle: 150deg; --radius: 140px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Make%20Symbol%20SVG.svg" alt="Make" /></div></div></div>
+                </div>
+              </div>
+
+              <div class="orbit-layer absolute inset-0">
+                <div class="orbit-ring h-[400px] w-[400px]"></div>
+                <div class="orbit-container reverse absolute inset-0">
+                  <div class="tool-node" style="--angle: 315deg; --radius: 200px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/openai.svg" alt="OpenAI" /></div></div></div>
+                  <div class="tool-node" style="--angle: 45deg; --radius: 200px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/claude-color.svg" alt="Claude" /></div></div></div>
+                  <div class="tool-node" style="--angle: 135deg; --radius: 200px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/supabase-icon.svg" alt="Supabase" /></div></div></div>
+                  <div class="tool-node" style="--angle: 225deg; --radius: 200px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/PostgreSQL%20Icon.png" alt="PostgreSQL" /></div></div></div>
+                </div>
+              </div>
+
+              <div class="orbit-layer absolute inset-0">
+                <div class="orbit-ring h-[520px] w-[520px]"></div>
+                <div class="orbit-container absolute inset-0" style="animation-duration: 170s;">
+                  <div class="tool-node" style="--angle: 270deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/gmail.png" alt="Gmail" /></div></div></div>
+                  <div class="tool-node" style="--angle: 321deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/google-sheets-icon.svg" alt="Google Sheets" /></div></div></div>
+                  <div class="tool-node" style="--angle: 13deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/notion.svg" alt="Notion" /></div></div></div>
+                  <div class="tool-node" style="--angle: 64deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/github.svg" alt="GitHub" /></div></div></div>
+                  <div class="tool-node" style="--angle: 116deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Zapier%20Symbol%20SVG.svg" alt="Zapier" /></div></div></div>
+                  <div class="tool-node" style="--angle: 167deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Telegram.png" alt="Telegram" /></div></div></div>
+                  <div class="tool-node" style="--angle: 219deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/WhatsApp%20Icon.png" alt="WhatsApp" /></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full space-y-6 lg:w-1/2">
+            <div class="border border-[rgba(22,24,26,0.12)] bg-white p-6 transition-colors hover:border-[#2563EB]/30 dark:border-border-subtle dark:bg-deep-blueprint/30 dark:hover:border-drafting-blue/30">
+              <h3 class="mb-2 flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-[#16181A] transition-colors duration-300 dark:text-machine-off-white"><span class="material-symbols-outlined text-sm text-[#2563EB] dark:text-drafting-blue">account_tree</span>Automation</h3>
+              <p class="mb-4 text-sm text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Workflow builders used to connect forms, CRMs, databases, emails, and follow-up actions.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/n8n-color.svg" alt="" />n8n</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Highlevel.png" alt="" />GoHighLevel</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Make%20Symbol%20SVG.svg" alt="" />Make</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Zapier%20Symbol%20SVG.svg" alt="" />Zapier</span>
+              </div>
+            </div>
+            <div class="border border-[rgba(22,24,26,0.12)] bg-white p-6 transition-colors hover:border-[#2563EB]/30 dark:border-border-subtle dark:bg-deep-blueprint/30 dark:hover:border-drafting-blue/30">
+              <h3 class="mb-2 flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-[#16181A] transition-colors duration-300 dark:text-machine-off-white"><span class="material-symbols-outlined text-sm text-[#2563EB] dark:text-drafting-blue">psychology</span>AI / Data</h3>
+              <p class="mb-4 text-sm text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Used for classification, draft replies, intake parsing, knowledge support, and structured workflow assistance.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/openai.svg" alt="" />OpenAI</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/claude-color.svg" alt="" />Claude</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/gemini-color.svg" alt="" />Gemini</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/supabase-icon.svg" alt="" />Supabase</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/PostgreSQL%20Icon.png" alt="" />PostgreSQL</span>
+              </div>
+            </div>
+            <div class="border border-[rgba(22,24,26,0.12)] bg-white p-6 transition-colors hover:border-[#2563EB]/30 dark:border-border-subtle dark:bg-deep-blueprint/30 dark:hover:border-drafting-blue/30">
+              <h3 class="mb-2 flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-[#16181A] transition-colors duration-300 dark:text-machine-off-white"><span class="material-symbols-outlined text-sm text-[#2563EB] dark:text-drafting-blue">forum</span>Communication / Handoff</h3>
+              <p class="mb-4 text-sm text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Used for alerts, reminders, confirmations, handoffs, and organized tracking.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/gmail.png" alt="" />Gmail</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/google-sheets-icon.svg" alt="" />Google Sheets</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/notion.svg" alt="" />Notion</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Telegram.png" alt="" />Telegram</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/WhatsApp%20Icon.png" alt="" />WhatsApp</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/zoom.png" alt="" />Zoom</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative w-full overflow-hidden border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]" id="book">
+      <div class="pointer-events-none absolute inset-0 bg-[#2563EB]/5 blur-[100px] transition-colors duration-300 dark:bg-drafting-blue/5"></div>
+      <div class="relative z-10 mx-auto flex max-w-container-max flex-col items-center gap-16 px-margin-page lg:flex-row">
+        <div class="w-full space-y-8 lg:w-1/2">
+          <div class="inline-flex items-center gap-2 rounded-full border border-action-coral/30 bg-action-coral/10 px-4 py-1.5">
+            <span class="h-2 w-2 animate-pulse rounded-full bg-action-coral"></span>
+            <span class="font-mono text-[11px] uppercase tracking-widest text-action-coral">Book A Workflow Consultation</span>
+          </div>
+          <h2 class="font-display text-4xl font-bold leading-tight tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Let’s map the workflow, funnel, or system you want to build.</h2>
+          <p class="font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text">If your business is losing time to manual follow-up, scattered records, repetitive admin tasks, or an unclear funnel setup, I can help map a cleaner automation system.
+
+I can also help with GoHighLevel funnel setup, funnel design, sub-account setup, CRM structure, and workflow planning.
+</p>
+          <p class="font-mono text-[11px] uppercase tracking-wide text-[#2563EB] opacity-80 transition-colors duration-300 dark:text-drafting-blue">Free discovery call for automation fit, funnel/system mapping, and next-step recommendations.</p>
+        </div>
+        <div class="w-full lg:w-1/2">
+          <div class="overflow-hidden rounded-sm border border-[rgba(22,24,26,0.12)] bg-white shadow-[0_0_40px_rgba(22,24,26,0.05)] transition-colors duration-300 dark:border-border-subtle dark:bg-[#264653] dark:shadow-[0_0_40px_rgba(38,70,83,0.3)]">
+            <div class="flex items-center justify-between border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] p-4 transition-colors duration-300 dark:border-border-subtle dark:bg-dark-panel">
+              <div class="flex items-center gap-2">
+                <span class="h-3 w-3 rounded-full bg-red-500/80"></span>
+                <span class="h-3 w-3 rounded-full bg-yellow-500/80"></span>
+                <span class="h-3 w-3 rounded-full bg-green-500/80"></span>
+              </div>
+              <span class="font-mono text-[10px] uppercase tracking-widest text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Schedule a discovery call</span>
+              <div class="w-16"></div>
+            </div>
+            <!-- Calendly inline widget begin -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/roberttapangan-va/30min?hide_event_type_details=1&background_color=1c2127&text_color=ffffff&primary_color=ff5722" style="min-width:320px;height:700px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <!-- Calendly inline widget end -->
           </div>
         </div>
       </div>
@@ -2970,141 +1542,410 @@
   </main>
 
   <div class="lightbox" id="proofLightbox" aria-hidden="true">
-    <div class="lightbox-backdrop" data-lightbox-close></div>
-    <figure class="lightbox-dialog" role="dialog" aria-modal="true" aria-label="Proof image viewer">
-      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close image viewer">&times;</button>
-      <img class="lightbox-image" id="lightboxImage" alt="" />
-      <figcaption class="lightbox-caption" id="lightboxCaption"></figcaption>
-    </figure>
+    <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Proof image viewer">
+      <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close proof image">&times;</button>
+      <div class="lightbox-layout">
+        <div class="lightbox-media">
+          <div class="lightbox-image-frame">
+            <button class="lightbox-nav prev" id="lightboxPrev" type="button" aria-label="Previous proof image">‹</button>
+            <img id="lightboxImage" src="./assets/screenshots/dental/dental-new-patient-intake.png" alt="" />
+            <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Next proof image">›</button>
+          </div>
+          <div class="lightbox-caption" id="lightboxCaption"></div>
+          <div class="lightbox-gallery" id="lightboxGallery" aria-label="Proof image gallery thumbnails"></div>
+        </div>
+        <aside class="lightbox-info" aria-label="Proof image description">
+          <span class="lightbox-info-label">Proof Details</span>
+          <div class="lightbox-index" id="lightboxIndex">Image 1 of 1</div>
+          <h3 class="lightbox-info-title" id="lightboxTitle">Dental Clinic Automation Suite</h3>
+          <div class="lightbox-info-block">
+            <span class="lightbox-info-heading" id="lightboxPrimaryLabel">Function</span>
+            <p class="lightbox-info-text" id="lightboxPrimary"></p>
+          </div>
+          <div class="lightbox-info-block">
+            <span class="lightbox-info-heading" id="lightboxSecondaryLabel">Outcome</span>
+            <p class="lightbox-info-text" id="lightboxSecondary"></p>
+          </div>
+          <div class="lightbox-info-block">
+            <span class="lightbox-info-heading">What This Proves</span>
+            <p class="lightbox-info-text" id="lightboxProves"></p>
+          </div>
+        </aside>
+      </div>
+    </div>
   </div>
 
-  <footer class="footer shell">Built by Robert Tapangan. Automation systems for cleaner business operations.</footer>
-</div>
-<script>
-  const themeToggle = document.getElementById("themeToggle");
-  const themeToggleLabel = themeToggle?.querySelector(".theme-toggle-label");
-  const savedTheme = localStorage.getItem("rt-portfolio-theme");
-  const preferredDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  <footer class="bg-[#F5F3EF] px-margin-page py-10 transition-colors duration-300 dark:bg-[#16181A]">
+    <div class="mx-auto flex max-w-container-max flex-col items-center justify-between gap-6 border-t border-[rgba(22,24,26,0.12)] pt-8 dark:border-border-subtle md:flex-row">
+      <p class="text-center text-sm text-[#5F676D] dark:text-muted-text md:text-left">Built by Robert Tapangan. Automation systems for cleaner business operations.</p>
+      <div class="flex items-center gap-3">
+        <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://github.com/roberttapanganva-automation" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <img src="./assets/logos/github.svg" alt="" />
+        </a>
+        <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://www.upwork.com/freelancers/~017429a849b97624af?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork">
+          <img src="./assets/logos/upwork.png" alt="" />
+        </a>
+        <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://www.linkedin.com/in/robert-tapangan-automation-specialist/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <img src="./assets/logos/linkedin.png" alt="" />
+        </a>
+        <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://www.onlinejobs.ph/jobseekers/info/4877103" target="_blank" rel="noopener noreferrer" aria-label="OnlineJobs.ph">
+          <img src="./assets/logos/onlinejobs.png" alt="" />
+        </a>
+      </div>
+    </div>
+  </footer>
 
-  const applyTheme = (theme) => {
-    document.body.setAttribute("data-theme", theme);
-    if (themeToggle) {
-      const isDark = theme === "dark";
-      themeToggle.setAttribute("aria-pressed", String(isDark));
-      if (themeToggleLabel) {
-        themeToggleLabel.textContent = isDark ? "Dark mode" : "Light mode";
-      }
-    }
-  };
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("theme-toggle");
 
-  applyTheme(savedTheme || (preferredDark ? "dark" : "light"));
-
-  themeToggle?.addEventListener("click", () => {
-    const nextTheme = document.body.getAttribute("data-theme") === "dark" ? "light" : "dark";
-    applyTheme(nextTheme);
-    localStorage.setItem("rt-portfolio-theme", nextTheme);
-  });
-
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        fadeObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll(".fade").forEach((element) => {
-    fadeObserver.observe(element);
-  });
-
-  const markMissing = (wrapper) => {
-    if (wrapper) {
-      wrapper.classList.add("missing");
-    }
-  };
-
-  document.querySelectorAll('[data-asset-type="image"]').forEach((image) => {
-    const wrapper = image.closest("[data-asset-wrapper]");
-
-    const validateImage = () => {
-      if (!image.complete || image.naturalWidth === 0) {
-        markMissing(wrapper);
-      }
+    const PROCESS_DURATION = 10000;
+    const PROCESS_STEP_OFFSETS = {
+      "delay-1": 0,
+      "delay-2": 2000,
+      "delay-3": 4000,
+      "delay-4": 6000,
+      "delay-5": 8000
     };
 
-    image.addEventListener("error", () => markMissing(wrapper), { once: true });
-    if (image.complete) {
-      validateImage();
+    function syncProcessTimeline() {
+      const elapsed = Date.now() % PROCESS_DURATION;
+      Object.entries(PROCESS_STEP_OFFSETS).forEach(([delayClass, offset]) => {
+        const localPhase = ((elapsed - offset) % PROCESS_DURATION + PROCESS_DURATION) % PROCESS_DURATION;
+        const delay = `${-localPhase}ms`;
+        document.querySelectorAll(`.step-container.${delayClass}, .step-icon.${delayClass}`).forEach((el) => {
+          el.style.animationDelay = delay;
+          el.style.animationPlayState = "running";
+        });
+      });
+    }
+
+    if (localStorage.theme === "light") {
+      root.classList.remove("dark");
     } else {
-      image.addEventListener("load", validateImage, { once: true });
+      root.classList.add("dark");
     }
-  });
 
-  document.querySelectorAll("[data-contact-logo]").forEach((image) => {
-    const link = image.closest(".contact-link");
-    const hideLogo = () => {
-      image.style.display = "none";
-      if (link) {
-        link.classList.add("logo-missing");
+    syncProcessTimeline();
+    window.addEventListener("pageshow", syncProcessTimeline);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) syncProcessTimeline();
+    });
+
+    themeToggle.addEventListener("click", () => {
+      syncProcessTimeline();
+      root.classList.add("theme-switching");
+      window.requestAnimationFrame(() => {
+        root.classList.toggle("dark");
+        localStorage.theme = root.classList.contains("dark") ? "dark" : "light";
+        syncProcessTimeline();
+        window.requestAnimationFrame(syncProcessTimeline);
+        window.setTimeout(() => {
+          root.classList.remove("theme-switching");
+          syncProcessTimeline();
+        }, 160);
+      });
+    });
+
+    const proofData = {
+      n8n: {
+        title: "Dental Clinic Automation Suite",
+        primaryLabel: "Function",
+        secondaryLabel: "Outcome",
+        primary: "Patient intake, AI-assisted parsing, booking confirmation, appointment reminders, staff notifications, and Supabase/PostgreSQL record updates.",
+        secondary: "Shows a complete front-desk automation flow from inquiry capture to appointment follow-up and reminder status tracking.",
+        whatThisProves: "Multi-step n8n workflow logic, webhook handling, data normalization, AI-assisted parsing, conditional routing, Gmail notifications, and database-backed operational handoff.",
+        tools: ["n8n", "Supabase", "Gmail", "OpenAI"],
+        images: [
+          { src: "./assets/screenshots/dental/dental-new-patient-intake.png", alt: "Dental new patient intake workflow with AI parsing and staff routing", title: "Dental New Patient Intake", function: "Receives new patient inquiries through a webhook, normalizes submitted form data, uses AI-assisted parsing, and routes the inquiry by urgency or review path.", outcome: "Front-desk staff receives a cleaner, categorized patient request instead of manually reading every intake and deciding where it should go.", proves: "Shows webhook intake, data cleanup, AI parsing, conditional routing, patient acknowledgement, staff notification, and lead tracking in one front-desk workflow." },
+          { src: "./assets/screenshots/dental/dental-booking-confirmation.png", alt: "Dental appointment booking confirmation workflow", title: "Appointment Booking Confirmation", function: "Maps a confirmed booking submission, normalizes appointment details, creates or updates the appointment record, and updates the lead status to appointment booked.", outcome: "Booking details become structured records that can trigger future reminders and reduce manual appointment handoff mistakes.", proves: "Shows appointment data normalization, database write logic, status updates, and a clean bridge between inquiry handling and booked appointment tracking." },
+          { src: "./assets/screenshots/dental/dental-reminder-no-show-prevention.png", alt: "Dental appointment reminder and no-show prevention workflow", title: "Reminder + No-Show Prevention", function: "Runs on a schedule, finds appointments due for 1-day or 2-hour reminders, routes by preferred channel, sends reminders or front-desk call alerts, and updates reminder status.", outcome: "The clinic can consistently remind patients without manually checking appointment times or remembering who already received a reminder.", proves: "Shows scheduled automation, PostgreSQL/Supabase lookup, time-window routing, reminder delivery paths, and database-backed reminder flags." },
+          { src: "./assets/screenshots/dental/dental-reminder-proof.png", alt: "Gmail reminder proof for a dental appointment reminder", title: "Reminder Email Proof", function: "Shows the actual automated Gmail reminder sent to a patient before the appointment.", outcome: "The workflow output is visible outside n8n, proving that the reminder logic produces a patient-facing message.", proves: "Shows end-to-end delivery from scheduled workflow to real email output, including appointment timing and reschedule instruction handling." }
+        ]
+      },
+      ghl: {
+        title: "GoHighLevel B2B Client Delivery OS",
+        primaryLabel: "Function",
+        secondaryLabel: "Outcome",
+        primary: "Sales intake funnel, application form, booking calendar, CRM pipelines, onboarding, portal/course/community access, certificates, review requests, video testimonial collection, dashboards, and n8n webhook support.",
+        secondary: "Shows how GoHighLevel can be structured as a full client delivery operating system, not just a funnel or simple CRM.",
+        whatThisProves: "Funnel building, CRM structure, pipeline planning, client onboarding, delivery tracking, proof collection, dashboard visibility, and hybrid GHL + n8n automation.",
+        tools: ["GoHighLevel", "n8n"],
+        images: [
+          { src: "./assets/GHL%20Proof/%231%20LANDING%20PAGE.svg", alt: "GoHighLevel landing page funnel screenshot", title: "Landing Page Funnel", function: "Positions the offer, explains the program outcome, and guides visitors toward applying for access.", outcome: "The funnel has a clear first conversion point instead of sending prospects into a scattered sales process.", proves: "Shows funnel page planning, premium layout direction, call-to-action placement, and service offer framing inside GoHighLevel." },
+          { src: "./assets/GHL%20Proof/%232%20APPLICATION%20PAGE.svg", alt: "GoHighLevel application page screenshot", title: "Application Page", function: "Collects applicant details and qualification information before a sales or strategy call.", outcome: "The business receives structured application data before deciding whether the prospect is a fit.", proves: "Shows form-based intake, qualification thinking, funnel continuity, and structured lead capture before booking." },
+          { src: "./assets/GHL%20Proof/%233%20CALENDAR%20PAGE.svg", alt: "GoHighLevel calendar booking screenshot", title: "Calendar Booking Page", function: "Allows qualified leads to choose a call time and connect their interest to the next step in the sales process.", outcome: "Booking becomes part of the funnel path instead of being handled through manual back-and-forth messages.", proves: "Shows calendar flow design, conversion path continuity, and a cleaner handoff from application to call booking." },
+          { src: "./assets/GHL%20Proof/%234%20THANK%20YOU%20PAGE.svg", alt: "GoHighLevel thank-you page screenshot", title: "Booking Confirmation Page", function: "Confirms the strategy call, sets expectations, and gives the lead clear next-step information after booking.", outcome: "The prospect sees immediate confirmation and knows what to expect, reducing confusion after scheduling.", proves: "Shows post-booking experience design, confirmation messaging, and a complete funnel sequence through thank-you flow." },
+          { src: "./assets/GHL%20Proof/CONTACTS.png", alt: "GoHighLevel contacts and smart lists proof", title: "Contacts + Smart Lists", function: "Organizes contacts into smart lists such as applications, booked calls, completed proof, certificates, and delivery stages.", outcome: "Client and lead records become easier to filter, monitor, and segment across sales and delivery operations.", proves: "Shows CRM hygiene, smart list planning, contact segmentation, and status-based operational visibility." },
+          { src: "./assets/GHL%20Proof/OPPORTUNITY.png", alt: "GoHighLevel opportunity pipeline proof", title: "Opportunity Pipeline", function: "Tracks prospects and clients through pipeline stages from application and booking to payment, onboarding, course start, community invite, implementation, testimonial, and certificate issuance.", outcome: "The business can see where each person is in the customer journey and what follow-up should happen next.", proves: "Shows pipeline architecture, sales-to-delivery transition planning, and lifecycle status tracking in GoHighLevel." },
+          { src: "./assets/GHL%20Proof/DASHBOARD%20PROOF.png", alt: "Growth Partner Academy delivery and proof dashboard", title: "Delivery + Proof Dashboard", function: "Displays delivery activity, implementation milestones, certificates issued, completion status, review requests, and testimonial requests.", outcome: "Delivery progress becomes visible in one dashboard rather than hidden across contacts, tasks, and manual notes.", proves: "Shows dashboard planning, milestone visibility, reporting structure, and proof-backed delivery operations." },
+          { src: "./assets/GHL%20Proof/MILESTONE.png", alt: "Growth Partner Academy implementation milestones table", title: "Implementation Milestones Table", function: "Tracks implementation tasks, statuses, due dates, completion dates, proof URLs, and quality scores for each client milestone.", outcome: "Delivery teams can verify what has been completed, what is still in progress, and where proof is stored.", proves: "Shows structured milestone tracking, proof collection logic, delivery QA thinking, and handoff-ready operational records." },
+          { src: "./assets/GHL%20Proof/Course.png", alt: "GoHighLevel course portal proof", title: "Course Portal", function: "Hosts the Growth Partner Academy Core Training and presents course progress, instructor details, and lesson access.", outcome: "Clients can access training content from a structured portal instead of receiving scattered links or manual instructions.", proves: "Shows GoHighLevel course setup, portal organization, program delivery structure, and client-facing learning flow." },
+          { src: "./assets/GHL%20Proof/Community.png", alt: "GoHighLevel community access proof", title: "Community Access Flow", function: "Shows private community membership request and approval flow for academy participants.", outcome: "Client access to the community can be managed as part of the delivery experience.", proves: "Shows community setup, access control, member onboarding, and portal/community integration in the client lifecycle." },
+          { src: "./assets/GHL%20Proof/CERTIFICATE.png", alt: "Growth Partner Academy certificate proof", title: "Certificate Proof", function: "Provides a completion certificate that can be issued after the client finishes the program or required milestones.", outcome: "Completion is acknowledged with a clear proof asset that supports the end of the delivery journey.", proves: "Shows completion flow thinking, credential/proof generation, and end-stage client experience design." },
+          { src: "./assets/GHL%20Proof/GHL%20AUTOMATION.png", alt: "GoHighLevel automation workflow proof", title: "GoHighLevel Workflow Builder", function: "Shows GHL workflows used for onboarding, course enrollment, delivery actions, and follow-up movement across the system.", outcome: "Client delivery actions can be automated around forms, tags, opportunities, notifications, and stage changes.", proves: "Shows GHL workflow planning, automation chaining, conditional movement, and operational follow-through inside the CRM." },
+          { src: "./assets/GHL%20Proof/N8N%20%2B%20GHL%20AUTOMATION.png", alt: "n8n and GoHighLevel webhook automation proof", title: "n8n + GHL Webhook Bridge", function: "Connects a GoHighLevel survey or workflow event to n8n for payload normalization, event logging, team notification, and webhook response handling.", outcome: "GHL can trigger external automation logic when native workflow actions need cleaner processing or additional system support.", proves: "Shows hybrid GHL+n8n architecture, webhook handling, payload normalization, error handling, and external orchestration logic." },
+          { src: "./assets/GHL%20Proof/Video%20Testimonial%20SC.png", alt: "Video testimonial request flow proof", title: "Video Testimonial Request", function: "Guides completed clients through a simple video testimonial request experience with instructions and recording/upload actions.", outcome: "Feedback collection becomes structured and easier for the client to complete after program delivery.", proves: "Shows post-delivery proof collection, testimonial workflow planning, and client-friendly follow-up experience design." }
+        ]
+      },
+      crm: {
+        title: "Lead Capture & Follow-Up Automation",
+        primaryLabel: "Function",
+        secondaryLabel: "Outcome",
+        primary: "Capture leads, validate data, classify hot/warm/cold, notify the owner, create Notion tasks, log records in Google Sheets, and send follow-up emails.",
+        secondary: "Shows lead routing, CRM tracking, task creation, reporting, and follow-up without manual handoff gaps.",
+        whatThisProves: "Lead handling logic, workflow branching, Google Sheets tracking, Notion task creation, Telegram/Gmail notifications, and scheduled reporting.",
+        tools: ["n8n", "Google Sheets", "Notion", "Gmail", "Telegram"],
+        images: [
+          { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure.png", alt: "Lead capture and follow-up workflow structure", title: "Lead Capture Workflow Structure", function: "Receives a lead webhook, normalizes the payload, validates required fields, routes valid leads, classifies hot/warm/cold lead type, and triggers follow-up paths.", outcome: "Every submitted lead can be handled through a consistent process instead of being manually sorted and followed up.", proves: "Shows end-to-end lead automation architecture, validation, branching, CRM-style logging, and multi-channel follow-up actions." },
+          { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure-warm-success.png", alt: "Warm lead workflow success path", title: "Warm Lead Success Path", function: "Shows a successful warm-lead execution path through Google Sheets logging, owner notification, Telegram alert, auto-reply, Notion task creation, wait period, and follow-up email.", outcome: "Warm prospects get organized nurturing without requiring the owner to manually build each follow-up task.", proves: "Shows successful branch execution, category-based routing, owner alerts, task creation, and delayed follow-up automation." },
+          { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure-cold-success.png", alt: "Cold lead workflow success path", title: "Cold Lead Success Path", function: "Routes a cold lead into its own logging, owner notification, Telegram alert, auto-reply, Notion task, wait, and follow-up sequence.", outcome: "Lower-priority leads are still captured and nurtured without taking the same immediate attention as hot leads.", proves: "Shows lead segmentation, cold-lead nurture logic, status-specific messaging, and consistent follow-up for non-urgent prospects." },
+          { src: "./assets/screenshots/lead-capture/notion-auto-task-capture.png", alt: "Lead task capture in Notion", title: "Notion Lead Task Board", function: "Creates lead tasks in Notion with email, phone, budget, status, and recommended notes based on the automation path.", outcome: "Follow-up work becomes visible as tasks instead of being buried inside inbox notifications or spreadsheet rows.", proves: "Shows task creation, lead metadata mapping, priority labels, and handoff-ready follow-up tracking." },
+          { src: "./assets/screenshots/lead-capture/auto-capture-lead-dashboard.png", alt: "Google Sheets lead dashboard", title: "Lead Stats Dashboard", function: "Summarizes hot, warm, and cold lead counts with total leads and last updated timestamp in Google Sheets.", outcome: "The owner can quickly see lead volume and lead quality distribution without opening workflow execution logs.", proves: "Shows lightweight reporting, sheet-based dashboards, lead count aggregation, and operational visibility." },
+          { src: "./assets/screenshots/lead-capture/auto-capture-lead-warm.png", alt: "Warm lead tracker in Google Sheets", title: "Warm Lead Tracker", function: "Stores warm lead submissions with name, email, phone, budget, and submission timestamp.", outcome: "Qualified-but-not-urgent prospects are kept in a clean tracker for later review and follow-up.", proves: "Shows data capture, segmentation by lead type, spreadsheet CRM tracking, and structured handoff records." },
+          { src: "./assets/screenshots/lead-capture/auto-summary-email-sent-to-cx.png", alt: "Automated lead summary email proof", title: "Automated Lead Summary Email", function: "Sends a daily lead summary email with counts for hot, warm, cold, and total leads, plus action reminders.", outcome: "The business owner receives a simple daily overview without manually checking each tracker tab.", proves: "Shows scheduled reporting output, Gmail delivery, summarized metrics, and action-oriented owner updates." },
+          { src: "./assets/screenshots/lead-capture/daily-auto-summary-report-workflow-structure.png", alt: "Daily lead summary reporting workflow", title: "Daily Summary Workflow", function: "Runs on schedule, reads lead counts from Google Sheets, builds a summary, and sends the report by Gmail.", outcome: "Lead reporting becomes automatic and repeatable instead of relying on manual spreadsheet review.", proves: "Shows scheduled triggers, sheet reading, report building, and outbound email automation." },
+          { src: "./assets/screenshots/lead-capture/daily-auto-summary-execution-success.png", alt: "Daily summary execution success proof", title: "Daily Summary Execution Log", function: "Shows successful n8n executions for the scheduled lead summary reporting workflow.", outcome: "The workflow can be monitored through execution history to confirm reporting ran as expected.", proves: "Shows execution visibility, run monitoring, and repeatable scheduled workflow behavior." },
+          { src: "./assets/screenshots/lead-capture/auto-email-report-summary.png", alt: "Daily email report summary proof", title: "Email Report Output", function: "Displays the final Gmail report produced by the daily summary workflow.", outcome: "The reporting workflow ends with a readable business-facing email summary, not just internal automation logs.", proves: "Shows practical output formatting, business-friendly reporting, and complete workflow-to-inbox delivery." }
+        ]
+      },
+      ai: {
+        title: "AI Email Triage + Knowledge Base Support",
+        primaryLabel: "Function",
+        secondaryLabel: "Outcome",
+        primary: "Classify incoming emails, create draft replies, log triage data, notify the team, create review tasks, and answer internal questions from grounded document retrieval.",
+        secondary: "Shows practical AI admin workflows with human review, escalation paths, document ingestion, vector search, and operational logging.",
+        whatThisProves: "AI-assisted classification, draft response creation, Notion task routing, Telegram alerting, Google Sheets logging, document ingestion, grounded prompting, and vector-search knowledge support.",
+        tools: ["n8n", "OpenAI", "Gmail", "Notion", "Telegram", "Google Sheets", "Supabase"],
+        images: [
+          { src: "./assets/screenshots/ai-email/ai-email-execution-success.png", alt: "AI email triage workflow execution success", title: "AI Email Triage Workflow", function: "Triggers from Gmail, retrieves the full email, normalizes it, applies workflow settings, classifies it with AI, logs the result, and routes follow-up actions.", outcome: "Incoming emails can be categorized and escalated faster while keeping human review for important paths.", proves: "Shows Gmail-triggered automation, AI classification, route-based outcomes, Google Sheets logging, Telegram alerts, Gmail draft creation, and Notion task creation." },
+          { src: "./assets/screenshots/ai-email/ai-email-notion-tasks.png", alt: "AI email triage tasks in Notion", title: "AI Email Triage Tasks", function: "Stores classified emails in Notion with category, urgency, sentiment, summary, recommended action, priority, status, and received date.", outcome: "Emails that need attention become visible work items instead of staying buried in the inbox.", proves: "Shows AI output mapping, task creation, triage metadata, priority labeling, and review workflow support." },
+          { src: "./assets/screenshots/ai-email/ai-email-telegram-alerts.png", alt: "AI email triage Telegram alert proof", title: "Telegram Escalation Alerts", function: "Sends Telegram alerts when AI classification fails or when an email needs high-priority support attention.", outcome: "The team is notified quickly when manual review or urgent escalation is needed.", proves: "Shows failure handling, escalation messaging, priority alerts, and human-in-the-loop automation design." },
+          { src: "./assets/screenshots/ai-email/ai-email-triage-log.png", alt: "AI email triage log in Google Sheets", title: "AI Triage Log", function: "Logs received emails, categories, urgency, sentiment, summaries, recommended actions, draft replies, routing buckets, AI status, processing status, and Gmail thread IDs in Google Sheets.", outcome: "The email triage system has an audit trail that can be reviewed without opening every workflow run.", proves: "Shows operational logging, AI result traceability, workflow monitoring, and structured data capture for email operations." },
+          { src: "./assets/screenshots/ai-email/logs.png", alt: "AI email triage workflow log proof", title: "Triage Execution Logs", function: "Displays execution results and workflow run context for AI email triage activity.", outcome: "The workflow can be debugged and checked when classifications, drafts, or notifications need review.", proves: "Shows execution monitoring, run-level troubleshooting, and accountability for AI-assisted workflow behavior." },
+          { src: "./assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-complex-question-example.png", alt: "Knowledge base chatbot answer from employee handbook context", title: "Grounded FAQ Answer Example", function: "Answers an employee handbook question using retrieved policy context rather than a generic AI response.", outcome: "Internal users receive practical answers based on company documents, with reduced risk of unsupported AI guessing.", proves: "Shows retrieval-grounded response behavior, policy-aware answering, and a more controlled AI support workflow." },
+          { src: "./assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-workflow.png", alt: "Employee handbook knowledge base FAQ chatbot workflow", title: "Knowledge Base FAQ Chatbot", function: "Receives a chat question, normalizes the user question, looks up document metadata, builds a grounded prompt, sends it to an AI agent, logs the query, and returns a response.", outcome: "Teams can ask internal policy questions through a structured workflow connected to company knowledge.", proves: "Shows session handling, database lookup, grounded prompting, AI agent routing, vector search, logging, and response delivery." },
+          { src: "./assets/screenshots/knowledge-base/knowledge-base-document-ingestion.png", alt: "Knowledge base document ingestion workflow", title: "Knowledge Base Document Ingestion", function: "Finds source files, downloads documents, extracts text, normalizes metadata, chunks content, stores embeddings, logs results, and builds an ingestion summary.", outcome: "Documents become searchable knowledge that the chatbot can retrieve later for grounded answers.", proves: "Shows document ingestion, text extraction, chunking, embeddings, vector storage, PostgreSQL/Supabase storage, and ingestion logging." }
+        ]
       }
     };
 
-    image.addEventListener("error", hideLogo, { once: true });
+    const logoMap = {
+      n8n: "./assets/logos/n8n-color.svg",
+      Supabase: "./assets/logos/supabase-icon.svg",
+      Gmail: "./assets/logos/gmail.png",
+      OpenAI: "./assets/logos/openai.svg",
+      GoHighLevel: "./assets/logos/Highlevel.png",
+      Zapier: "./assets/logos/Zapier%20Symbol%20SVG.svg",
+      "Google Sheets": "./assets/logos/google-sheets-icon.svg",
+      Notion: "./assets/logos/notion.svg",
+      Telegram: "./assets/logos/Telegram.png",
+      Claude: "./assets/logos/claude-color.svg"
+    };
 
-    if (image.complete && image.naturalWidth === 0) {
-      hideLogo();
+    const proofMainImage = document.getElementById("proof-main-image");
+    const proofMainOpen = document.getElementById("proof-main-open");
+    const proofTitle = document.getElementById("proof-title");
+    const proofPrimaryLabel = document.getElementById("proof-primary-label");
+    const proofSecondaryLabel = document.getElementById("proof-secondary-label");
+    const proofProblem = document.getElementById("proof-problem");
+    const proofSystem = document.getElementById("proof-system");
+    const proofProves = document.getElementById("proof-proves");
+    const proofTools = document.getElementById("proof-tools");
+    const proofImageCount = document.getElementById("proof-image-count");
+    const proofGalleryOpen = document.getElementById("proof-gallery-open");
+    const tabs = Array.from(document.querySelectorAll(".proof-tab"));
+    const lightbox = document.getElementById("proofLightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const lightboxGallery = document.getElementById("lightboxGallery");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxPrimaryLabel = document.getElementById("lightboxPrimaryLabel");
+    const lightboxSecondaryLabel = document.getElementById("lightboxSecondaryLabel");
+    const lightboxPrimary = document.getElementById("lightboxPrimary");
+    const lightboxSecondary = document.getElementById("lightboxSecondary");
+    const lightboxProves = document.getElementById("lightboxProves");
+    const lightboxPrev = document.getElementById("lightboxPrev");
+    const lightboxNext = document.getElementById("lightboxNext");
+    const lightboxIndex = document.getElementById("lightboxIndex");
+    let currentProofData = proofData.n8n;
+    let currentProofImages = proofData.n8n.images;
+    let currentProofImage = proofData.n8n.images[0];
+    let currentProofIndex = 0;
+
+    function getImageDetails(image) {
+      return {
+        title: image.title || currentProofData.title,
+        functionText: image.function || currentProofData.primary,
+        outcomeText: image.outcome || currentProofData.secondary,
+        provesText: image.proves || currentProofData.whatThisProves
+      };
     }
-  });
 
-  const lightbox = document.getElementById("proofLightbox");
-  const lightboxImage = document.getElementById("lightboxImage");
-  const lightboxCaption = document.getElementById("lightboxCaption");
-  const lightboxTriggers = document.querySelectorAll(".js-lightbox");
+    function setLightboxImage(index, animate = true) {
+      const safeIndex = (index + currentProofImages.length) % currentProofImages.length;
+      const image = currentProofImages[safeIndex];
+      if (!image) return;
 
-  const closeLightbox = () => {
-    lightbox.classList.remove("is-open");
-    lightbox.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  };
+      const applyUpdate = () => {
+        const details = getImageDetails(image);
+        currentProofImage = image;
+        currentProofIndex = safeIndex;
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.innerHTML = `<span>${image.alt}</span><span>${safeIndex + 1} / ${currentProofImages.length}</span>`;
+        lightboxIndex.textContent = `Image ${safeIndex + 1} of ${currentProofImages.length}`;
+        lightboxTitle.textContent = details.title;
+        lightboxPrimaryLabel.textContent = currentProofData.primaryLabel;
+        lightboxSecondaryLabel.textContent = currentProofData.secondaryLabel;
+        lightboxPrimary.textContent = details.functionText;
+        lightboxSecondary.textContent = details.outcomeText;
+        lightboxProves.textContent = details.provesText;
+        renderLightboxGallery();
+      };
 
-  const openLightbox = (trigger) => {
-    if (trigger.classList.contains("missing")) {
-      return;
-    }
-
-    const image = trigger.querySelector('img[data-asset-type="image"]');
-    if (!image || !image.getAttribute("src")) {
-      return;
-    }
-
-    lightboxImage.src = image.getAttribute("src");
-    lightboxImage.alt = image.alt || "Proof image";
-    lightboxCaption.textContent = image.alt || "Proof image";
-    lightbox.classList.add("is-open");
-    lightbox.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  };
-
-  lightboxTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => openLightbox(trigger));
-    trigger.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        openLightbox(trigger);
+      if (animate && lightbox.classList.contains("is-open")) {
+        lightbox.classList.add("is-changing");
+        window.setTimeout(() => {
+          applyUpdate();
+          window.requestAnimationFrame(() => lightbox.classList.remove("is-changing"));
+        }, 120);
+      } else {
+        applyUpdate();
       }
-    });
-  });
-
-  document.querySelectorAll("[data-lightbox-close]").forEach((element) => {
-    element.addEventListener("click", closeLightbox);
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
-      closeLightbox();
     }
-  });
-</script>
+
+    function openLightbox(image, index = currentProofIndex) {
+      if (!image) return;
+      setLightboxImage(index, false);
+      lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+    }
+
+    function renderLightboxGallery() {
+      lightboxGallery.innerHTML = "";
+      currentProofImages.forEach((image, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = index === currentProofIndex ? "is-active" : "";
+        button.innerHTML = `<img src="${image.src}" alt="${image.alt}" loading="lazy" />`;
+        button.addEventListener("click", () => setLightboxImage(index, true));
+        lightboxGallery.appendChild(button);
+      });
+    }
+
+    function showNextProofImage(direction) {
+      setLightboxImage(currentProofIndex + direction, true);
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("is-open");
+      lightbox.setAttribute("aria-hidden", "true");
+    }
+
+    function renderProof(tabName) {
+      const data = proofData[tabName];
+      if (!data) return;
+
+      proofTitle.textContent = data.title;
+      proofPrimaryLabel.textContent = data.primaryLabel;
+      proofSecondaryLabel.textContent = data.secondaryLabel;
+      proofProblem.textContent = data.primary;
+      proofSystem.textContent = data.secondary;
+      proofProves.textContent = data.whatThisProves;
+      proofMainImage.src = data.images[0].src;
+      proofMainImage.alt = data.images[0].alt;
+      currentProofData = data;
+      currentProofImages = data.images;
+      currentProofImage = data.images[0];
+      currentProofIndex = 0;
+      proofImageCount.textContent = `${data.images.length} proof images available`;
+
+      proofTools.innerHTML = "";
+      data.tools.filter((tool) => logoMap[tool]).forEach((tool) => {
+        const pill = document.createElement("span");
+        pill.className = "flex items-center gap-2 rounded-full border border-[#2563EB]/30 bg-[#F5F3EF] px-3 py-1 font-mono text-[10px] font-bold text-[#2563EB] transition-colors duration-300 dark:border-drafting-blue/30 dark:bg-soft-surface dark:text-drafting-blue";
+        pill.innerHTML = `<img class="h-4 w-4 object-contain" src="${logoMap[tool]}" alt="" />${tool}`;
+        proofTools.appendChild(pill);
+      });
+
+
+
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.tab === tabName;
+        tab.classList.toggle("border-action-coral", isActive);
+        tab.classList.toggle("bg-action-coral/10", isActive);
+        tab.classList.toggle("text-action-coral", isActive);
+        tab.classList.toggle("border-[rgba(22,24,26,0.12)]", !isActive);
+        tab.classList.toggle("text-[#5F676D]", !isActive);
+        tab.classList.toggle("dark:text-muted-text", !isActive);
+      });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => renderProof(tab.dataset.tab));
+    });
+
+    proofMainOpen.addEventListener("click", () => openLightbox(currentProofImage, currentProofIndex));
+    proofGalleryOpen.addEventListener("click", () => openLightbox(currentProofImage, currentProofIndex));
+    lightboxPrev.addEventListener("click", () => showNextProofImage(-1));
+    lightboxNext.addEventListener("click", () => showNextProofImage(1));
+    document.querySelectorAll("[data-lightbox-close]").forEach((button) => {
+      button.addEventListener("click", closeLightbox);
+    });
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (!lightbox.classList.contains("is-open")) return;
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowLeft") showNextProofImage(-1);
+      if (event.key === "ArrowRight") showNextProofImage(1);
+    });
+
+    function startTypewriterLogo() {
+      const target = document.getElementById("typewriter");
+      if (!target) return;
+
+      const word = "RT_AUTOMATE";
+      const typeSpeed = 150;
+      const deleteSpeed = 50;
+      const fullPause = 2000;
+      const emptyPause = 500;
+      let index = 0;
+      let deleting = false;
+
+      function tick() {
+        target.textContent = word.slice(0, index);
+
+        if (!deleting && index < word.length) {
+          index += 1;
+          window.setTimeout(tick, typeSpeed);
+          return;
+        }
+
+        if (!deleting && index === word.length) {
+          deleting = true;
+          window.setTimeout(tick, fullPause);
+          return;
+        }
+
+        if (deleting && index > 0) {
+          index -= 1;
+          window.setTimeout(tick, deleteSpeed);
+          return;
+        }
+
+        deleting = false;
+        window.setTimeout(tick, emptyPause);
+      }
+
+      target.textContent = "";
+      tick();
+    }
+
+    renderProof("n8n");
+    startTypewriterLogo();
+  </script>
 </body>
 </html>

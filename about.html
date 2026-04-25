@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Robert Tapangan - RT Automate</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "forged-iron": "#16181A",
+            "deep-blueprint": "#264653",
+            "machine-off-white": "#F4F4F0",
+            "action-coral": "#FF5722",
+            "drafting-blue": "#8AB4F8",
+            "muted-text": "rgba(244, 244, 240, 0.68)",
+            "border-subtle": "rgba(244, 244, 240, 0.12)",
+            "soft-surface": "rgba(38, 70, 83, 0.55)",
+            "dark-panel": "#101214"
+          },
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+            mono: ["Space Grotesk", "sans-serif"]
+          },
+          maxWidth: { "container-max": "1280px" },
+          spacing: { "margin-page": "32px", "stack-xl": "80px" }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      background-color: #f5f3ef;
+      color: #16181a;
+      font-family: Inter, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .dark body {
+      background-color: #16181a;
+      color: #f4f4f0;
+    }
+
+    @keyframes typewriter-cursor-blink {
+      0%, 45% { border-right-color: #ff5722; }
+      46%, 100% { border-right-color: transparent; }
+    }
+
+    .typewriter-logo {
+      width: 150px;
+      min-width: 150px;
+      max-width: 150px;
+      flex: 0 0 150px;
+      box-sizing: border-box;
+      display: inline-flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .topbar-inner {
+      display: grid !important;
+      grid-template-columns: 174px minmax(0, 1fr) 174px;
+      align-items: center;
+      position: relative;
+    }
+
+    .topbar-inner > .brand-lockup {
+      grid-column: 1;
+      justify-self: start;
+    }
+
+    .topbar-inner > .hidden {
+      grid-column: 2;
+      justify-self: center;
+    }
+
+    .topbar-inner > .flex:last-child {
+      grid-column: 3;
+      justify-self: end;
+      min-width: 0;
+      position: absolute;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #typewriter {
+      display: inline-block;
+      min-height: 1em;
+      border-right: 2px solid #ff5722;
+      padding-right: 3px;
+      line-height: 1;
+      animation: typewriter-cursor-blink 0.9s steps(1, end) infinite;
+    }
+
+    .profile-line {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(22, 24, 26, 0.10);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .dark .profile-line {
+      border-bottom-color: rgba(244, 244, 240, 0.10);
+    }
+
+    .profile-key {
+      color: #ff5722;
+      text-transform: lowercase;
+    }
+
+    .profile-value {
+      color: #5f676d;
+    }
+
+    .dark .profile-value {
+      color: rgba(244, 244, 240, 0.78);
+    }
+
+    .social-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        display: flex !important;
+        justify-content: space-between;
+        position: relative;
+        padding-left: 16px;
+        padding-right: 16px;
+        gap: 10px;
+      }
+
+      .brand-lockup {
+        padding-right: 12px;
+        font-size: 1rem;
+      }
+
+      .topbar-inner > .hidden {
+        display: none !important;
+      }
+
+      .nav-book-label {
+        display: none;
+      }
+
+      .topbar-inner > .flex:last-child {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        gap: 8px;
+        margin-left: auto;
+      }
+
+      .topbar-inner > .flex:last-child > a:last-child {
+        width: 44px;
+        height: 36px;
+        justify-content: center;
+        padding: 0 !important;
+      }
+
+      @media (max-width: 480px) {
+        .topbar-inner > .flex:last-child > a:last-child {
+          display: none;
+        }
+      }
+
+      .profile-line {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased transition-colors duration-300">
+  <nav class="sticky top-0 z-50 w-full border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]">
+    <div class="topbar-inner mx-auto flex h-16 w-full max-w-container-max items-center justify-between gap-4 px-8">
+      <a href="./index.html#top" class="brand-lockup typewriter-logo border-r border-[rgba(22,24,26,0.12)] pr-6 font-display text-xl font-black tracking-tighter text-[#16181A] transition-colors duration-300 dark:border-border-subtle dark:text-white" aria-label="RT Automate home"><span id="typewriter">RT_AUTOMATE</span></a>
+      <div class="hidden items-center space-x-8 font-display text-sm font-bold uppercase tracking-tight md:flex">
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="./index.html#process">Process</a>
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="./index.html#proof">Proof</a>
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="./index.html#stack">Stack</a>
+        <a class="text-action-coral" href="./about.html">About</a>
+        <a class="text-[#5F676D] transition-colors hover:text-[#16181A] dark:text-zinc-500 dark:hover:text-zinc-200" href="./index.html#book">Book</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="rounded-full p-2 text-[#5F676D] transition-colors hover:bg-[rgba(22,24,26,0.05)] hover:text-[#16181A] dark:text-zinc-500 dark:hover:bg-white/5 dark:hover:text-zinc-200" id="theme-toggle" type="button" aria-label="Toggle dark and light mode">
+          <span class="material-symbols-outlined hidden text-xl dark:block">light_mode</span>
+          <span class="material-symbols-outlined block text-xl dark:hidden">dark_mode</span>
+        </button>
+        <a class="flex items-center gap-2 rounded-sm bg-action-coral px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-white transition-all hover:brightness-110 active:scale-95" href="./index.html#book">
+          <span class="material-symbols-outlined text-sm">terminal</span>
+          <span class="nav-book-label">Book</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="relative overflow-hidden border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-forged-iron">
+      <div class="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDM5LjVoNDBNMzkuNSAwdjQwIiBzdHJva2U9InJnYmEoMjIsMjQsMjYsMC4wNSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-70 dark:opacity-100"></div>
+      <div class="relative mx-auto grid max-w-container-max gap-10 px-margin-page lg:grid-cols-[1fr_0.55fr] lg:items-center">
+        <div>
+          <span class="mb-3 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-action-coral">About</span>
+          <h1 class="mb-5 font-display text-5xl font-bold tracking-tight text-[#16181A] dark:text-machine-off-white md:text-7xl">About Robert Tapangan</h1>
+          <p class="max-w-2xl text-xl leading-relaxed text-[#5F676D] dark:text-muted-text">I build practical automation systems from an operations-first perspective.</p>
+        </div>
+        <div class="mx-auto w-full max-w-xs overflow-hidden border border-[rgba(22,24,26,0.12)] bg-white p-3 shadow-[0_24px_70px_rgba(22,24,26,0.08)] dark:border-border-subtle dark:bg-dark-panel dark:shadow-[0_24px_70px_rgba(0,0,0,0.34)]">
+          <img class="aspect-[4/5] w-full object-cover grayscale" src="./assets/profile-photo.jfif" alt="Black-and-white portrait of Robert Tapangan" />
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]">
+      <div class="mx-auto grid max-w-container-max gap-8 px-margin-page lg:grid-cols-[0.9fr_1.1fr]">
+        <article class="border border-[rgba(22,24,26,0.12)] bg-white p-6 transition-colors duration-300 dark:border-border-subtle dark:bg-deep-blueprint/30">
+          <h2 class="mb-4 font-display text-3xl font-bold text-[#16181A] dark:text-machine-off-white">Story Behind The Automation</h2>
+          <div class="space-y-5 leading-8 text-[#5F676D] dark:text-machine-off-white/80">
+            <p>Before I built automations, I was the one doing the manual work. From medical billing to frontline support, I know exactly what it feels like when systems break down—when details slip through the cracks, follow-ups stall, and teams spend hours organizing work instead of actually doing it.</p>
+            <p>That experience is why I transitioned into automation. I am passionate about rescuing teams from broken processes. I hunt down inefficiencies and build structured solutions that reduce human error and restore peace of mind behind the scenes. While n8n is my preferred platform, I can also work with tools like GoHighLevel, Make, and Zapier depending on the business setup and what the workflow needs.</p>
+            <p>In my client partnerships, I prioritize clear communication, transparency, and mutual trust. I thrive in autonomous environments where we can focus on the impact of the work rather than micromanaging the steps to get there.</p>
+          </div>
+        </article>
+
+        <aside class="overflow-hidden border border-[rgba(22,24,26,0.12)] bg-white transition-colors duration-300 dark:border-border-subtle dark:bg-dark-panel" aria-label="profile.json summary">
+          <div class="flex items-center justify-between border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-5 py-4 dark:border-border-subtle dark:bg-[#16181A]">
+            <div class="flex gap-2">
+              <span class="h-3 w-3 rounded-full bg-red-500"></span>
+              <span class="h-3 w-3 rounded-full bg-yellow-500"></span>
+              <span class="h-3 w-3 rounded-full bg-green-500"></span>
+            </div>
+            <span class="font-mono text-xs uppercase tracking-[0.2em] text-[#5F676D] dark:text-muted-text">profile.json</span>
+          </div>
+          <div class="p-6">
+            <div class="profile-line"><span class="profile-key">"name":</span><span class="profile-value">"Robert Tapangan"</span></div>
+            <div class="profile-line"><span class="profile-key">"role":</span><span class="profile-value">"AI Automation Specialist"</span></div>
+            <div class="profile-line"><span class="profile-key">"specialization":</span><span class="profile-value">"n8n Workflows, GoHighLevel, CRM, Funnels, and AI Automation"</span></div>
+            <div class="profile-line"><span class="profile-key">"background":</span><span class="profile-value">"Operations Support / Customer Support / Medical Billing"</span></div>
+            <div class="profile-line"><span class="profile-key">"based":</span><span class="profile-value">"Philippines"</span></div>
+            <div class="profile-line"><span class="profile-key">"focus":</span><span class="profile-value">"Lead capture, CRM systems, follow-up automation, admin workflow automation"</span></div>
+            <div class="profile-line"><span class="profile-key">"tools":</span><span class="profile-value">["n8n", "GoHighLevel", "OpenAI", "Supabase", "PostgreSQL", "Notion", "Airtable", "Google Sheets", "Gmail", "Telegram", "APIs", "Webhooks"]</span></div>
+            <div class="profile-line"><span class="profile-key">"open_to":</span><span class="profile-value">"Freelance / Remote / Contract Work"</span></div>
+            <div class="profile-line"><span class="profile-key">"availability":</span><span class="profile-value">"Immediate"</span></div>
+            <div class="profile-line"><span class="profile-key">"email":</span><span class="profile-value">"roberttapangan.va@gmail.com"</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#F5F3EF] px-margin-page py-10 transition-colors duration-300 dark:bg-[#16181A]">
+    <div class="mx-auto flex max-w-container-max flex-col items-center justify-between gap-6 border-t border-[rgba(22,24,26,0.12)] pt-8 dark:border-border-subtle md:flex-row">
+      <p class="text-center text-sm text-[#5F676D] dark:text-muted-text md:text-left">Built by Robert Tapangan. Automation systems for cleaner business operations.</p>
+      <div class="flex items-center gap-3">
+        <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://github.com/roberttapanganva-automation" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><img src="./assets/logos/github.svg" alt="" /></a>
+        <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://www.upwork.com/freelancers/~017429a849b97624af?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork"><img src="./assets/logos/upwork.png" alt="" /></a>
+        <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://www.linkedin.com/in/robert-tapangan-automation-specialist/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="./assets/logos/linkedin.png" alt="" /></a>
+        <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://www.onlinejobs.ph/jobseekers/info/4877103" target="_blank" rel="noopener noreferrer" aria-label="OnlineJobs.ph"><img src="./assets/logos/onlinejobs.png" alt="" /></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("theme-toggle");
+
+    if (localStorage.theme === "light") {
+      root.classList.remove("dark");
+    } else {
+      root.classList.add("dark");
+    }
+
+    themeToggle.addEventListener("click", () => {
+      root.classList.toggle("dark");
+      localStorage.theme = root.classList.contains("dark") ? "dark" : "light";
+    });
+
+    function startTypewriterLogo() {
+      const target = document.getElementById("typewriter");
+      if (!target) return;
+
+      const word = "RT_AUTOMATE";
+      const typeSpeed = 150;
+      const deleteSpeed = 50;
+      const fullPause = 2000;
+      const emptyPause = 500;
+      let index = 0;
+      let deleting = false;
+
+      function tick() {
+        target.textContent = word.slice(0, index);
+
+        if (!deleting && index < word.length) {
+          index += 1;
+          window.setTimeout(tick, typeSpeed);
+          return;
+        }
+
+        if (!deleting && index === word.length) {
+          deleting = true;
+          window.setTimeout(tick, fullPause);
+          return;
+        }
+
+        if (deleting && index > 0) {
+          index -= 1;
+          window.setTimeout(tick, deleteSpeed);
+          return;
+        }
+
+        deleting = false;
+        window.setTimeout(tick, emptyPause);
+      }
+
+      target.textContent = "";
+      tick();
+    }
+
+    startTypewriterLogo();
+  </script>
+</body>
+</html>
