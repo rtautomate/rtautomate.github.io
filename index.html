@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RT Automate - AI Automation Systems</title>
+  <title>n8n & GoHighLevel Automation Specialist | RT Automate</title>
+  <meta name="description" content="AI automation specialist building n8n, GoHighLevel, CRM, lead capture, follow-up, and AI admin workflows for service businesses and remote teams." />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
@@ -847,11 +848,14 @@
     }
 
     @keyframes live-bug {
-      0% { transform: translateX(0); opacity: 1; }
-      8% { transform: translateX(25px); opacity: 0; }
-      9% { transform: translateX(-25px); opacity: 0; }
-      12% { transform: translateX(-25px); opacity: 1; }
-      20%, 100% { transform: translateX(0); opacity: 1; }
+      0% { transform: translate(0, 0) rotate(0deg); }
+      14% { transform: translate(3px, -1px) rotate(6deg); }
+      28% { transform: translate(6px, 1px) rotate(-4deg); }
+      42% { transform: translate(4px, 0) rotate(5deg); }
+      56% { transform: translate(8px, -1px) rotate(-6deg); }
+      70% { transform: translate(2px, 1px) rotate(3deg); }
+      84% { transform: translate(-2px, 0) rotate(-2deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
     }
 
     @keyframes live-rocket {
@@ -933,7 +937,11 @@
     .anim-search { animation-name: live-search; }
     .anim-map { animation-name: live-map; }
     .anim-gear { animation-name: live-gear; }
-    .anim-bug { animation-name: live-bug; }
+    .anim-bug {
+      animation-name: live-bug;
+      animation-duration: 2s;
+      transform-origin: center;
+    }
     .anim-rocket { animation-name: live-rocket; }
 
     .process-step-number {
@@ -1380,7 +1388,7 @@
       .orbit-field {
         --orbit-size: min(calc(100vw - 64px), 330px);
         --mobile-orbit-radius-1: 68px;
-        --mobile-orbit-radius-2: 104px;
+        --mobile-orbit-radius-2: 100px;
         --mobile-orbit-radius-3: 132px;
         --orbit-center-size: 96px;
         --orbit-item-size: 24px;
@@ -1524,22 +1532,22 @@
       <div class="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
         <div class="hero-badge mb-8 inline-flex items-center justify-center gap-2 rounded-sm border border-[#2563EB]/20 bg-[#2563EB]/5 px-3 py-1 transition-colors duration-300 dark:border-drafting-blue/20 dark:bg-drafting-blue/5">
           <span class="h-2 w-2 rounded-full bg-action-coral"></span>
-          <span class="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#2563EB] transition-colors duration-300 dark:text-drafting-blue">n8n - GoHighLevel - AI Workflow Systems</span>
+          <span class="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#2563EB] transition-colors duration-300 dark:text-drafting-blue">n8n Automation &middot; GoHighLevel CRM &middot; AI Workflow Systems</span>
         </div>
         <h1 class="hero-title-text mb-6 max-w-5xl font-display text-4xl font-bold tracking-[-0.04em] text-[#16181A] transition-colors duration-300 dark:text-machine-off-white sm:text-6xl md:text-7xl lg:text-8xl">
-          AI Automation Systems for Service Businesses
+          n8n & GoHighLevel Automation Specialist for Service Businesses
         </h1>
         <div class="mb-8 h-1 w-24 bg-action-coral"></div>
         <p class="hero-copy mb-10 max-w-[calc(100vw-32px)] font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text md:max-w-2xl md:text-xl">
-          I build n8n automations, GoHighLevel agency systems, CRM workflows, funnel designs, AI-assisted operations, and no-code/vibe-coded tools that help teams capture leads, follow up faster, reduce admin work, and keep their business processes organized.
+          I build practical automation systems for service businesses using n8n, GoHighLevel, CRM workflows, AI-assisted admin tools, APIs, webhooks, and databases. My systems help teams capture leads, follow up faster, organize records, reduce repetitive admin work, and keep business operations easier to manage.
         </p>
         <div class="flex flex-col gap-4 sm:flex-row">
           <a class="flex items-center justify-center gap-2 rounded-sm bg-action-coral px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest text-white transition-all hover:brightness-110 active:scale-95" href="#book">
-            Book Consultation
+            Book Automation Consultation
             <span class="material-symbols-outlined text-sm">arrow_forward</span>
           </a>
           <a class="flex items-center justify-center gap-2 rounded-sm border border-[#2563EB]/30 px-8 py-4 font-mono text-xs font-bold uppercase tracking-widest text-[#2563EB] transition-colors hover:bg-[#2563EB]/10 dark:border-drafting-blue/30 dark:text-drafting-blue dark:hover:bg-drafting-blue/10" href="#proof">
-            View Proof Folder
+            View Workflow Proof
           </a>
         </div>
       </div>
@@ -1593,10 +1601,10 @@
       <div class="mx-auto max-w-container-max px-margin-page">
         <div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span class="mb-3 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-action-coral">Proof Folder</span>
-            <h2 class="font-display text-4xl font-bold tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Browse real workflow evidence.</h2>
+            <span class="mb-3 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-action-coral">View Workflow Proof</span>
+            <h2 class="font-display text-4xl font-bold tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Browse real automation workflow proof.</h2>
           </div>
-          <p class="max-w-xl text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Screenshots and workflow previews are organized by system type so clients can inspect the work quickly.</p>
+          <p class="max-w-xl text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Review screenshots and workflow previews from n8n, GoHighLevel, CRM, lead capture, AI admin, and follow-up automation systems. Each project shows the business problem, system logic, tools used, and practical outcome.</p>
         </div>
 
         <div class="mb-6 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Proof folder tabs">
@@ -1609,7 +1617,7 @@
         <div class="grid gap-8 border border-[rgba(22,24,26,0.12)] bg-white p-4 transition-colors duration-300 dark:border-border-subtle dark:bg-deep-blueprint/30 lg:grid-cols-12 lg:p-6">
           <div class="lg:col-span-8">
             <button class="proof-open aspect-[16/10] w-full overflow-hidden rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#101214] dark:border-border-subtle" id="proof-main-open" type="button">
-              <img class="proof-image" id="proof-main-image" src="./assets/screenshots/dental/dental-new-patient-intake.png" alt="Dental Clinic Automation Suite proof screenshot" />
+              <img class="proof-image" id="proof-main-image" src="./assets/screenshots/dental/dental-new-patient-intake.png" alt="Dental clinic n8n automation workflow screenshot for patient intake, booking confirmation, and appointment reminders" />
             </button>
             <div class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-4 py-3 dark:border-border-subtle dark:bg-dark-panel">
               <p class="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[#5F676D] dark:text-muted-text" id="proof-image-count">Gallery ready</p>
@@ -1674,29 +1682,29 @@
               </div>
 
               <div class="orbit-layer absolute inset-0">
-                <div class="orbit-ring h-[400px] w-[400px]"></div>
+                <div class="orbit-ring h-[380px] w-[380px]"></div>
                 <div class="orbit-container reverse absolute inset-0">
-                  <div class="tool-node mobile-ring-1" style="--angle: 270deg; --radius: 200px; --mobile-angle: 90deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/openai-logo.png" alt="OpenAI" /></div></div></div>
-                  <div class="tool-node mobile-ring-2" style="--angle: 321deg; --radius: 200px; --mobile-angle: 112.5deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/claude-color.svg" alt="Claude" /></div></div></div>
-                  <div class="tool-node mobile-ring-3" style="--angle: 13deg; --radius: 200px; --mobile-angle: 10deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/gemini-color.svg" alt="Gemini" /></div></div></div>
-                  <div class="tool-node mobile-ring-3" style="--angle: 64deg; --radius: 200px; --mobile-angle: 50deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/codex-color.svg" alt="Codex" /></div></div></div>
-                  <div class="tool-node mobile-ring-3" style="--angle: 116deg; --radius: 200px; --mobile-angle: 90deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/supabase-icon.svg" alt="Supabase" /></div></div></div>
-                  <div class="tool-node mobile-ring-3" style="--angle: 167deg; --radius: 200px; --mobile-angle: 130deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/PostgreSQL%20Icon.png" alt="PostgreSQL" /></div></div></div>
-                  <div class="tool-node mobile-ring-1" style="--angle: 219deg; --radius: 200px; --mobile-angle: 315deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Airtable-icon.svg" alt="Airtable" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 270deg; --radius: 190px; --mobile-angle: 90deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/openai-logo.png" alt="OpenAI" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 321deg; --radius: 190px; --mobile-angle: 112.5deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/claude-color.svg" alt="Claude" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 13deg; --radius: 190px; --mobile-angle: 10deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/gemini-color.svg" alt="Gemini" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 64deg; --radius: 190px; --mobile-angle: 50deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/codex-color.svg" alt="Codex" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 116deg; --radius: 190px; --mobile-angle: 90deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/supabase-icon.svg" alt="Supabase" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 167deg; --radius: 190px; --mobile-angle: 130deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/PostgreSQL%20Icon.png" alt="PostgreSQL" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 219deg; --radius: 190px; --mobile-angle: 315deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Airtable-icon.svg" alt="Airtable" /></div></div></div>
                 </div>
               </div>
 
               <div class="orbit-layer absolute inset-0">
-                <div class="orbit-ring h-[520px] w-[520px]"></div>
+                <div class="orbit-ring h-[480px] w-[480px]"></div>
                 <div class="orbit-container absolute inset-0" style="animation-duration: 170s;">
-                  <div class="tool-node mobile-ring-1" style="--angle: 270deg; --radius: 260px; --mobile-angle: 135deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/gmail.png" alt="Gmail" /></div></div></div>
-                  <div class="tool-node mobile-ring-2" style="--angle: 315deg; --radius: 260px; --mobile-angle: 157.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/google-sheets-icon.svg" alt="Google Sheets" /></div></div></div>
-                  <div class="tool-node mobile-ring-1" style="--angle: 0deg; --radius: 260px; --mobile-angle: 270deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/google-calendar-icon-2020-.svg" alt="Google Calendar" /></div></div></div>
-                  <div class="tool-node mobile-ring-2" style="--angle: 45deg; --radius: 260px; --mobile-angle: 292.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/notion-logo.png" alt="Notion" /></div></div></div>
-                  <div class="tool-node mobile-ring-1" style="--angle: 90deg; --radius: 260px; --mobile-angle: 180deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Slack%20Icon.png" alt="Slack" /></div></div></div>
-                  <div class="tool-node mobile-ring-2" style="--angle: 135deg; --radius: 260px; --mobile-angle: 202.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Telegram.png" alt="Telegram" /></div></div></div>
-                  <div class="tool-node mobile-ring-3" style="--angle: 180deg; --radius: 260px; --mobile-angle: 170deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/WhatsApp%20Icon.png" alt="WhatsApp" /></div></div></div>
-                  <div class="tool-node mobile-ring-3" style="--angle: 225deg; --radius: 260px; --mobile-angle: 210deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/zoom.png" alt="Zoom" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 270deg; --radius: 240px; --mobile-angle: 135deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/gmail.png" alt="Gmail" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 315deg; --radius: 240px; --mobile-angle: 157.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/google-sheets-icon.svg" alt="Google Sheets" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 0deg; --radius: 240px; --mobile-angle: 270deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/google-calendar-icon-2020-.svg" alt="Google Calendar" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 45deg; --radius: 240px; --mobile-angle: 292.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/notion-logo.png" alt="Notion" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 90deg; --radius: 240px; --mobile-angle: 180deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Slack%20Icon.png" alt="Slack" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 135deg; --radius: 240px; --mobile-angle: 202.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Telegram.png" alt="Telegram" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 180deg; --radius: 240px; --mobile-angle: 170deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/WhatsApp%20Icon.png" alt="WhatsApp" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 225deg; --radius: 240px; --mobile-angle: 210deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/zoom.png" alt="Zoom" /></div></div></div>
                 </div>
               </div>
 
@@ -1716,7 +1724,7 @@
 
           <div class="w-full space-y-6 lg:w-1/2">
             <div class="border border-[rgba(22,24,26,0.12)] bg-white p-6 transition-colors hover:border-[#2563EB]/30 dark:border-border-subtle dark:bg-deep-blueprint/30 dark:hover:border-drafting-blue/30">
-              <h3 class="mb-2 flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-[#16181A] transition-colors duration-300 dark:text-machine-off-white"><span class="material-symbols-outlined text-sm text-[#2563EB] dark:text-drafting-blue">account_tree</span>Automation</h3>
+              <h3 class="mb-2 flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-[#16181A] transition-colors duration-300 dark:text-machine-off-white"><span class="material-symbols-outlined text-sm text-[#2563EB] dark:text-drafting-blue">account_tree</span>Automation / CRM</h3>
               <p class="mb-4 text-sm text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Workflow builders used to connect forms, CRMs, databases, emails, and follow-up actions.</p>
               <div class="flex flex-wrap gap-2">
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/n8n-color.svg" alt="" />n8n</span>
@@ -1775,13 +1783,10 @@
         <div class="w-full space-y-8 lg:w-1/2">
           <div class="inline-flex items-center gap-2 rounded-full border border-action-coral/30 bg-action-coral/10 px-4 py-1.5">
             <span class="h-2 w-2 animate-pulse rounded-full bg-action-coral"></span>
-            <span class="font-mono text-[11px] uppercase tracking-widest text-action-coral">Book A Workflow Consultation</span>
+            <span class="font-mono text-[11px] uppercase tracking-widest text-action-coral">Book Automation Discovery Call</span>
           </div>
-          <h2 class="font-display text-4xl font-bold leading-tight tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Let’s map the workflow, funnel, or system you want to build.</h2>
-          <p class="font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text">If your business is losing time to manual follow-up, scattered records, repetitive admin tasks, or an unclear funnel setup, I can help map a cleaner automation system.
-
-I can also help with GoHighLevel funnel setup, funnel design, sub-account setup, CRM structure, and workflow planning.
-</p>
+          <h2 class="font-display text-4xl font-bold leading-tight tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Let&rsquo;s map your automation workflow, CRM, funnel, or follow-up system.</h2>
+          <p class="font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text">If your business is losing time to manual lead handling, scattered records, delayed follow-ups, repetitive admin tasks, or unclear CRM processes, I can help design a cleaner automation system using n8n, GoHighLevel, AI tools, webhooks, and the tools your team already uses.</p>
           <p class="font-mono text-[11px] uppercase tracking-wide text-[#2563EB] opacity-80 transition-colors duration-300 dark:text-drafting-blue">Free discovery call for automation fit, funnel/system mapping, and next-step recommendations.</p>
         </div>
         <div class="w-full lg:w-1/2">
@@ -1841,7 +1846,7 @@ I can also help with GoHighLevel funnel setup, funnel design, sub-account setup,
 
   <footer class="bg-[#F5F3EF] px-margin-page py-10 transition-colors duration-300 dark:bg-[#16181A]">
     <div class="mx-auto flex max-w-container-max flex-col items-center justify-between gap-6 border-t border-[rgba(22,24,26,0.12)] pt-8 dark:border-border-subtle md:flex-row">
-      <p class="text-center text-sm text-[#5F676D] dark:text-muted-text md:text-left">Built by Robert Tapangan. Automation systems for cleaner business operations.</p>
+      <p class="text-center text-sm text-[#5F676D] dark:text-muted-text md:text-left">Built by Robert Tapangan. Automation systems that you can rely.</p>
       <div class="flex items-center gap-3">
         <a class="social-logo grid h-10 w-10 place-items-center rounded-sm border border-[rgba(22,24,26,0.12)] bg-white p-2 transition-colors hover:border-action-coral dark:border-border-subtle dark:bg-dark-panel" href="https://github.com/roberttapanganva-automation" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <img src="./assets/logos/github.svg" alt="" />
@@ -1913,30 +1918,30 @@ I can also help with GoHighLevel funnel setup, funnel design, sub-account setup,
 
     const proofData = {
       n8n: {
-        title: "Dental Clinic Automation Suite",
-        primaryLabel: "Function",
-        secondaryLabel: "Outcome",
-        primary: "Patient intake, AI-assisted parsing, booking confirmation, appointment reminders, staff notifications, and Supabase/PostgreSQL record updates.",
-        secondary: "Shows a complete front-desk automation flow from inquiry capture to appointment follow-up and reminder status tracking.",
-        whatThisProves: "Multi-step n8n workflow logic, webhook handling, data normalization, AI-assisted parsing, conditional routing, Gmail notifications, and database-backed operational handoff.",
-        tools: ["n8n", "Supabase", "Gmail", "OpenAI"],
+        title: "Dental Clinic Intake, Booking & Reminder Automation",
+        primaryLabel: "Problem",
+        secondaryLabel: "System Built",
+        primary: "Dental clinics often lose time manually handling patient inquiries, appointment requests, booking confirmations, and reminder follow-ups across scattered tools.",
+        secondary: "Built an n8n and Supabase workflow that captures new patient inquiries, stores structured appointment data, sends booking confirmations, and triggers reminder workflows to reduce missed follow-ups and no-shows.",
+        whatThisProves: "Shows ability to build service-business automation with intake forms, database records, appointment logic, email notifications, reminder timing, and practical front-desk workflow support.",
+        tools: ["n8n", "Supabase", "Gmail", "Tally", "OpenAI", "Webhooks"],
         images: [
-          { src: "./assets/screenshots/dental/dental-new-patient-intake.png", alt: "Dental new patient intake workflow with AI parsing and staff routing", title: "Dental New Patient Intake", function: "Receives new patient inquiries through a webhook, normalizes submitted form data, uses AI-assisted parsing, and routes the inquiry by urgency or review path.", outcome: "Front-desk staff receives a cleaner, categorized patient request instead of manually reading every intake and deciding where it should go.", proves: "Shows webhook intake, data cleanup, AI parsing, conditional routing, patient acknowledgement, staff notification, and lead tracking in one front-desk workflow." },
+          { src: "./assets/screenshots/dental/dental-new-patient-intake.png", alt: "Dental clinic n8n automation workflow screenshot for patient intake, booking confirmation, and appointment reminders", title: "Dental New Patient Intake", function: "Receives new patient inquiries through a webhook, normalizes submitted form data, uses AI-assisted parsing, and routes the inquiry by urgency or review path.", outcome: "Front-desk staff receives a cleaner, categorized patient request instead of manually reading every intake and deciding where it should go.", proves: "Shows webhook intake, data cleanup, AI parsing, conditional routing, patient acknowledgement, staff notification, and lead tracking in one front-desk workflow." },
           { src: "./assets/screenshots/dental/dental-booking-confirmation.png", alt: "Dental appointment booking confirmation workflow", title: "Appointment Booking Confirmation", function: "Maps a confirmed booking submission, normalizes appointment details, creates or updates the appointment record, and updates the lead status to appointment booked.", outcome: "Booking details become structured records that can trigger future reminders and reduce manual appointment handoff mistakes.", proves: "Shows appointment data normalization, database write logic, status updates, and a clean bridge between inquiry handling and booked appointment tracking." },
           { src: "./assets/screenshots/dental/dental-reminder-no-show-prevention.png", alt: "Dental appointment reminder and no-show prevention workflow", title: "Reminder + No-Show Prevention", function: "Runs on a schedule, finds appointments due for 1-day or 2-hour reminders, routes by preferred channel, sends reminders or front-desk call alerts, and updates reminder status.", outcome: "The clinic can consistently remind patients without manually checking appointment times or remembering who already received a reminder.", proves: "Shows scheduled automation, PostgreSQL/Supabase lookup, time-window routing, reminder delivery paths, and database-backed reminder flags." },
           { src: "./assets/screenshots/dental/dental-reminder-proof.png", alt: "Gmail reminder proof for a dental appointment reminder", title: "Reminder Email Proof", function: "Shows the actual automated Gmail reminder sent to a patient before the appointment.", outcome: "The workflow output is visible outside n8n, proving that the reminder logic produces a patient-facing message.", proves: "Shows end-to-end delivery from scheduled workflow to real email output, including appointment timing and reschedule instruction handling." }
         ]
       },
       ghl: {
-        title: "GoHighLevel B2B Client Delivery OS",
-        primaryLabel: "Function",
-        secondaryLabel: "Outcome",
-        primary: "Sales intake funnel, application form, booking calendar, CRM pipelines, onboarding, portal/course/community access, certificates, review requests, video testimonial collection, dashboards, and n8n webhook support.",
-        secondary: "Shows how GoHighLevel can be structured as a full client delivery operating system, not just a funnel or simple CRM.",
-        whatThisProves: "Funnel building, CRM structure, pipeline planning, client onboarding, delivery tracking, proof collection, dashboard visibility, and hybrid GHL + n8n automation.",
-        tools: ["GoHighLevel", "n8n"],
+        title: "GoHighLevel CRM, Funnel & Client Workflow System",
+        primaryLabel: "Problem",
+        secondaryLabel: "System Built",
+        primary: "Agencies and service businesses need more than a funnel. They need a full system for lead capture, pipeline tracking, follow-up, onboarding, reminders, reviews, and client handoff.",
+        secondary: "Built a GoHighLevel workflow concept with funnels, CRM pipeline stages, automation triggers, onboarding steps, review requests, testimonial requests, and dashboard visibility.",
+        whatThisProves: "Shows understanding of GoHighLevel as a business operations system, not just a landing page or funnel builder.",
+        tools: ["GoHighLevel", "CRM Pipelines", "Forms", "Workflows", "Funnels", "Email", "Calendar", "Automations"],
         images: [
-          { src: "./assets/screenshots/ghl/ghl-01-landing-page.svg", alt: "GoHighLevel landing page funnel screenshot", title: "Landing Page Funnel", function: "Positions the offer, explains the program outcome, and guides visitors toward applying for access.", outcome: "The funnel has a clear first conversion point instead of sending prospects into a scattered sales process.", proves: "Shows funnel page planning, premium layout direction, call-to-action placement, and service offer framing inside GoHighLevel." },
+          { src: "./assets/screenshots/ghl/ghl-01-landing-page.svg", alt: "GoHighLevel CRM automation setup for funnel leads, pipeline stages, onboarding, and follow-up workflows", title: "Landing Page Funnel", function: "Positions the offer, explains the program outcome, and guides visitors toward applying for access.", outcome: "The funnel has a clear first conversion point instead of sending prospects into a scattered sales process.", proves: "Shows funnel page planning, premium layout direction, call-to-action placement, and service offer framing inside GoHighLevel." },
           { src: "./assets/screenshots/ghl/ghl-02-application-page.svg", alt: "GoHighLevel application page screenshot", title: "Application Page", function: "Collects applicant details and qualification information before a sales or strategy call.", outcome: "The business receives structured application data before deciding whether the prospect is a fit.", proves: "Shows form-based intake, qualification thinking, funnel continuity, and structured lead capture before booking." },
           { src: "./assets/screenshots/ghl/ghl-03-calendar-page.svg", alt: "GoHighLevel calendar booking screenshot", title: "Calendar Booking Page", function: "Allows qualified leads to choose a call time and connect their interest to the next step in the sales process.", outcome: "Booking becomes part of the funnel path instead of being handled through manual back-and-forth messages.", proves: "Shows calendar flow design, conversion path continuity, and a cleaner handoff from application to call booking." },
           { src: "./assets/screenshots/ghl/ghl-04-thank-you-page.svg", alt: "GoHighLevel thank-you page screenshot", title: "Booking Confirmation Page", function: "Confirms the strategy call, sets expectations, and gives the lead clear next-step information after booking.", outcome: "The prospect sees immediate confirmation and knows what to expect, reducing confusion after scheduling.", proves: "Shows post-booking experience design, confirmation messaging, and a complete funnel sequence through thank-you flow." },
@@ -1953,15 +1958,15 @@ I can also help with GoHighLevel funnel setup, funnel design, sub-account setup,
         ]
       },
       crm: {
-        title: "Lead Capture & Follow-Up Automation",
-        primaryLabel: "Function",
-        secondaryLabel: "Outcome",
-        primary: "Capture leads, validate data, classify hot/warm/cold, notify the owner, create Notion tasks, log records in Google Sheets, and send follow-up emails.",
-        secondary: "Shows lead routing, CRM tracking, task creation, reporting, and follow-up without manual handoff gaps.",
-        whatThisProves: "Lead handling logic, workflow branching, Google Sheets tracking, Notion task creation, Telegram/Gmail notifications, and scheduled reporting.",
-        tools: ["n8n", "Google Sheets", "Notion", "Gmail", "Telegram"],
+        title: "Lead Capture, Qualification & CRM Routing System",
+        primaryLabel: "Problem",
+        secondaryLabel: "System Built",
+        primary: "Small businesses often collect leads from forms but lose opportunities because follow-up is slow, lead details are scattered, or the team lacks a clear handoff process.",
+        secondary: "Built an automated lead capture system that collects form submissions, scores or classifies leads, logs records, sends notifications, and routes follow-up tasks into CRM or tracking tools.",
+        whatThisProves: "Shows ability to automate lead intake, sales operations, CRM updates, notifications, and follow-up visibility for service businesses and remote teams.",
+        tools: ["n8n", "Tally", "Google Sheets", "Gmail", "Telegram", "Notion", "Webhooks"],
         images: [
-          { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure.png", alt: "Lead capture and follow-up workflow structure", title: "Lead Capture Workflow Structure", function: "Receives a lead webhook, normalizes the payload, validates required fields, routes valid leads, classifies hot/warm/cold lead type, and triggers follow-up paths.", outcome: "Every submitted lead can be handled through a consistent process instead of being manually sorted and followed up.", proves: "Shows end-to-end lead automation architecture, validation, branching, CRM-style logging, and multi-channel follow-up actions." },
+          { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure.png", alt: "Lead capture automation workflow using Tally, n8n, Google Sheets, Gmail, Telegram, and Notion", title: "Lead Capture Workflow Structure", function: "Receives a lead webhook, normalizes the payload, validates required fields, routes valid leads, classifies hot/warm/cold lead type, and triggers follow-up paths.", outcome: "Every submitted lead can be handled through a consistent process instead of being manually sorted and followed up.", proves: "Shows end-to-end lead automation architecture, validation, branching, CRM-style logging, and multi-channel follow-up actions." },
           { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure-warm-success.png", alt: "Warm lead workflow success path", title: "Warm Lead Success Path", function: "Shows a successful warm-lead execution path through Google Sheets logging, owner notification, Telegram alert, auto-reply, Notion task creation, wait period, and follow-up email.", outcome: "Warm prospects get organized nurturing without requiring the owner to manually build each follow-up task.", proves: "Shows successful branch execution, category-based routing, owner alerts, task creation, and delayed follow-up automation." },
           { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure-cold-success.png", alt: "Cold lead workflow success path", title: "Cold Lead Success Path", function: "Routes a cold lead into its own logging, owner notification, Telegram alert, auto-reply, Notion task, wait, and follow-up sequence.", outcome: "Lower-priority leads are still captured and nurtured without taking the same immediate attention as hot leads.", proves: "Shows lead segmentation, cold-lead nurture logic, status-specific messaging, and consistent follow-up for non-urgent prospects." },
           { src: "./assets/screenshots/lead-capture/notion-auto-task-capture.png", alt: "Lead task capture in Notion", title: "Notion Lead Task Board", function: "Creates lead tasks in Notion with email, phone, budget, status, and recommended notes based on the automation path.", outcome: "Follow-up work becomes visible as tasks instead of being buried inside inbox notifications or spreadsheet rows.", proves: "Shows task creation, lead metadata mapping, priority labels, and handoff-ready follow-up tracking." },
@@ -1974,22 +1979,22 @@ I can also help with GoHighLevel funnel setup, funnel design, sub-account setup,
         ]
       },
       ai: {
-        title: "AI Email Triage + Knowledge Base Support",
-        primaryLabel: "Function",
-        secondaryLabel: "Outcome",
-        primary: "Classify incoming emails, create draft replies, log triage data, notify the team, create review tasks, and answer internal questions from grounded document retrieval.",
-        secondary: "Shows practical AI admin workflows with human review, escalation paths, document ingestion, vector search, and operational logging.",
-        whatThisProves: "AI-assisted classification, draft response creation, Notion task routing, Telegram alerting, Google Sheets logging, document ingestion, grounded prompting, and vector-search knowledge support.",
-        tools: ["n8n", "OpenAI", "Gmail", "Notion", "Telegram", "Google Sheets", "Supabase"],
+        title: "AI Email Triage & Draft Reply Workflow",
+        primaryLabel: "Problem",
+        secondaryLabel: "System Built",
+        primary: "Teams waste time manually reading, sorting, and replying to repetitive emails, which slows response times and increases missed handoffs.",
+        secondary: "Built an AI-assisted email workflow that classifies incoming messages, identifies priority or intent, drafts contextual replies, and routes emails to the correct next step.",
+        whatThisProves: "Shows practical use of AI for admin support, message classification, draft replies, inbox organization, and workflow routing without replacing human review.",
+        tools: ["n8n", "Gmail", "OpenAI", "Google Sheets", "Notion", "Webhooks", "Supabase", "PostgreSQL", "PGVector", "APIs"],
         images: [
-          { src: "./assets/screenshots/ai-email/ai-email-execution-success.png", alt: "AI email triage workflow execution success", title: "AI Email Triage Workflow", function: "Triggers from Gmail, retrieves the full email, normalizes it, applies workflow settings, classifies it with AI, logs the result, and routes follow-up actions.", outcome: "Incoming emails can be categorized and escalated faster while keeping human review for important paths.", proves: "Shows Gmail-triggered automation, AI classification, route-based outcomes, Google Sheets logging, Telegram alerts, Gmail draft creation, and Notion task creation." },
+          { src: "./assets/screenshots/ai-email/ai-email-execution-success.png", alt: "AI email triage workflow for Gmail classification, draft replies, and admin routing", title: "AI Email Triage Workflow", function: "Triggers from Gmail, retrieves the full email, normalizes it, applies workflow settings, classifies it with AI, logs the result, and routes follow-up actions.", outcome: "Incoming emails can be categorized and escalated faster while keeping human review for important paths.", proves: "Shows Gmail-triggered automation, AI classification, route-based outcomes, Google Sheets logging, Telegram alerts, Gmail draft creation, and Notion task creation." },
           { src: "./assets/screenshots/ai-email/ai-email-notion-tasks.png", alt: "AI email triage tasks in Notion", title: "AI Email Triage Tasks", function: "Stores classified emails in Notion with category, urgency, sentiment, summary, recommended action, priority, status, and received date.", outcome: "Emails that need attention become visible work items instead of staying buried in the inbox.", proves: "Shows AI output mapping, task creation, triage metadata, priority labeling, and review workflow support." },
           { src: "./assets/screenshots/ai-email/ai-email-telegram-alerts.png", alt: "AI email triage Telegram alert proof", title: "Telegram Escalation Alerts", function: "Sends Telegram alerts when AI classification fails or when an email needs high-priority support attention.", outcome: "The team is notified quickly when manual review or urgent escalation is needed.", proves: "Shows failure handling, escalation messaging, priority alerts, and human-in-the-loop automation design." },
           { src: "./assets/screenshots/ai-email/ai-email-triage-log.png", alt: "AI email triage log in Google Sheets", title: "AI Triage Log", function: "Logs received emails, categories, urgency, sentiment, summaries, recommended actions, draft replies, routing buckets, AI status, processing status, and Gmail thread IDs in Google Sheets.", outcome: "The email triage system has an audit trail that can be reviewed without opening every workflow run.", proves: "Shows operational logging, AI result traceability, workflow monitoring, and structured data capture for email operations." },
           { src: "./assets/screenshots/ai-email/logs.png", alt: "AI email triage workflow log proof", title: "Triage Execution Logs", function: "Displays execution results and workflow run context for AI email triage activity.", outcome: "The workflow can be debugged and checked when classifications, drafts, or notifications need review.", proves: "Shows execution monitoring, run-level troubleshooting, and accountability for AI-assisted workflow behavior." },
-          { src: "./assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-complex-question-example.png", alt: "Knowledge base chatbot answer from employee handbook context", title: "Grounded FAQ Answer Example", function: "Answers an employee handbook question using retrieved policy context rather than a generic AI response.", outcome: "Internal users receive practical answers based on company documents, with reduced risk of unsupported AI guessing.", proves: "Shows retrieval-grounded response behavior, policy-aware answering, and a more controlled AI support workflow." },
-          { src: "./assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-workflow.png", alt: "Employee handbook knowledge base FAQ chatbot workflow", title: "Knowledge Base FAQ Chatbot", function: "Receives a chat question, normalizes the user question, looks up document metadata, builds a grounded prompt, sends it to an AI agent, logs the query, and returns a response.", outcome: "Teams can ask internal policy questions through a structured workflow connected to company knowledge.", proves: "Shows session handling, database lookup, grounded prompting, AI agent routing, vector search, logging, and response delivery." },
-          { src: "./assets/screenshots/knowledge-base/knowledge-base-document-ingestion.png", alt: "Knowledge base document ingestion workflow", title: "Knowledge Base Document Ingestion", function: "Finds source files, downloads documents, extracts text, normalizes metadata, chunks content, stores embeddings, logs results, and builds an ingestion summary.", outcome: "Documents become searchable knowledge that the chatbot can retrieve later for grounded answers.", proves: "Shows document ingestion, text extraction, chunking, embeddings, vector storage, PostgreSQL/Supabase storage, and ingestion logging." }
+          { src: "./assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-complex-question-example.png", alt: "Internal knowledge assistant workflow for business FAQ automation and grounded document answers", title: "Internal Knowledge Assistant for Business FAQs", function: "Connects business documents to a searchable AI-assisted assistant so users can retrieve grounded answers from internal information.", outcome: "Teams can answer repeated operational questions faster without digging through scattered SOPs, notes, and references.", proves: "Shows ability to design AI support systems for internal documentation, FAQ automation, SOP retrieval, and business knowledge management." },
+          { src: "./assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-workflow.png", alt: "Internal knowledge assistant n8n workflow for SOP retrieval and business FAQ automation", title: "Knowledge Assistant Workflow", function: "Receives a chat question, normalizes the user question, looks up document metadata, builds a grounded prompt, sends it to an AI agent, logs the query, and returns a response.", outcome: "Internal users receive practical answers from business documents instead of searching through scattered references manually.", proves: "Shows document lookup, grounded prompting, AI agent routing, vector search, logging, and response delivery." },
+          { src: "./assets/screenshots/knowledge-base/knowledge-base-document-ingestion.png", alt: "n8n workflow automation proof screenshot for service business operations", title: "Knowledge Base Document Ingestion", function: "Finds source files, downloads documents, extracts text, normalizes metadata, chunks content, stores embeddings, logs results, and builds an ingestion summary.", outcome: "Documents become searchable knowledge that the assistant can retrieve later for grounded answers.", proves: "Shows document ingestion, text extraction, chunking, embeddings, vector storage, PostgreSQL/Supabase storage, and ingestion logging." }
         ]
       }
     };
@@ -2010,7 +2015,17 @@ I can also help with GoHighLevel funnel setup, funnel design, sub-account setup,
       Codex: "./assets/logos/codex-color.svg",
       "Google Calendar": "./assets/logos/google-calendar-icon-2020-.svg",
       APIs: "./assets/logos/api-icon.png",
-      Webhooks: "./assets/logos/webhook-icon.svg"
+      Webhooks: "./assets/logos/webhook-icon.svg",
+      Tally: "./assets/logos/Tally%20Icon.svg",
+      "CRM Pipelines": "./assets/logos/Highlevel.png",
+      Forms: "./assets/logos/Highlevel.png",
+      Workflows: "./assets/logos/Highlevel.png",
+      Funnels: "./assets/logos/Highlevel.png",
+      Email: "./assets/logos/gmail.png",
+      Calendar: "./assets/logos/google-calendar-icon-2020-.svg",
+      Automations: "./assets/logos/Highlevel.png",
+      PostgreSQL: "./assets/logos/PostgreSQL%20Icon.png",
+      PGVector: "./assets/logos/PostgreSQL%20Icon.png"
     };
 
     const proofMainImage = document.getElementById("proof-main-image");
@@ -2132,10 +2147,10 @@ I can also help with GoHighLevel funnel setup, funnel design, sub-account setup,
       proofImageCount.textContent = `${data.images.length} proof images available`;
 
       proofTools.innerHTML = "";
-      data.tools.filter((tool) => logoMap[tool]).forEach((tool) => {
+      data.tools.forEach((tool) => {
         const pill = document.createElement("span");
         pill.className = "flex items-center gap-2 rounded-full border border-[#2563EB]/30 bg-[#F5F3EF] px-3 py-1 font-mono text-[10px] font-bold text-[#2563EB] transition-colors duration-300 dark:border-drafting-blue/30 dark:bg-soft-surface dark:text-drafting-blue";
-        pill.innerHTML = `<img class="h-4 w-4 object-contain" src="${logoMap[tool]}" alt="" />${tool}`;
+        pill.innerHTML = logoMap[tool] ? `<img class="h-4 w-4 object-contain" src="${logoMap[tool]}" alt="" />${tool}` : tool;
         proofTools.appendChild(pill);
       });
 
