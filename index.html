@@ -47,6 +47,12 @@
     };
   </script>
   <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
     .material-symbols-outlined {
       font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
     }
@@ -56,6 +62,14 @@
       color: #16181a;
       font-family: Inter, sans-serif;
       overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section[id] {
+      scroll-margin-top: 116px;
     }
 
     .dark body {
@@ -110,6 +124,63 @@
       right: 32px;
       top: 50%;
       transform: translateY(-50%);
+    }
+
+    .mobile-section-nav {
+      display: none;
+      gap: 8px;
+      max-width: 1280px;
+      overflow-x: auto;
+      padding: 0 16px 10px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-section-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mobile-section-nav a {
+      display: inline-flex;
+      min-height: 40px;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(22, 24, 26, 0.12);
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.62);
+      padding: 0 14px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #16181a;
+      transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+    }
+
+    .mobile-section-nav a:hover,
+    .mobile-section-nav a:focus-visible {
+      border-color: rgba(255, 87, 34, 0.7);
+      outline: none;
+    }
+
+    .mobile-section-nav .mobile-section-nav-book {
+      border-color: rgba(255, 87, 34, 0.86);
+      background: #ff5722;
+      color: #ffffff;
+    }
+
+    .dark .mobile-section-nav a {
+      border-color: rgba(244, 244, 240, 0.14);
+      background: rgba(244, 244, 240, 0.06);
+      color: #f4f4f0;
+    }
+
+    .dark .mobile-section-nav .mobile-section-nav-book {
+      border-color: rgba(255, 87, 34, 0.86);
+      background: #ff5722;
+      color: #ffffff;
     }
 
     #typewriter {
@@ -1127,58 +1198,119 @@
         margin-right: 0;
       }
 
-      .orbit-field {
-        width: 100%;
-        height: auto;
-        display: grid;
-        gap: 16px;
+      .mobile-section-nav {
+        display: flex;
+        gap: 6px;
+        padding-left: 10px;
+        padding-right: 10px;
       }
 
-      .orbit-container,
-      .orbit-container.reverse,
-      .keep-upright {
-        animation: none;
+      .mobile-section-nav a {
+        min-height: 40px;
+        padding-left: 9px;
+        padding-right: 9px;
+        font-size: 0.66rem;
+        letter-spacing: 0.04em;
+      }
+
+      .orbit-wrap {
+        min-height: clamp(320px, 88vw, 390px);
+        overflow: hidden;
+        padding: 10px 0 6px;
+      }
+
+      .orbit-field {
+        --orbit-size: min(calc(100vw - 64px), 320px);
+        --orbit-center-size: clamp(118px, 34vw, 124px);
+        --orbit-item-size: 38px;
+        position: relative;
+        display: block;
+        width: var(--orbit-size) !important;
+        height: var(--orbit-size) !important;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: visible;
+      }
+
+      .orbit-field > .orbit-layer:nth-of-type(2) {
+        --layer-radius: calc(var(--orbit-size) * 0.38);
+      }
+
+      .orbit-field > .orbit-layer:nth-of-type(3) {
+        --layer-radius: calc(var(--orbit-size) * 0.365);
+      }
+
+      .orbit-field > .orbit-layer:nth-of-type(4) {
+        --layer-radius: calc(var(--orbit-size) * 0.43);
       }
 
       .orbit-ring {
-        display: none;
+        display: block;
+        width: calc(var(--layer-radius) * 2);
+        height: calc(var(--layer-radius) * 2);
+        opacity: 0.74;
+      }
+
+      .orbit-container {
+        position: absolute;
+        inset: 0;
+        animation: rotate-clockwise 120s linear infinite;
+        transform-origin: center;
+      }
+
+      .orbit-container.reverse {
+        animation-name: rotate-counter;
+        animation-duration: 150s;
+      }
+
+      .keep-upright {
+        animation: rotate-counter 120s linear infinite;
+        transform-origin: center;
+      }
+
+      .orbit-container.reverse .keep-upright {
+        animation-name: rotate-clockwise;
+        animation-duration: 150s;
       }
 
       .orbit-layer {
-        position: static;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 10px;
+        position: absolute;
+        inset: 0;
+        display: block;
       }
 
       .tool-node {
-        position: static;
-        width: 100%;
-        height: 62px;
-        margin: 0;
-        transform: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: var(--orbit-item-size);
+        height: var(--orbit-item-size);
+        margin: calc(var(--orbit-item-size) / -2) 0 0 calc(var(--orbit-item-size) / -2);
+        transform: rotate(var(--angle)) translateX(var(--layer-radius)) rotate(calc(-1 * var(--angle)));
       }
 
       .tool-logo-card {
-        width: 100%;
-        height: 62px;
+        width: var(--orbit-item-size);
+        height: var(--orbit-item-size);
+        padding: 8px;
+        border-radius: 11px;
+        box-shadow: 0 8px 18px rgba(22, 24, 26, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.86);
       }
 
       .automation-core {
-        position: static;
-        width: 100%;
-        height: 150px;
-        transform: none;
+        width: var(--orbit-center-size);
+        height: var(--orbit-center-size);
+        box-shadow: 0 0 14px rgba(255, 87, 34, 0.24), inset 0 0 14px rgba(255, 87, 34, 0.04);
       }
 
       #stack .orbit-logo-tile {
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
-        min-height: 36px !important;
-        max-width: 36px !important;
-        max-height: 36px !important;
-        border-radius: 10px !important;
+        width: var(--orbit-item-size) !important;
+        height: var(--orbit-item-size) !important;
+        min-width: var(--orbit-item-size) !important;
+        min-height: var(--orbit-item-size) !important;
+        max-width: var(--orbit-item-size) !important;
+        max-height: var(--orbit-item-size) !important;
+        border-radius: 11px !important;
       }
     }
 
@@ -1224,6 +1356,25 @@
       }
     }
 
+    @media (max-width: 480px) {
+      .hero-badge {
+        width: min(270px, calc(100vw - 40px)) !important;
+        max-width: min(270px, calc(100vw - 40px)) !important;
+      }
+
+      .hero-title-text {
+        width: min(300px, calc(100vw - 48px)) !important;
+        max-width: min(300px, calc(100vw - 48px)) !important;
+        font-size: 2rem !important;
+        line-height: 1.12 !important;
+      }
+
+      .hero-copy {
+        width: min(300px, calc(100vw - 56px)) !important;
+        max-width: min(300px, calc(100vw - 56px)) !important;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .hero-beam-path,
       .hero-beam-dot {
@@ -1260,10 +1411,17 @@
         </a>
       </div>
     </div>
+    <nav class="mobile-section-nav mx-auto w-full" aria-label="Mobile section navigation">
+      <a href="#about">About</a>
+      <a href="#process">Process</a>
+      <a href="#proof">Proof</a>
+      <a href="#stack">Stack</a>
+      <a class="mobile-section-nav-book" href="#book">Book</a>
+    </nav>
   </nav>
 
   <main id="top" class="flex-grow">
-    <section class="relative isolate flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-32 transition-colors duration-300 dark:border-border-subtle dark:bg-forged-iron">
+    <section class="relative isolate flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-32 transition-colors duration-300 dark:border-border-subtle dark:bg-forged-iron" id="about">
       <div class="hero-beams" aria-hidden="true">
         <div class="hero-beams-grid"></div>
         <svg class="hero-beams-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
