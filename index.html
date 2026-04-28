@@ -458,7 +458,7 @@
       height: 128px;
       border: 2px solid #ff5722;
       border-radius: 9999px;
-      background: #16181a;
+      background: transparent;
       color: #ff5722;
       display: flex;
       align-items: center;
@@ -469,7 +469,7 @@
     }
 
     .dark .automation-core {
-      background: #16181a;
+      background: transparent;
       box-shadow: 0 0 22px rgba(255, 87, 34, 0.34), inset 0 0 18px rgba(255, 87, 34, 0.04);
     }
 
@@ -761,6 +761,12 @@
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
         transition-duration: 0.001ms !important;
+      }
+
+      .orbit-container,
+      .keep-upright,
+      .orbit-logo-tile {
+        animation: none !important;
       }
     }
 
@@ -1214,63 +1220,84 @@
       }
 
       .orbit-wrap {
-        min-height: clamp(320px, 88vw, 390px);
+        min-height: clamp(350px, 98vw, 430px);
         overflow: hidden;
-        padding: 10px 0 6px;
+        max-width: 100%;
+        padding: 24px 0 32px;
       }
 
       .orbit-field {
-        --orbit-size: min(calc(100vw - 64px), 320px);
-        --orbit-center-size: clamp(118px, 34vw, 124px);
-        --orbit-item-size: 38px;
+        --orbit-size: min(calc(100vw - 64px), 360px);
+        --mobile-orbit-radius-1: 72px;
+        --mobile-orbit-radius-2: 112px;
+        --mobile-orbit-radius-3: 152px;
+        --orbit-center-size: clamp(96px, 29vw, 112px);
+        --orbit-item-size: 28px;
         position: relative;
         display: block;
         width: var(--orbit-size) !important;
         height: var(--orbit-size) !important;
+        aspect-ratio: 1 / 1;
         max-width: 100%;
         margin: 0 auto;
         overflow: visible;
       }
 
       .orbit-field > .orbit-layer:nth-of-type(2) {
-        --layer-radius: calc(var(--orbit-size) * 0.38);
+        --layer-radius: var(--mobile-orbit-radius-1);
+        --orbit-duration: 22s;
+        --counter-duration: 22s;
       }
 
       .orbit-field > .orbit-layer:nth-of-type(3) {
-        --layer-radius: calc(var(--orbit-size) * 0.365);
+        --layer-radius: var(--mobile-orbit-radius-2);
+        --orbit-duration: 34s;
+        --counter-duration: 34s;
       }
 
       .orbit-field > .orbit-layer:nth-of-type(4) {
-        --layer-radius: calc(var(--orbit-size) * 0.43);
+        --layer-radius: var(--mobile-orbit-radius-3);
+        --orbit-duration: 48s;
+        --counter-duration: 48s;
+      }
+
+      .orbit-field > .orbit-layer:nth-of-type(5) {
+        --layer-radius: var(--mobile-orbit-radius-3);
+        --orbit-duration: 48s;
+        --counter-duration: 48s;
       }
 
       .orbit-ring {
         display: block;
-        width: calc(var(--layer-radius) * 2);
-        height: calc(var(--layer-radius) * 2);
-        opacity: 0.74;
+        width: calc(var(--layer-radius) * 2) !important;
+        height: calc(var(--layer-radius) * 2) !important;
+        opacity: 0.68;
+      }
+
+      .orbit-field > .orbit-layer:nth-of-type(5) > .orbit-ring {
+        display: none;
       }
 
       .orbit-container {
         position: absolute;
         inset: 0;
-        animation: rotate-clockwise 120s linear infinite;
+        animation: rotate-clockwise var(--orbit-duration, 34s) linear infinite;
+        animation-duration: var(--orbit-duration, 34s) !important;
         transform-origin: center;
       }
 
       .orbit-container.reverse {
         animation-name: rotate-counter;
-        animation-duration: 150s;
       }
 
       .keep-upright {
-        animation: rotate-counter 120s linear infinite;
+        animation: rotate-counter var(--counter-duration, 34s) linear infinite;
+        animation-duration: var(--counter-duration, 34s) !important;
         transform-origin: center;
       }
 
       .orbit-container.reverse .keep-upright {
         animation-name: rotate-clockwise;
-        animation-duration: 150s;
       }
 
       .orbit-layer {
@@ -1280,21 +1307,41 @@
       }
 
       .tool-node {
+        --active-angle: var(--angle);
+        --active-radius: var(--layer-radius);
         position: absolute;
         top: 50%;
         left: 50%;
         width: var(--orbit-item-size);
         height: var(--orbit-item-size);
-        margin: calc(var(--orbit-item-size) / -2) 0 0 calc(var(--orbit-item-size) / -2);
-        transform: rotate(var(--angle)) translateX(var(--layer-radius)) rotate(calc(-1 * var(--angle)));
+        margin: 0;
+        transform: translate(-50%, -50%) rotate(var(--active-angle)) translateX(var(--active-radius)) rotate(calc(-1 * var(--active-angle)));
+      }
+
+      .mobile-ring-1 {
+        --active-angle: var(--mobile-angle);
+        --active-radius: var(--mobile-orbit-radius-1);
+      }
+
+      .mobile-ring-2 {
+        --active-angle: var(--mobile-angle);
+        --active-radius: var(--mobile-orbit-radius-2);
+      }
+
+      .mobile-ring-3 {
+        --active-angle: var(--mobile-angle);
+        --active-radius: var(--mobile-orbit-radius-3);
       }
 
       .tool-logo-card {
         width: var(--orbit-item-size);
         height: var(--orbit-item-size);
-        padding: 8px;
-        border-radius: 11px;
-        box-shadow: 0 8px 18px rgba(22, 24, 26, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+        padding: 0;
+        border-color: transparent;
+        background: transparent;
+        border-radius: 999px;
+        box-shadow: none;
+        overflow: hidden;
       }
 
       .automation-core {
@@ -1310,7 +1357,33 @@
         min-height: var(--orbit-item-size) !important;
         max-width: var(--orbit-item-size) !important;
         max-height: var(--orbit-item-size) !important;
-        border-radius: 11px !important;
+        border-radius: 999px !important;
+      }
+
+      #stack .orbit-logo-img {
+        width: 72% !important;
+        height: 72% !important;
+        max-width: 72% !important;
+        max-height: 72% !important;
+        object-fit: contain !important;
+      }
+
+      #stack .orbit-logo-img--dark {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        padding: 2px;
+        box-sizing: border-box;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .orbit-field {
+        --orbit-size: min(calc(100vw - 64px), 330px);
+        --mobile-orbit-radius-1: 68px;
+        --mobile-orbit-radius-2: 104px;
+        --mobile-orbit-radius-3: 132px;
+        --orbit-center-size: 96px;
+        --orbit-item-size: 24px;
       }
     }
 
@@ -1593,32 +1666,49 @@
               <div class="orbit-layer absolute inset-0">
                 <div class="orbit-ring h-[280px] w-[280px]"></div>
                 <div class="orbit-container absolute inset-0">
-                  <div class="tool-node" style="--angle: 270deg; --radius: 140px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/n8n-color.svg" alt="n8n" /></div></div></div>
-                  <div class="tool-node" style="--angle: 30deg; --radius: 140px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Highlevel.png" alt="GoHighLevel" /></div></div></div>
-                  <div class="tool-node" style="--angle: 150deg; --radius: 140px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Make%20Symbol%20SVG.svg" alt="Make" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 270deg; --radius: 140px; --mobile-angle: 0deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/n8n-color.svg" alt="n8n" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 0deg; --radius: 140px; --mobile-angle: 22.5deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Highlevel.png" alt="GoHighLevel" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 90deg; --radius: 140px; --mobile-angle: 67.5deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Make%20Symbol%20SVG.svg" alt="Make" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 180deg; --radius: 140px; --mobile-angle: 45deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Zapier%20Symbol%20SVG.svg" alt="Zapier" /></div></div></div>
                 </div>
               </div>
 
               <div class="orbit-layer absolute inset-0">
                 <div class="orbit-ring h-[400px] w-[400px]"></div>
                 <div class="orbit-container reverse absolute inset-0">
-                  <div class="tool-node" style="--angle: 315deg; --radius: 200px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/openai.svg" alt="OpenAI" /></div></div></div>
-                  <div class="tool-node" style="--angle: 45deg; --radius: 200px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/claude-color.svg" alt="Claude" /></div></div></div>
-                  <div class="tool-node" style="--angle: 135deg; --radius: 200px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/supabase-icon.svg" alt="Supabase" /></div></div></div>
-                  <div class="tool-node" style="--angle: 225deg; --radius: 200px;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/PostgreSQL%20Icon.png" alt="PostgreSQL" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 270deg; --radius: 200px; --mobile-angle: 90deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/openai-logo.png" alt="OpenAI" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 321deg; --radius: 200px; --mobile-angle: 112.5deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/claude-color.svg" alt="Claude" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 13deg; --radius: 200px; --mobile-angle: 10deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/gemini-color.svg" alt="Gemini" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 64deg; --radius: 200px; --mobile-angle: 50deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/codex-color.svg" alt="Codex" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 116deg; --radius: 200px; --mobile-angle: 90deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/supabase-icon.svg" alt="Supabase" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 167deg; --radius: 200px; --mobile-angle: 130deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/PostgreSQL%20Icon.png" alt="PostgreSQL" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 219deg; --radius: 200px; --mobile-angle: 315deg;"><div class="keep-upright"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Airtable-icon.svg" alt="Airtable" /></div></div></div>
                 </div>
               </div>
 
               <div class="orbit-layer absolute inset-0">
                 <div class="orbit-ring h-[520px] w-[520px]"></div>
                 <div class="orbit-container absolute inset-0" style="animation-duration: 170s;">
-                  <div class="tool-node" style="--angle: 270deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/gmail.png" alt="Gmail" /></div></div></div>
-                  <div class="tool-node" style="--angle: 321deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/google-sheets-icon.svg" alt="Google Sheets" /></div></div></div>
-                  <div class="tool-node" style="--angle: 13deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/notion.svg" alt="Notion" /></div></div></div>
-                  <div class="tool-node" style="--angle: 64deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/github.svg" alt="GitHub" /></div></div></div>
-                  <div class="tool-node" style="--angle: 116deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Zapier%20Symbol%20SVG.svg" alt="Zapier" /></div></div></div>
-                  <div class="tool-node" style="--angle: 167deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Telegram.png" alt="Telegram" /></div></div></div>
-                  <div class="tool-node" style="--angle: 219deg; --radius: 260px;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/WhatsApp%20Icon.png" alt="WhatsApp" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 270deg; --radius: 260px; --mobile-angle: 135deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/gmail.png" alt="Gmail" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 315deg; --radius: 260px; --mobile-angle: 157.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/google-sheets-icon.svg" alt="Google Sheets" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 0deg; --radius: 260px; --mobile-angle: 270deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/google-calendar-icon-2020-.svg" alt="Google Calendar" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 45deg; --radius: 260px; --mobile-angle: 292.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/notion-logo.png" alt="Notion" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 90deg; --radius: 260px; --mobile-angle: 180deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Slack%20Icon.png" alt="Slack" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 135deg; --radius: 260px; --mobile-angle: 202.5deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Telegram.png" alt="Telegram" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 180deg; --radius: 260px; --mobile-angle: 170deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/WhatsApp%20Icon.png" alt="WhatsApp" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 225deg; --radius: 260px; --mobile-angle: 210deg;"><div class="keep-upright" style="animation-duration: 170s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/zoom.png" alt="Zoom" /></div></div></div>
+                </div>
+              </div>
+
+              <div class="orbit-layer absolute inset-0">
+                <div class="orbit-ring h-[580px] w-[580px]"></div>
+                <div class="orbit-container reverse absolute inset-0" style="animation-duration: 190s;">
+                  <div class="tool-node mobile-ring-3" style="--angle: 270deg; --radius: 290px; --mobile-angle: 250deg;"><div class="keep-upright" style="animation-duration: 190s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/github.svg" alt="GitHub" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 321deg; --radius: 290px; --mobile-angle: 337.5deg;"><div class="keep-upright" style="animation-duration: 190s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/Vercel_Symbol_1.png" alt="Vercel" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 13deg; --radius: 290px; --mobile-angle: 290deg;"><div class="keep-upright" style="animation-duration: 190s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/Render%20Symbol%20SVG.svg" alt="Render" /></div></div></div>
+                  <div class="tool-node mobile-ring-1" style="--angle: 64deg; --radius: 290px; --mobile-angle: 225deg;"><div class="keep-upright" style="animation-duration: 190s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img orbit-logo-img--dark" src="./assets/logos/api-icon.png" alt="APIs" /></div></div></div>
+                  <div class="tool-node mobile-ring-2" style="--angle: 116deg; --radius: 290px; --mobile-angle: 247.5deg;"><div class="keep-upright" style="animation-duration: 190s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/webhook-icon.svg" alt="Webhooks" /></div></div></div>
+                  <div class="tool-node mobile-ring-3" style="--angle: 167deg; --radius: 290px; --mobile-angle: 330deg;"><div class="keep-upright" style="animation-duration: 190s;"><div class="tool-logo-card orbit-logo-tile"><img class="orbit-logo-img" src="./assets/logos/Tally%20Icon.svg" alt="Tally" /></div></div></div>
                 </div>
               </div>
             </div>
@@ -1633,13 +1723,15 @@
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Highlevel.png" alt="" />GoHighLevel</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Make%20Symbol%20SVG.svg" alt="" />Make</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Zapier%20Symbol%20SVG.svg" alt="" />Zapier</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Airtable-icon.svg" alt="" />Airtable</span>
               </div>
             </div>
             <div class="border border-[rgba(22,24,26,0.12)] bg-white p-6 transition-colors hover:border-[#2563EB]/30 dark:border-border-subtle dark:bg-deep-blueprint/30 dark:hover:border-drafting-blue/30">
               <h3 class="mb-2 flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-[#16181A] transition-colors duration-300 dark:text-machine-off-white"><span class="material-symbols-outlined text-sm text-[#2563EB] dark:text-drafting-blue">psychology</span>AI / Data</h3>
               <p class="mb-4 text-sm text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Used for classification, draft replies, intake parsing, knowledge support, and structured workflow assistance.</p>
               <div class="flex flex-wrap gap-2">
-                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/openai.svg" alt="" />OpenAI</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/openai-logo.png" alt="" />OpenAI</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/codex-color.svg" alt="" />Codex</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/claude-color.svg" alt="" />Claude</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/gemini-color.svg" alt="" />Gemini</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/supabase-icon.svg" alt="" />Supabase</span>
@@ -1652,10 +1744,24 @@
               <div class="flex flex-wrap gap-2">
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/gmail.png" alt="" />Gmail</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/google-sheets-icon.svg" alt="" />Google Sheets</span>
-                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/notion.svg" alt="" />Notion</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/google-calendar-icon-2020-.svg" alt="" />Google Calendar</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/notion-logo.png" alt="" />Notion</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Slack%20Icon.png" alt="" />Slack</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Telegram.png" alt="" />Telegram</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/WhatsApp%20Icon.png" alt="" />WhatsApp</span>
                 <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/zoom.png" alt="" />Zoom</span>
+              </div>
+            </div>
+            <div class="border border-[rgba(22,24,26,0.12)] bg-white p-6 transition-colors hover:border-[#2563EB]/30 dark:border-border-subtle dark:bg-deep-blueprint/30 dark:hover:border-drafting-blue/30">
+              <h3 class="mb-2 flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-[#16181A] transition-colors duration-300 dark:text-machine-off-white"><span class="material-symbols-outlined text-sm text-[#2563EB] dark:text-drafting-blue">hub</span>Web / Deployment</h3>
+              <p class="mb-4 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text">Used for web hosting, workflow deployment, API connections, personal projects, and self-hosted automation experiments.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/github.svg" alt="" />GitHub</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Vercel_Symbol_1.png" alt="" />Vercel</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Render%20Symbol%20SVG.svg" alt="" />Render</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/api-icon.png" alt="" />APIs</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/webhook-icon.svg" alt="" />Webhooks</span>
+                <span class="stack-logo flex items-center gap-2 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-3 py-2 text-xs font-bold dark:border-border-subtle dark:bg-dark-panel"><img class="h-5 w-5" src="./assets/logos/Tally%20Icon.svg" alt="" />Tally</span>
               </div>
             </div>
           </div>
@@ -1892,13 +1998,19 @@ I can also help with GoHighLevel funnel setup, funnel design, sub-account setup,
       n8n: "./assets/logos/n8n-color.svg",
       Supabase: "./assets/logos/supabase-icon.svg",
       Gmail: "./assets/logos/gmail.png",
-      OpenAI: "./assets/logos/openai.svg",
+      OpenAI: "./assets/logos/openai-logo.png",
       GoHighLevel: "./assets/logos/Highlevel.png",
       Zapier: "./assets/logos/Zapier%20Symbol%20SVG.svg",
       "Google Sheets": "./assets/logos/google-sheets-icon.svg",
-      Notion: "./assets/logos/notion.svg",
+      Notion: "./assets/logos/notion-logo.png",
       Telegram: "./assets/logos/Telegram.png",
-      Claude: "./assets/logos/claude-color.svg"
+      Claude: "./assets/logos/claude-color.svg",
+      Airtable: "./assets/logos/Airtable-icon.svg",
+      Slack: "./assets/logos/Slack%20Icon.png",
+      Codex: "./assets/logos/codex-color.svg",
+      "Google Calendar": "./assets/logos/google-calendar-icon-2020-.svg",
+      APIs: "./assets/logos/api-icon.png",
+      Webhooks: "./assets/logos/webhook-icon.svg"
     };
 
     const proofMainImage = document.getElementById("proof-main-image");
