@@ -766,8 +766,15 @@
 
       .orbit-container,
       .keep-upright,
-      .orbit-logo-tile {
+      .orbit-logo-tile,
+      .process-bug-icon,
+      .step-icon,
+      .step-container,
+      .process-step,
+      .process-icon {
         animation: none !important;
+        transition: none !important;
+        transform: none !important;
       }
     }
 
@@ -829,41 +836,43 @@
 
     @keyframes live-search {
       0% { transform: translate(0, 0) scale(1); }
-      5% { transform: translate(-4px, -4px) scale(1.15); }
-      10% { transform: translate(4px, 4px) scale(1.15); }
-      15% { transform: translate(4px, -4px) scale(1.15); }
-      20%, 100% { transform: translate(0, 0) scale(1); }
+      18% { transform: translate(-4px, -4px) scale(1.12); }
+      36% { transform: translate(4px, 4px) scale(1.12); }
+      54% { transform: translate(4px, -4px) scale(1.12); }
+      72% { transform: translate(-2px, 2px) scale(1.06); }
+      100% { transform: translate(0, 0) scale(1); }
     }
 
     @keyframes live-map {
-      0% { transform: scale(1) rotateY(0deg); }
-      10% { transform: scale(1.1) perspective(200px) rotateY(25deg) rotateX(10deg); }
-      20%, 100% { transform: scale(1) rotateY(0deg); }
+      0% { transform: scale(1) perspective(200px) rotateY(0deg) rotateX(0deg); }
+      25% { transform: scale(1.08) perspective(200px) rotateY(18deg) rotateX(8deg); }
+      50% { transform: scale(1.1) perspective(200px) rotateY(-18deg) rotateX(-6deg); }
+      75% { transform: scale(1.06) perspective(200px) rotateY(10deg) rotateX(4deg); }
+      100% { transform: scale(1) perspective(200px) rotateY(0deg) rotateX(0deg); }
     }
 
     @keyframes live-gear {
       0% { transform: rotate(0deg); }
-      20% { transform: rotate(360deg); }
       100% { transform: rotate(360deg); }
     }
 
-    @keyframes live-bug {
+    @keyframes process-bug-crawl {
       0% { transform: translate(0, 0) rotate(0deg); }
-      14% { transform: translate(3px, -1px) rotate(6deg); }
-      28% { transform: translate(6px, 1px) rotate(-4deg); }
-      42% { transform: translate(4px, 0) rotate(5deg); }
-      56% { transform: translate(8px, -1px) rotate(-6deg); }
-      70% { transform: translate(2px, 1px) rotate(3deg); }
-      84% { transform: translate(-2px, 0) rotate(-2deg); }
+      16% { transform: translate(2px, -1px) rotate(5deg); }
+      32% { transform: translate(5px, 1px) rotate(-4deg); }
+      48% { transform: translate(3px, 0) rotate(4deg); }
+      64% { transform: translate(6px, -1px) rotate(-5deg); }
+      80% { transform: translate(2px, 1px) rotate(3deg); }
       100% { transform: translate(0, 0) rotate(0deg); }
     }
 
     @keyframes live-rocket {
       0% { transform: translate(0, 0) scale(1); opacity: 1; }
-      8% { transform: translate(30px, -30px) scale(0.5); opacity: 0; }
-      9% { transform: translate(-30px, 30px) scale(0.5); opacity: 0; }
-      12% { transform: translate(-30px, 30px) scale(0.5); opacity: 1; }
-      20%, 100% { transform: translate(0, 0) scale(1); opacity: 1; }
+      28% { transform: translate(16px, -16px) scale(0.82); opacity: 0.78; }
+      45% { transform: translate(26px, -26px) scale(0.58); opacity: 0; }
+      46% { transform: translate(-26px, 26px) scale(0.58); opacity: 0; }
+      62% { transform: translate(-14px, 14px) scale(0.82); opacity: 0.82; }
+      100% { transform: translate(0, 0) scale(1); opacity: 1; }
     }
 
     .process-flow {
@@ -911,17 +920,46 @@
       will-change: box-shadow, border-color, color, transform;
     }
 
-    .step-container,
-    .step-icon {
-      animation-duration: 10s;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-    }
-
     .step-container {
-      animation-name: sync-glow;
+      animation: none;
     }
 
+    .step-icon {
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+      animation-play-state: paused;
+    }
+
+    .process-step.is-active .process-icon {
+      border-color: rgba(255, 87, 34, 1);
+      box-shadow: 0 0 0 1px rgba(255, 87, 34, 0.20), 0 0 20px rgba(255, 87, 34, 0.34);
+      color: #ff5722;
+    }
+
+    .process-step.is-active .step-icon {
+      animation-delay: 0s;
+      animation-play-state: running;
+    }
+
+    .process-step.is-completed .process-step-number {
+      opacity: 0.72;
+    }
+
+    .process-bug-icon {
+      transform-origin: center;
+    }
+
+    .process-bug-icon.is-active {
+      animation: process-bug-crawl 2s ease-in-out 1 both;
+      will-change: transform;
+    }
+
+    .process-bug-icon:not(.is-active) {
+      animation: none;
+      transform: none;
+    }
 
     .process-icon .material-symbols-outlined {
       display: block;
@@ -934,15 +972,18 @@
     .delay-4 { animation-delay: 6s; }
     .delay-5 { animation-delay: 8s; }
 
-    .anim-search { animation-name: live-search; }
-    .anim-map { animation-name: live-map; }
-    .anim-gear { animation-name: live-gear; }
-    .anim-bug {
-      animation-name: live-bug;
-      animation-duration: 2s;
-      transform-origin: center;
+    .anim-search,
+    .anim-map,
+    .anim-gear,
+    .anim-rocket {
+      animation-name: none;
     }
-    .anim-rocket { animation-name: live-rocket; }
+
+    .process-step.is-active .anim-search { animation-name: live-search; }
+    .process-step.is-active .anim-map { animation-name: live-map; }
+    .process-step.is-active .anim-gear { animation-name: live-gear; }
+    .anim-bug { transform-origin: center; }
+    .process-step.is-active .anim-rocket { animation-name: live-rocket; }
 
     .process-step-number {
       position: absolute;
@@ -1582,7 +1623,7 @@
             <p class="text-sm leading-relaxed text-[#5F676D] dark:text-muted-text">Connect forms, CRM, databases, email, notifications, AI steps, and webhooks.</p>
           </article>
           <article class="process-step" data-motion="bug">
-            <div class="process-icon step-container delay-4"><span class="material-symbols-outlined step-icon anim-bug delay-4 text-2xl">bug_report</span></div>
+            <div class="process-icon step-container delay-4"><span class="material-symbols-outlined step-icon anim-bug process-bug-icon delay-4 text-2xl">bug_report</span></div>
             <span class="process-step-number">4</span>
             <h3 class="font-display text-lg font-bold text-[#16181A] dark:text-machine-off-white">Test & Fix</h3>
             <p class="text-sm leading-relaxed text-[#5F676D] dark:text-muted-text">Test edge cases, failed runs, duplicate records, missing fields, and handoff issues.</p>
@@ -1868,50 +1909,55 @@
     const root = document.documentElement;
     const themeToggle = document.getElementById("theme-toggle");
 
-    const PROCESS_DURATION = 10000;
-    const PROCESS_STEP_OFFSETS = {
-      "delay-1": 0,
-      "delay-2": 2000,
-      "delay-3": 4000,
-      "delay-4": 6000,
-      "delay-5": 8000
-    };
-
-    function syncProcessTimeline() {
-      const elapsed = Date.now() % PROCESS_DURATION;
-      Object.entries(PROCESS_STEP_OFFSETS).forEach(([delayClass, offset]) => {
-        const localPhase = ((elapsed - offset) % PROCESS_DURATION + PROCESS_DURATION) % PROCESS_DURATION;
-        const delay = `${-localPhase}ms`;
-        document.querySelectorAll(`.step-container.${delayClass}, .step-icon.${delayClass}`).forEach((el) => {
-          el.style.animationDelay = delay;
-          el.style.animationPlayState = "running";
-        });
-      });
-    }
-
     if (localStorage.theme === "light") {
       root.classList.remove("dark");
     } else {
       root.classList.add("dark");
     }
 
-    syncProcessTimeline();
-    window.addEventListener("pageshow", syncProcessTimeline);
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) syncProcessTimeline();
-    });
+    const processSteps = Array.from(document.querySelectorAll(".process-step"));
+    const processBugIcon = document.querySelector(".process-bug-icon");
+    const processReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const PROCESS_STEP_INTERVAL = 2000;
+    let activeProcessStep = 0;
+    let processInterval = null;
+
+    function setProcessStep(index) {
+      if (!processSteps.length) return;
+
+      activeProcessStep = (index + processSteps.length) % processSteps.length;
+      processSteps.forEach((step, stepIndex) => {
+        const isActive = stepIndex === activeProcessStep;
+        step.classList.toggle("is-active", isActive);
+        step.classList.toggle("is-completed", stepIndex < activeProcessStep);
+      });
+
+      if (processBugIcon) {
+        processBugIcon.classList.toggle("is-active", activeProcessStep === 3 && !processReducedMotion.matches);
+      }
+    }
+
+    function startProcessSequence() {
+      window.clearInterval(processInterval);
+      setProcessStep(0);
+
+      if (processReducedMotion.matches || !processSteps.length) return;
+
+      processInterval = window.setInterval(() => {
+        setProcessStep(activeProcessStep + 1);
+      }, PROCESS_STEP_INTERVAL);
+    }
+
+    startProcessSequence();
+    processReducedMotion.addEventListener("change", startProcessSequence);
 
     themeToggle.addEventListener("click", () => {
-      syncProcessTimeline();
       root.classList.add("theme-switching");
       window.requestAnimationFrame(() => {
         root.classList.toggle("dark");
         localStorage.theme = root.classList.contains("dark") ? "dark" : "light";
-        syncProcessTimeline();
-        window.requestAnimationFrame(syncProcessTimeline);
         window.setTimeout(() => {
           root.classList.remove("theme-switching");
-          syncProcessTimeline();
         }, 160);
       });
     });
