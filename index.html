@@ -73,6 +73,12 @@
       scroll-margin-top: 116px;
     }
 
+    #about {
+      min-height: calc(100svh - 64px) !important;
+      padding-top: clamp(72px, 8vh, 104px) !important;
+      padding-bottom: clamp(72px, 8vh, 104px) !important;
+    }
+
     .dark body {
       background-color: #16181a;
       color: #f4f4f0;
@@ -82,6 +88,29 @@
     .theme-switching *::before,
     .theme-switching *::after {
       transition-duration: 0.16s !important;
+    }
+
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+      transition:
+        opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .scroll-reveal[data-reveal-delay="1"] {
+      transition-delay: 0.06s;
+    }
+
+    .scroll-reveal[data-reveal-delay="2"] {
+      transition-delay: 0.10s;
     }
 
     @keyframes typewriter-cursor-blink {
@@ -510,6 +539,382 @@
       cursor: zoom-in;
     }
 
+
+    .proof-gallery-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-height: 34px;
+      width: 100%;
+      padding: 0;
+    }
+
+    .proof-gallery-count {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #5F676D;
+    }
+
+    .dark .proof-gallery-count {
+      color: rgba(244, 244, 240, 0.68);
+    }
+
+    .proof-gallery-button {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #FF5722;
+      border-radius: 0.125rem;
+      padding: 0 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #FF5722;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .proof-gallery-button:hover {
+      background: #FF5722;
+      color: #ffffff;
+    }
+
+    .proof-impact-panel {
+      border: 1px solid rgba(22, 24, 26, 0.12);
+      background: #F5F3EF;
+      padding: 10px;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .dark .proof-impact-panel {
+      border-color: rgba(244, 244, 240, 0.12);
+      background: #101214;
+    }
+
+    .proof-impact-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #2563EB;
+    }
+
+    .dark .proof-impact-header {
+      color: #8AB4F8;
+    }
+
+    .proof-impact-badge {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 87, 34, 0.28);
+      background: rgba(255, 87, 34, 0.07);
+      padding: 3px 6px;
+      font-size: 0.54rem;
+      letter-spacing: 0.12em;
+      color: #FF5722;
+    }
+
+    .proof-impact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      --impact-cycle: 8s;
+    }
+
+    .proof-impact-card {
+      position: relative;
+      min-height: 78px;
+      overflow: hidden;
+      isolation: isolate;
+      border: 1px solid rgba(22, 24, 26, 0.10);
+      background: rgba(255, 255, 255, 0.72);
+      padding: 9px 10px;
+      transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .proof-impact-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255, 87, 34, 0.88), rgba(138, 180, 248, 0.72), rgba(124, 58, 237, 0.72), rgba(34, 211, 238, 0.72), rgba(255, 87, 34, 0.88));
+      opacity: 0.32;
+    }
+
+    .proof-impact-card::after {
+      content: "";
+      position: absolute;
+      left: -46%;
+      top: 0;
+      z-index: 1;
+      width: 46%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(138, 180, 248, 0.95), rgba(255, 87, 34, 1), rgba(34, 211, 238, 0.95), transparent);
+      box-shadow: 0 0 16px rgba(255, 87, 34, 0.44), 0 0 22px rgba(138, 180, 248, 0.28);
+      opacity: 0;
+      transform: translateX(0);
+      animation: proof-impact-runner var(--impact-cycle) cubic-bezier(0.45, 0, 0.2, 1) infinite;
+    }
+
+    .proof-impact-card:nth-child(2)::after {
+      animation-delay: -6s;
+    }
+
+    .proof-impact-card:nth-child(3)::after {
+      animation-delay: -4s;
+    }
+
+    .proof-impact-card:nth-child(4)::after {
+      animation-delay: -2s;
+    }
+
+    .proof-impact-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .proof-impact-card:hover {
+      border-color: rgba(255, 87, 34, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .dark .proof-impact-card {
+      border-color: rgba(244, 244, 240, 0.10);
+      background: rgba(38, 70, 83, 0.36);
+    }
+
+    @keyframes proof-impact-runner {
+      0% {
+        opacity: 0;
+        transform: translateX(0);
+      }
+      4% {
+        opacity: 1;
+      }
+      21% {
+        opacity: 1;
+        transform: translateX(320%);
+      }
+      26%, 100% {
+        opacity: 0;
+        transform: translateX(320%);
+      }
+    }
+
+
+    .proof-impact-label {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.54rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: #5F676D;
+    }
+
+    .dark .proof-impact-label {
+      color: rgba(244, 244, 240, 0.58);
+    }
+
+    .proof-impact-value {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1rem, 1.35vw, 1.32rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: #FF5722;
+    }
+
+    .proof-impact-text {
+      font-size: 0.68rem;
+      line-height: 1.35;
+      color: #5F676D;
+    }
+
+    .dark .proof-impact-text {
+      color: rgba(244, 244, 240, 0.72);
+    }
+
+    @media (max-width: 1180px) {
+      .proof-impact-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .proof-gallery-strip {
+        gap: 8px;
+      }
+
+      .proof-gallery-button {
+        min-height: 30px;
+        padding: 0 10px;
+        font-size: 0.55rem;
+      }
+
+      .proof-gallery-count {
+        font-size: 0.55rem;
+        letter-spacing: 0.1em;
+      }
+
+      .proof-impact-panel {
+        padding: 9px;
+      }
+
+      .proof-impact-header {
+        gap: 8px;
+      }
+
+      .proof-impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-impact-card {
+        min-height: 0;
+      }
+    }
+
+    .book-dart-icon {
+      position: relative;
+      display: inline-grid;
+      width: 28px;
+      height: 22px;
+      flex: 0 0 28px;
+      place-items: center;
+      overflow: visible;
+      color: #FF5722;
+    }
+
+    .book-dart-svg {
+      display: block;
+      width: 28px;
+      height: 22px;
+      overflow: visible;
+    }
+
+    .book-dart-board,
+    .book-dart-ring,
+    .book-dart-bullseye,
+    .book-dart-impact,
+    .book-dart-arrow {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .book-dart-board {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.35;
+      opacity: 0.78;
+      animation: book-dart-board-pulse 3s ease-in-out infinite;
+    }
+
+    .book-dart-ring {
+      fill: none;
+      stroke: #8AB4F8;
+      stroke-width: 1;
+      opacity: 0.74;
+    }
+
+    .book-dart-bullseye {
+      fill: currentColor;
+      animation: book-dart-bullseye-pop 3s ease-in-out infinite;
+    }
+
+    .book-dart-arrow {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      animation: book-dart-arrow-hit 3s cubic-bezier(0.42, 0, 0.2, 1) infinite;
+      will-change: transform, opacity;
+    }
+
+    .book-dart-impact {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.2;
+      opacity: 0;
+      animation: book-dart-impact-ring 3s ease-out infinite;
+    }
+
+    @keyframes book-dart-arrow-hit {
+      0% {
+        opacity: 0;
+        transform: translate(15px, -15px) rotate(-4deg) scale(0.92);
+      }
+      14% {
+        opacity: 1;
+      }
+      38%, 58% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+      76%, 100% {
+        opacity: 0;
+        transform: translate(-1px, 1px) rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes book-dart-board-pulse {
+      0%, 33%, 100% {
+        filter: drop-shadow(0 0 0 rgba(255, 87, 34, 0));
+        transform: scale(1);
+      }
+      43% {
+        filter: drop-shadow(0 0 6px rgba(255, 87, 34, 0.38));
+        transform: scale(1.08);
+      }
+      58% {
+        filter: drop-shadow(0 0 0 rgba(255, 87, 34, 0));
+        transform: scale(1);
+      }
+    }
+
+    @keyframes book-dart-bullseye-pop {
+      0%, 35%, 100% { transform: scale(1); }
+      43% { transform: scale(1.48); }
+      58% { transform: scale(1); }
+    }
+
+    @keyframes book-dart-impact-ring {
+      0%, 36% {
+        opacity: 0;
+        transform: scale(0.72);
+      }
+      43% {
+        opacity: 0.78;
+        transform: scale(0.88);
+      }
+      66%, 100% {
+        opacity: 0;
+        transform: scale(1.58);
+      }
+    }
+
     .lightbox {
       position: fixed;
       inset: 0;
@@ -762,6 +1167,25 @@
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
         transition-duration: 0.001ms !important;
+      }
+
+      .proof-impact-card,
+      .proof-impact-card::after,
+      .book-dart-board,
+      .book-dart-bullseye,
+      .book-dart-arrow,
+      .book-dart-impact {
+        animation: none !important;
+      }
+
+      .proof-impact-card::after,
+      .book-dart-impact {
+        opacity: 0 !important;
+      }
+
+      .book-dart-arrow {
+        opacity: 1 !important;
+        transform: none !important;
       }
 
       .orbit-container,
@@ -1129,6 +1553,12 @@
     }
 
     @media (max-width: 900px) {
+      #about {
+        min-height: calc(100svh - 108px) !important;
+        padding-top: clamp(48px, 7vh, 72px) !important;
+        padding-bottom: clamp(48px, 7vh, 72px) !important;
+      }
+
       .topbar-inner {
         display: flex !important;
         justify-content: space-between;
@@ -1202,7 +1632,14 @@
       .hero-copy {
         width: min(320px, calc(100vw - 48px)) !important;
         max-width: min(320px, calc(100vw - 48px)) !important;
-        font-size: 1rem !important;
+        font-size: 0.95rem !important;
+        line-height: 1.58 !important;
+      }
+
+      #about {
+        min-height: calc(100svh - 108px) !important;
+        padding-top: clamp(48px, 7vh, 72px) !important;
+        padding-bottom: clamp(48px, 7vh, 72px) !important;
       }
 
       #process h2,
@@ -1506,6 +1943,12 @@
       .hero-beam-dot {
         opacity: 0;
       }
+
+      .scroll-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
@@ -1543,7 +1986,7 @@
   </nav>
 
   <main id="top" class="flex-grow">
-    <section class="relative isolate flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-32 transition-colors duration-300 dark:border-border-subtle dark:bg-forged-iron" id="about">
+    <section class="relative isolate flex min-h-screen w-full flex-col items-center justify-center overflow-hidden border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-20 transition-colors duration-300 dark:border-border-subtle dark:bg-forged-iron md:py-24 lg:py-24" id="about">
       <div class="hero-beams" aria-hidden="true">
         <div class="hero-beams-grid"></div>
         <svg class="hero-beams-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -1570,16 +2013,15 @@
         <span class="hero-beam-dot path-c is-extra"></span>
         <span class="hero-beam-dot path-d is-orange is-extra"></span>
       </div>
-      <div class="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
-        <div class="hero-badge mb-8 inline-flex items-center justify-center gap-2 rounded-sm border border-[#2563EB]/20 bg-[#2563EB]/5 px-3 py-1 transition-colors duration-300 dark:border-drafting-blue/20 dark:bg-drafting-blue/5">
-          <span class="h-2 w-2 rounded-full bg-action-coral"></span>
+      <div class="scroll-reveal is-visible relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
+        <div class="hero-badge mb-5 inline-flex items-center justify-center gap-2 rounded-sm border border-[#2563EB]/20 bg-[#2563EB]/5 px-3 py-1 transition-colors duration-300 dark:border-drafting-blue/20 dark:bg-drafting-blue/5">
           <span class="font-mono text-xs font-medium uppercase tracking-[0.2em] text-[#2563EB] transition-colors duration-300 dark:text-drafting-blue">n8n Automation &middot; GoHighLevel CRM &middot; AI Workflow Systems</span>
         </div>
-        <h1 class="hero-title-text mb-6 max-w-5xl font-display text-4xl font-bold tracking-[-0.04em] text-[#16181A] transition-colors duration-300 dark:text-machine-off-white sm:text-6xl md:text-7xl lg:text-8xl">
+        <h1 class="hero-title-text mb-4 max-w-5xl font-display text-4xl font-bold tracking-[-0.04em] text-[#16181A] transition-colors duration-300 dark:text-machine-off-white sm:text-6xl md:text-7xl lg:text-7xl">
           n8n & GoHighLevel Automation Specialist for Service Businesses
         </h1>
-        <div class="mb-8 h-1 w-24 bg-action-coral"></div>
-        <p class="hero-copy mb-10 max-w-[calc(100vw-32px)] font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text md:max-w-2xl md:text-xl">
+        <div class="mb-5 h-1 w-20 bg-action-coral"></div>
+        <p class="hero-copy mb-7 max-w-[calc(100vw-32px)] font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text md:max-w-2xl md:text-lg">
           I build practical automation systems for service businesses using n8n, GoHighLevel, CRM workflows, AI-assisted admin tools, APIs, webhooks, and databases. My systems help teams capture leads, follow up faster, organize records, reduce repetitive admin work, and keep business operations easier to manage.
         </p>
         <div class="flex flex-col gap-4 sm:flex-row">
@@ -1595,7 +2037,7 @@
     </section>
 
     <section class="w-full border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]" id="process">
-      <div class="mx-auto max-w-container-max px-margin-page">
+      <div class="scroll-reveal mx-auto max-w-container-max px-margin-page" data-reveal-delay="1">
         <div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <span class="mb-3 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-action-coral">How I Work</span>
@@ -1639,7 +2081,7 @@
     </section>
 
     <section class="w-full border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]" id="proof">
-      <div class="mx-auto max-w-container-max px-margin-page">
+      <div class="scroll-reveal mx-auto max-w-container-max px-margin-page" data-reveal-delay="1">
         <div class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <span class="mb-3 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-action-coral">Project Folder</span>
@@ -1660,9 +2102,16 @@
             <button class="proof-open aspect-[16/10] w-full overflow-hidden rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#101214] dark:border-border-subtle" id="proof-main-open" type="button">
               <img class="proof-image" id="proof-main-image" src="./assets/screenshots/dental/dental-new-patient-intake.png" alt="Dental clinic n8n automation workflow screenshot for patient intake, booking confirmation, and appointment reminders" />
             </button>
-            <div class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] px-4 py-3 dark:border-border-subtle dark:bg-dark-panel">
-              <p class="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-[#5F676D] dark:text-muted-text" id="proof-image-count">Gallery ready</p>
-              <button class="rounded-sm border border-action-coral px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-widest text-action-coral transition-colors hover:bg-action-coral hover:text-white" id="proof-gallery-open" type="button">View Gallery</button>
+            <div class="proof-gallery-strip mt-2">
+              <p class="proof-gallery-count" id="proof-image-count">Gallery ready</p>
+              <button class="proof-gallery-button" id="proof-gallery-open" type="button">View Gallery</button>
+            </div>
+            <div class="proof-impact-panel mt-2" id="proof-impact" aria-label="System impact">
+              <div class="proof-impact-header">
+                <span>System Impact</span>
+                <span class="proof-impact-badge">Project Metrics</span>
+              </div>
+              <div class="proof-impact-grid" id="proof-impact-grid"></div>
             </div>
           </div>
 
@@ -1694,7 +2143,7 @@
     </section>
 
     <section class="w-full border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-forged-iron" id="stack">
-      <div class="mx-auto max-w-container-max px-margin-page">
+      <div class="scroll-reveal mx-auto max-w-container-max px-margin-page" data-reveal-delay="1">
         <div class="mb-16">
           <h2 class="mb-4 font-display text-4xl font-bold tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Connected tools. Cleaner workflows.</h2>
           <p class="max-w-3xl font-body text-lg leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-muted-text">I connect the tools your business already uses into structured automation systems for lead capture, CRM updates, follow-up, reporting, and AI-assisted admin work.</p>
@@ -1820,10 +2269,18 @@
 
     <section class="relative w-full overflow-hidden border-b border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] py-stack-xl transition-colors duration-300 dark:border-border-subtle dark:bg-[#16181A]" id="book">
       <div class="pointer-events-none absolute inset-0 bg-[#2563EB]/5 blur-[100px] transition-colors duration-300 dark:bg-drafting-blue/5"></div>
-      <div class="relative z-10 mx-auto flex max-w-container-max flex-col items-center gap-16 px-margin-page lg:flex-row">
+      <div class="scroll-reveal relative z-10 mx-auto flex max-w-container-max flex-col items-center gap-16 px-margin-page lg:flex-row" data-reveal-delay="1">
         <div class="w-full space-y-8 lg:w-1/2">
           <div class="inline-flex items-center gap-2 rounded-full border border-action-coral/30 bg-action-coral/10 px-4 py-1.5">
-            <span class="h-2 w-2 animate-pulse rounded-full bg-action-coral"></span>
+            <span class="book-dart-icon" aria-hidden="true">
+              <svg class="book-dart-svg" viewBox="0 -8 36 32" focusable="false">
+                <circle class="book-dart-board" cx="11" cy="15" r="6.6"></circle>
+                <circle class="book-dart-ring" cx="11" cy="15" r="3.6"></circle>
+                <circle class="book-dart-impact" cx="11" cy="15" r="5.2"></circle>
+                <circle class="book-dart-bullseye" cx="11" cy="15" r="1.35"></circle>
+                <path class="book-dart-arrow" d="M33 -7 L11.7 14.4 M33 -7 L29.7 -6.2 M33 -7 L33.6 -3.7 M27.6 -1.4 L31.5 -1.5 M11.7 14.4 L14.8 12.9 M11.7 14.4 L13.2 11.3"></path>
+              </svg>
+            </span>
             <span class="font-mono text-[11px] uppercase tracking-widest text-action-coral">Book Automation Discovery Call</span>
           </div>
           <h2 class="font-display text-4xl font-bold leading-tight tracking-tight text-[#16181A] transition-colors duration-300 dark:text-machine-off-white md:text-5xl">Let&rsquo;s map your automation workflow, CRM, funnel, or follow-up system.</h2>
@@ -1962,6 +2419,39 @@
       });
     });
 
+
+    const scrollRevealTargets = Array.from(document.querySelectorAll(".scroll-reveal"));
+    const scrollRevealReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let scrollRevealObserver = null;
+
+    function initScrollReveal() {
+      if (!scrollRevealTargets.length) return;
+
+      if (scrollRevealObserver) {
+        scrollRevealObserver.disconnect();
+        scrollRevealObserver = null;
+      }
+
+      if (scrollRevealReducedMotion.matches || !("IntersectionObserver" in window)) {
+        scrollRevealTargets.forEach((target) => target.classList.add("is-visible"));
+        return;
+      }
+
+      scrollRevealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-visible", entry.isIntersecting);
+        });
+      }, {
+        threshold: 0.16,
+        rootMargin: "0px 0px -10% 0px"
+      });
+
+      scrollRevealTargets.forEach((target) => scrollRevealObserver.observe(target));
+    }
+
+    initScrollReveal();
+    scrollRevealReducedMotion.addEventListener("change", initScrollReveal);
+
     const proofData = {
       n8n: {
         title: "Dental Clinic Intake, Booking & Reminder Automation",
@@ -1971,6 +2461,12 @@
         secondary: "Built an n8n and Supabase workflow that captures new patient inquiries, stores structured appointment data, sends booking confirmations, and triggers reminder workflows to reduce missed follow-ups and no-shows.",
         whatThisProves: "Shows ability to build service-business automation with intake forms, database records, appointment logic, email notifications, reminder timing, and practical front-desk workflow support.",
         tools: ["n8n", "Supabase", "Gmail", "Tally", "OpenAI", "Webhooks"],
+        impact: [
+          { label: "Time Saved", value: "15–20 hrs/week", text: "Admin time reduced across intake, booking, reminders, and status updates." },
+          { label: "Manual Steps Removed", value: "8+ handoffs", text: "Intake sorting, staff alerts, booking records, reminders, and follow-up tracking." },
+          { label: "Response Speed", value: "< 1 min", text: "Inquiries are parsed, routed, acknowledged, and logged automatically." },
+          { label: "ROI Angle", value: "Lower no-show risk", text: "Reminder automation improves follow-through and reduces front-desk chasing." }
+        ],
         images: [
           { src: "./assets/screenshots/dental/dental-new-patient-intake.png", alt: "Dental clinic n8n automation workflow screenshot for patient intake, booking confirmation, and appointment reminders", title: "Dental New Patient Intake", function: "Receives new patient inquiries through a webhook, normalizes submitted form data, uses AI-assisted parsing, and routes the inquiry by urgency or review path.", outcome: "Front-desk staff receives a cleaner, categorized patient request instead of manually reading every intake and deciding where it should go.", proves: "Shows webhook intake, data cleanup, AI parsing, conditional routing, patient acknowledgement, staff notification, and lead tracking in one front-desk workflow." },
           { src: "./assets/screenshots/dental/dental-booking-confirmation.png", alt: "Dental appointment booking confirmation workflow", title: "Appointment Booking Confirmation", function: "Maps a confirmed booking submission, normalizes appointment details, creates or updates the appointment record, and updates the lead status to appointment booked.", outcome: "Booking details become structured records that can trigger future reminders and reduce manual appointment handoff mistakes.", proves: "Shows appointment data normalization, database write logic, status updates, and a clean bridge between inquiry handling and booked appointment tracking." },
@@ -1986,6 +2482,12 @@
         secondary: "Built a GoHighLevel workflow concept with funnels, CRM pipeline stages, automation triggers, onboarding steps, review requests, testimonial requests, and dashboard visibility.",
         whatThisProves: "Shows understanding of GoHighLevel as a business operations system, not just a landing page or funnel builder.",
         tools: ["GoHighLevel", "CRM Pipelines", "Forms", "Workflows", "Funnels", "Email", "Calendar", "Automations"],
+        impact: [
+          { label: "Process Coverage", value: "10 stages", text: "Application, booking, sales, contract, onboarding, delivery, proof, and reporting." },
+          { label: "Manual Steps Removed", value: "12+ handoffs", text: "Lead movement, reminders, onboarding, portal access, reviews, and testimonials." },
+          { label: "System Visibility", value: "2 pipelines", text: "Separate sales and delivery views keep lifecycle tracking clean." },
+          { label: "ROI Angle", value: "Faster handoff", text: "Makes follow-up and sales-to-delivery handoff easier to manage." }
+        ],
         images: [
           { src: "./assets/screenshots/ghl/ghl-01-landing-page.svg", alt: "GoHighLevel CRM automation setup for funnel leads, pipeline stages, onboarding, and follow-up workflows", title: "Landing Page Funnel", function: "Positions the offer, explains the program outcome, and guides visitors toward applying for access.", outcome: "The funnel has a clear first conversion point instead of sending prospects into a scattered sales process.", proves: "Shows funnel page planning, premium layout direction, call-to-action placement, and service offer framing inside GoHighLevel." },
           { src: "./assets/screenshots/ghl/ghl-02-application-page.svg", alt: "GoHighLevel application page screenshot", title: "Application Page", function: "Collects applicant details and qualification information before a sales or strategy call.", outcome: "The business receives structured application data before deciding whether the prospect is a fit.", proves: "Shows form-based intake, qualification thinking, funnel continuity, and structured lead capture before booking." },
@@ -2011,6 +2513,12 @@
         secondary: "Built an automated lead capture system that collects form submissions, scores or classifies leads, logs records, sends notifications, and routes follow-up tasks into CRM or tracking tools.",
         whatThisProves: "Shows ability to automate lead intake, sales operations, CRM updates, notifications, and follow-up visibility for service businesses and remote teams.",
         tools: ["n8n", "Tally", "Google Sheets", "Gmail", "Telegram", "Notion", "Webhooks"],
+        impact: [
+          { label: "Lead Routing", value: "3 segments", text: "Hot, warm, and cold leads follow different routing and nurture paths." },
+          { label: "Manual Steps Removed", value: "7+ tasks", text: "Lead logging, summary email, alerts, tasks, and delayed follow-up." },
+          { label: "Response Speed", value: "< 1 min", text: "Form submissions are validated, classified, recorded, and routed quickly." },
+          { label: "ROI Angle", value: "Less lead leakage", text: "Structured routing reduces missed follow-ups and scattered records." }
+        ],
         images: [
           { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure.png", alt: "Lead capture automation workflow using Tally, n8n, Google Sheets, Gmail, Telegram, and Notion", title: "Lead Capture Workflow Structure", function: "Receives a lead webhook, normalizes the payload, validates required fields, routes valid leads, classifies hot/warm/cold lead type, and triggers follow-up paths.", outcome: "Every submitted lead can be handled through a consistent process instead of being manually sorted and followed up.", proves: "Shows end-to-end lead automation architecture, validation, branching, CRM-style logging, and multi-channel follow-up actions." },
           { src: "./assets/screenshots/lead-capture/lead-capture-workflow-structure-warm-success.png", alt: "Warm lead workflow success path", title: "Warm Lead Success Path", function: "Shows a successful warm-lead execution path through Google Sheets logging, owner notification, Telegram alert, auto-reply, Notion task creation, wait period, and follow-up email.", outcome: "Warm prospects get organized nurturing without requiring the owner to manually build each follow-up task.", proves: "Shows successful branch execution, category-based routing, owner alerts, task creation, and delayed follow-up automation." },
@@ -2032,6 +2540,12 @@
         secondary: "Built an AI-assisted email workflow that classifies incoming messages, identifies priority or intent, drafts contextual replies, and routes emails to the correct next step.",
         whatThisProves: "Shows practical use of AI for admin support, message classification, draft replies, inbox organization, and workflow routing without replacing human review.",
         tools: ["n8n", "Gmail", "OpenAI", "Google Sheets", "Notion", "Webhooks", "Supabase", "PostgreSQL", "PGVector", "APIs"],
+        impact: [
+          { label: "Admin Time Saved", value: "12–15 hrs/week", text: "Time reduced across sorting, classification, logging, and draft preparation." },
+          { label: "Manual Steps Removed", value: "6+ actions", text: "Reading, tagging, urgency review, logging, alerts, and task creation." },
+          { label: "Review Support", value: "Human-in-loop", text: "AI drafts and routing support the team while keeping human review." },
+          { label: "ROI Angle", value: "Faster triage", text: "Prioritizes important emails and reduces inbox bottlenecks." }
+        ],
         images: [
           { src: "./assets/screenshots/ai-email/ai-email-execution-success.png", alt: "AI email triage workflow for Gmail classification, draft replies, and admin routing", title: "AI Email Triage Workflow", function: "Triggers from Gmail, retrieves the full email, normalizes it, applies workflow settings, classifies it with AI, logs the result, and routes follow-up actions.", outcome: "Incoming emails can be categorized and escalated faster while keeping human review for important paths.", proves: "Shows Gmail-triggered automation, AI classification, route-based outcomes, Google Sheets logging, Telegram alerts, Gmail draft creation, and Notion task creation." },
           { src: "./assets/screenshots/ai-email/ai-email-notion-tasks.png", alt: "AI email triage tasks in Notion", title: "AI Email Triage Tasks", function: "Stores classified emails in Notion with category, urgency, sentiment, summary, recommended action, priority, status, and received date.", outcome: "Emails that need attention become visible work items instead of staying buried in the inbox.", proves: "Shows AI output mapping, task creation, triage metadata, priority labeling, and review workflow support." },
@@ -2085,6 +2599,8 @@
     const proofTools = document.getElementById("proof-tools");
     const proofImageCount = document.getElementById("proof-image-count");
     const proofGalleryOpen = document.getElementById("proof-gallery-open");
+    const proofImpact = document.getElementById("proof-impact");
+    const proofImpactGrid = document.getElementById("proof-impact-grid");
     const tabs = Array.from(document.querySelectorAll(".proof-tab"));
     const lightbox = document.getElementById("proofLightbox");
     const lightboxImage = document.getElementById("lightboxImage");
@@ -2174,6 +2690,37 @@
       lightbox.setAttribute("aria-hidden", "true");
     }
 
+
+    function renderProofImpact(data) {
+      if (!proofImpact || !proofImpactGrid) return;
+
+      const impactItems = Array.isArray(data.impact) ? data.impact : [];
+      proofImpact.hidden = impactItems.length === 0;
+      proofImpactGrid.innerHTML = "";
+
+      impactItems.forEach((item) => {
+        const card = document.createElement("article");
+        card.className = "proof-impact-card";
+
+        const label = document.createElement("span");
+        label.className = "proof-impact-label";
+        label.textContent = item.label;
+
+        const value = document.createElement("strong");
+        value.className = "proof-impact-value";
+        value.textContent = item.value;
+
+        const text = document.createElement("p");
+        text.className = "proof-impact-text";
+        text.textContent = item.text;
+
+        card.appendChild(label);
+        card.appendChild(value);
+        card.appendChild(text);
+        proofImpactGrid.appendChild(card);
+      });
+    }
+
     function renderProof(tabName) {
       const data = proofData[tabName];
       if (!data) return;
@@ -2190,7 +2737,7 @@
       currentProofImages = data.images;
       currentProofImage = data.images[0];
       currentProofIndex = 0;
-      proofImageCount.textContent = `${data.images.length} proof images available`;
+      proofImageCount.textContent = `${data.images.length} proof images`;
 
       proofTools.innerHTML = "";
       data.tools.forEach((tool) => {
@@ -2200,7 +2747,7 @@
         proofTools.appendChild(pill);
       });
 
-
+      renderProofImpact(data);
 
       tabs.forEach((tab) => {
         const isActive = tab.dataset.tab === tabName;
