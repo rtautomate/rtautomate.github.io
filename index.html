@@ -2091,54 +2091,13 @@
         </div>
 
         <div class="mb-6 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Proof folder tabs">
-          <button class="proof-tab whitespace-nowrap rounded-sm border border-action-coral bg-action-coral/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-action-coral" data-tab="n8n" type="button">n8n Workflow Systems</button>
-          <button class="proof-tab whitespace-nowrap rounded-sm border border-[rgba(22,24,26,0.12)] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[#5F676D] dark:border-border-subtle dark:text-muted-text" data-tab="ghl" type="button">Funnel Systems</button>
+          <button class="proof-tab whitespace-nowrap rounded-sm border border-action-coral bg-action-coral/10 px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-action-coral" data-tab="n8n" type="button">N8N Workflow Systems</button>
+          <button class="proof-tab whitespace-nowrap rounded-sm border border-[rgba(22,24,26,0.12)] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[#5F676D] dark:border-border-subtle dark:text-muted-text" data-tab="ghl" type="button">GoHighLevel Systems</button>
           <button class="proof-tab whitespace-nowrap rounded-sm border border-[rgba(22,24,26,0.12)] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[#5F676D] dark:border-border-subtle dark:text-muted-text" data-tab="crm" type="button">Lead Capture + CRM</button>
           <button class="proof-tab whitespace-nowrap rounded-sm border border-[rgba(22,24,26,0.12)] px-4 py-2 font-mono text-xs font-bold uppercase tracking-widest text-[#5F676D] dark:border-border-subtle dark:text-muted-text" data-tab="ai" type="button">AI Admin Workflows</button>
         </div>
 
-        <div class="grid gap-8 border border-[rgba(22,24,26,0.12)] bg-white p-4 transition-colors duration-300 dark:border-border-subtle dark:bg-deep-blueprint/30 lg:grid-cols-12 lg:p-6">
-          <div class="lg:col-span-8">
-            <button class="proof-open aspect-[16/10] w-full overflow-hidden rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#101214] dark:border-border-subtle" id="proof-main-open" type="button">
-              <img class="proof-image" id="proof-main-image" src="./assets/screenshots/dental/dental-new-patient-intake.png" alt="Dental clinic n8n automation workflow screenshot for patient intake, booking confirmation, and appointment reminders" />
-            </button>
-            <div class="proof-gallery-strip mt-2">
-              <p class="proof-gallery-count" id="proof-image-count">Gallery ready</p>
-              <button class="proof-gallery-button" id="proof-gallery-open" type="button">View Gallery</button>
-            </div>
-            <div class="proof-impact-panel mt-2" id="proof-impact" aria-label="System impact">
-              <div class="proof-impact-header">
-                <span>System Impact</span>
-                <span class="proof-impact-badge">Project Metrics</span>
-              </div>
-              <div class="proof-impact-grid" id="proof-impact-grid"></div>
-            </div>
-          </div>
-
-          <div class="flex flex-col gap-4 lg:col-span-4">
-            <div class="border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] p-5 transition-colors duration-300 dark:border-border-subtle dark:bg-dark-panel">
-              <h3 class="mb-3 font-display text-2xl font-bold text-[#16181A] transition-colors duration-300 dark:text-machine-off-white" id="proof-title">Dental Clinic Automation Suite</h3>
-              <div class="space-y-4">
-                <div>
-                  <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue" id="proof-primary-label">Problem</span>
-                  <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80" id="proof-problem"></p>
-                </div>
-                <div>
-                  <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue" id="proof-secondary-label">System Built</span>
-                  <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80" id="proof-system"></p>
-                </div>
-                <div>
-                  <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue">What This Proves</span>
-                  <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80" id="proof-proves"></p>
-                </div>
-              </div>
-            </div>
-            <div class="border border-[rgba(22,24,26,0.12)] bg-white p-5 transition-colors duration-300 dark:border-border-subtle dark:bg-dark-panel">
-              <span class="mb-3 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#2563EB] dark:text-drafting-blue">Tools Used</span>
-              <div class="flex flex-wrap gap-2" id="proof-tools"></div>
-            </div>
-          </div>
-        </div>
+        <div class="flex flex-col gap-6" id="proof-projects"></div>
       </div>
     </section>
 
@@ -2475,34 +2434,68 @@
         ]
       },
       ghl: {
-        title: "GoHighLevel CRM, Funnel & Client Workflow System",
-        primaryLabel: "Problem",
-        secondaryLabel: "System Built",
-        primary: "Agencies and service businesses need more than a funnel. They need a full system for lead capture, pipeline tracking, follow-up, onboarding, reminders, reviews, and client handoff.",
-        secondary: "Built a GoHighLevel workflow concept with funnels, CRM pipeline stages, automation triggers, onboarding steps, review requests, testimonial requests, and dashboard visibility.",
-        whatThisProves: "Shows understanding of GoHighLevel as a business operations system, not just a landing page or funnel builder.",
-        tools: ["GoHighLevel", "n8n", "Funnels", "Email", "CRM Pipelines", "Calendar"],
-        impact: [
-          { label: "Process Coverage", value: "10 stages", text: "Application, booking, sales, contract, onboarding, delivery, proof, and reporting." },
-          { label: "Manual Steps Removed", value: "12+ handoffs", text: "Lead movement, reminders, onboarding, portal access, reviews, and testimonials." },
-          { label: "System Visibility", value: "2 pipelines", text: "Separate sales and delivery views keep lifecycle tracking clean." },
-          { label: "ROI Angle", value: "Faster handoff", text: "Makes follow-up and sales-to-delivery handoff easier to manage." }
-        ],
-        images: [
-          { src: "./assets/screenshots/ghl/ghl-01-landing-page.svg", alt: "GoHighLevel CRM automation setup for funnel leads, pipeline stages, onboarding, and follow-up workflows", title: "Landing Page Funnel", function: "Positions the offer, explains the program outcome, and guides visitors toward applying for access.", outcome: "The funnel has a clear first conversion point instead of sending prospects into a scattered sales process.", proves: "Shows funnel page planning, premium layout direction, call-to-action placement, and service offer framing inside GoHighLevel." },
-          { src: "./assets/screenshots/ghl/ghl-02-application-page.svg", alt: "GoHighLevel application page screenshot", title: "Application Page", function: "Collects applicant details and qualification information before a sales or strategy call.", outcome: "The business receives structured application data before deciding whether the prospect is a fit.", proves: "Shows form-based intake, qualification thinking, funnel continuity, and structured lead capture before booking." },
-          { src: "./assets/screenshots/ghl/ghl-03-calendar-page.svg", alt: "GoHighLevel calendar booking screenshot", title: "Calendar Booking Page", function: "Allows qualified leads to choose a call time and connect their interest to the next step in the sales process.", outcome: "Booking becomes part of the funnel path instead of being handled through manual back-and-forth messages.", proves: "Shows calendar flow design, conversion path continuity, and a cleaner handoff from application to call booking." },
-          { src: "./assets/screenshots/ghl/ghl-04-thank-you-page.svg", alt: "GoHighLevel thank-you page screenshot", title: "Booking Confirmation Page", function: "Confirms the strategy call, sets expectations, and gives the lead clear next-step information after booking.", outcome: "The prospect sees immediate confirmation and knows what to expect, reducing confusion after scheduling.", proves: "Shows post-booking experience design, confirmation messaging, and a complete funnel sequence through thank-you flow." },
-          { src: "./assets/screenshots/ghl/ghl-05-contacts.png", alt: "GoHighLevel contacts and smart lists proof", title: "Contacts + Smart Lists", function: "Organizes contacts into smart lists such as applications, booked calls, completed proof, certificates, and delivery stages.", outcome: "Client and lead records become easier to filter, monitor, and segment across sales and delivery operations.", proves: "Shows CRM hygiene, smart list planning, contact segmentation, and status-based operational visibility." },
-          { src: "./assets/screenshots/ghl/ghl-06-opportunity.png", alt: "GoHighLevel opportunity pipeline proof", title: "Opportunity Pipeline", function: "Tracks prospects and clients through pipeline stages from application and booking to payment, onboarding, course start, community invite, implementation, testimonial, and certificate issuance.", outcome: "The business can see where each person is in the customer journey and what follow-up should happen next.", proves: "Shows pipeline architecture, sales-to-delivery transition planning, and lifecycle status tracking in GoHighLevel." },
-          { src: "./assets/screenshots/ghl/ghl-07-dashboard-proof.png", alt: "Growth Partner Academy delivery and proof dashboard", title: "Delivery + Proof Dashboard", function: "Displays delivery activity, implementation milestones, certificates issued, completion status, review requests, and testimonial requests.", outcome: "Delivery progress becomes visible in one dashboard rather than hidden across contacts, tasks, and manual notes.", proves: "Shows dashboard planning, milestone visibility, reporting structure, and proof-backed delivery operations." },
-          { src: "./assets/screenshots/ghl/ghl-08-milestone.png", alt: "Growth Partner Academy implementation milestones table", title: "Implementation Milestones Table", function: "Tracks implementation tasks, statuses, due dates, completion dates, proof URLs, and quality scores for each client milestone.", outcome: "Delivery teams can verify what has been completed, what is still in progress, and where proof is stored.", proves: "Shows structured milestone tracking, proof collection logic, delivery QA thinking, and handoff-ready operational records." },
-          { src: "./assets/screenshots/ghl/ghl-09-course.png", alt: "GoHighLevel course portal proof", title: "Course Portal", function: "Hosts the Growth Partner Academy Core Training and presents course progress, instructor details, and lesson access.", outcome: "Clients can access training content from a structured portal instead of receiving scattered links or manual instructions.", proves: "Shows GoHighLevel course setup, portal organization, program delivery structure, and client-facing learning flow." },
-          { src: "./assets/screenshots/ghl/ghl-10-community.png", alt: "GoHighLevel community access proof", title: "Community Access Flow", function: "Shows private community membership request and approval flow for academy participants.", outcome: "Client access to the community can be managed as part of the delivery experience.", proves: "Shows community setup, access control, member onboarding, and portal/community integration in the client lifecycle." },
-          { src: "./assets/screenshots/ghl/ghl-11-certificate.png", alt: "Growth Partner Academy certificate proof", title: "Certificate Proof", function: "Provides a completion certificate that can be issued after the client finishes the program or required milestones.", outcome: "Completion is acknowledged with a clear proof asset that supports the end of the delivery journey.", proves: "Shows completion flow thinking, credential/proof generation, and end-stage client experience design." },
-          { src: "./assets/screenshots/ghl/ghl-12-ghl-automation.png", alt: "GoHighLevel automation workflow proof", title: "GoHighLevel Workflow Builder", function: "Shows GHL workflows used for onboarding, course enrollment, delivery actions, and follow-up movement across the system.", outcome: "Client delivery actions can be automated around forms, tags, opportunities, notifications, and stage changes.", proves: "Shows GHL workflow planning, automation chaining, conditional movement, and operational follow-through inside the CRM." },
-          { src: "./assets/screenshots/ghl/ghl-13-n8n-ghl-automation.png", alt: "n8n and GoHighLevel webhook automation proof", title: "n8n + GHL Webhook Bridge", function: "Connects a GoHighLevel survey or workflow event to n8n for payload normalization, event logging, team notification, and webhook response handling.", outcome: "GHL can trigger external automation logic when native workflow actions need cleaner processing or additional system support.", proves: "Shows hybrid GHL+n8n architecture, webhook handling, payload normalization, error handling, and external orchestration logic." },
-          { src: "./assets/screenshots/ghl/ghl-14-video-testimonial.png", alt: "Video testimonial request flow proof", title: "Video Testimonial Request", function: "Guides completed clients through a simple video testimonial request experience with instructions and recording/upload actions.", outcome: "Feedback collection becomes structured and easier for the client to complete after program delivery.", proves: "Shows post-delivery proof collection, testimonial workflow planning, and client-friendly follow-up experience design." }
+        projects: [
+          {
+            title: "Growth Partner Academy System",
+            primaryLabel: "Problem",
+            secondaryLabel: "System Built",
+            primary: "Agencies and service businesses need more than a funnel. They need a full system for lead capture, pipeline tracking, follow-up, onboarding, reminders, reviews, and client handoff.",
+            secondary: "Built a GoHighLevel workflow with funnels, CRM pipeline stages, automation triggers, onboarding steps, review requests, testimonial requests, and dashboard visibility.",
+            whatThisProves: "Shows the ability to structure GoHighLevel as a connected operations system — linking lead capture, CRM pipelines, follow-up automation, onboarding, review requests, and client handoff visibility into one clear workflow.",
+            tools: ["GoHighLevel", "n8n", "Funnels", "Email", "CRM Pipelines", "Calendar"],
+            impact: [
+              { label: "Process Coverage", value: "10 stages", text: "Application, booking, sales, contract, onboarding, delivery, proof, and reporting." },
+              { label: "Manual Steps Removed", value: "12+ handoffs", text: "Lead movement, reminders, onboarding, portal access, reviews, and testimonials." },
+              { label: "System Visibility", value: "2 pipelines", text: "Separate sales and delivery views keep lifecycle tracking clean." },
+              { label: "ROI Angle", value: "Faster handoff", text: "Makes follow-up and sales-to-delivery handoff easier to manage." }
+            ],
+            images: [
+              { src: "./assets/screenshots/ghl/ghl-01-landing-page.svg", alt: "GoHighLevel CRM automation setup for funnel leads, pipeline stages, onboarding, and follow-up workflows", title: "Landing Page Funnel", function: "Positions the offer, explains the program outcome, and guides visitors toward applying for access.", outcome: "The funnel has a clear first conversion point instead of sending prospects into a scattered sales process.", proves: "Shows funnel page planning, premium layout direction, call-to-action placement, and service offer framing inside GoHighLevel." },
+              { src: "./assets/screenshots/ghl/ghl-02-application-page.svg", alt: "GoHighLevel application page screenshot", title: "Application Page", function: "Collects applicant details and qualification information before a sales or strategy call.", outcome: "The business receives structured application data before deciding whether the prospect is a fit.", proves: "Shows form-based intake, qualification thinking, funnel continuity, and structured lead capture before booking." },
+              { src: "./assets/screenshots/ghl/ghl-03-calendar-page.svg", alt: "GoHighLevel calendar booking screenshot", title: "Calendar Booking Page", function: "Allows qualified leads to choose a call time and connect their interest to the next step in the sales process.", outcome: "Booking becomes part of the funnel path instead of being handled through manual back-and-forth messages.", proves: "Shows calendar flow design, conversion path continuity, and a cleaner handoff from application to call booking." },
+              { src: "./assets/screenshots/ghl/ghl-04-thank-you-page.svg", alt: "GoHighLevel thank-you page screenshot", title: "Booking Confirmation Page", function: "Confirms the strategy call, sets expectations, and gives the lead clear next-step information after booking.", outcome: "The prospect sees immediate confirmation and knows what to expect, reducing confusion after scheduling.", proves: "Shows post-booking experience design, confirmation messaging, and a complete funnel sequence through thank-you flow." },
+              { src: "./assets/screenshots/ghl/ghl-05-contacts.png", alt: "GoHighLevel contacts and smart lists proof", title: "Contacts + Smart Lists", function: "Organizes contacts into smart lists such as applications, booked calls, completed proof, certificates, and delivery stages.", outcome: "Client and lead records become easier to filter, monitor, and segment across sales and delivery operations.", proves: "Shows CRM hygiene, smart list planning, contact segmentation, and status-based operational visibility." },
+              { src: "./assets/screenshots/ghl/ghl-06-opportunity.png", alt: "GoHighLevel opportunity pipeline proof", title: "Opportunity Pipeline", function: "Tracks prospects and clients through pipeline stages from application and booking to payment, onboarding, course start, community invite, implementation, testimonial, and certificate issuance.", outcome: "The business can see where each person is in the customer journey and what follow-up should happen next.", proves: "Shows pipeline architecture, sales-to-delivery transition planning, and lifecycle status tracking in GoHighLevel." },
+              { src: "./assets/screenshots/ghl/ghl-07-dashboard-proof.png", alt: "Growth Partner Academy delivery and proof dashboard", title: "Delivery + Proof Dashboard", function: "Displays delivery activity, implementation milestones, certificates issued, completion status, review requests, and testimonial requests.", outcome: "Delivery progress becomes visible in one dashboard rather than hidden across contacts, tasks, and manual notes.", proves: "Shows dashboard planning, milestone visibility, reporting structure, and proof-backed delivery operations." },
+              { src: "./assets/screenshots/ghl/ghl-08-milestone.png", alt: "Growth Partner Academy implementation milestones table", title: "Implementation Milestones Table", function: "Tracks implementation tasks, statuses, due dates, completion dates, proof URLs, and quality scores for each client milestone.", outcome: "Delivery teams can verify what has been completed, what is still in progress, and where proof is stored.", proves: "Shows structured milestone tracking, proof collection logic, delivery QA thinking, and handoff-ready operational records." },
+              { src: "./assets/screenshots/ghl/ghl-09-course.png", alt: "GoHighLevel course portal proof", title: "Course Portal", function: "Hosts the Growth Partner Academy Core Training and presents course progress, instructor details, and lesson access.", outcome: "Clients can access training content from a structured portal instead of receiving scattered links or manual instructions.", proves: "Shows GoHighLevel course setup, portal organization, program delivery structure, and client-facing learning flow." },
+              { src: "./assets/screenshots/ghl/ghl-10-community.png", alt: "GoHighLevel community access proof", title: "Community Access Flow", function: "Shows private community membership request and approval flow for academy participants.", outcome: "Client access to the community can be managed as part of the delivery experience.", proves: "Shows community setup, access control, member onboarding, and portal/community integration in the client lifecycle." },
+              { src: "./assets/screenshots/ghl/ghl-11-certificate.png", alt: "Growth Partner Academy certificate proof", title: "Certificate Proof", function: "Provides a completion certificate that can be issued after the client finishes the program or required milestones.", outcome: "Completion is acknowledged with a clear proof asset that supports the end of the delivery journey.", proves: "Shows completion flow thinking, credential/proof generation, and end-stage client experience design." },
+              { src: "./assets/screenshots/ghl/ghl-12-ghl-automation.png", alt: "GoHighLevel automation workflow proof", title: "GoHighLevel Workflow Builder", function: "Shows GHL workflows used for onboarding, course enrollment, delivery actions, and follow-up movement across the system.", outcome: "Client delivery actions can be automated around forms, tags, opportunities, notifications, and stage changes.", proves: "Shows GHL workflow planning, automation chaining, conditional movement, and operational follow-through inside the CRM." },
+              { src: "./assets/screenshots/ghl/ghl-13-n8n-ghl-automation.png", alt: "n8n and GoHighLevel webhook automation proof", title: "n8n + GHL Webhook Bridge", function: "Connects a GoHighLevel survey or workflow event to n8n for payload normalization, event logging, team notification, and webhook response handling.", outcome: "GHL can trigger external automation logic when native workflow actions need cleaner processing or additional system support.", proves: "Shows hybrid GHL+n8n architecture, webhook handling, payload normalization, error handling, and external orchestration logic." },
+              { src: "./assets/screenshots/ghl/ghl-14-video-testimonial.png", alt: "Video testimonial request flow proof", title: "Video Testimonial Request", function: "Guides completed clients through a simple video testimonial request experience with instructions and recording/upload actions.", outcome: "Feedback collection becomes structured and easier for the client to complete after program delivery.", proves: "Shows post-delivery proof collection, testimonial workflow planning, and client-friendly follow-up experience design." }
+            ]
+          },
+          {
+            title: "FORGE Performance System",
+            primaryLabel: "Problem",
+            secondaryLabel: "System Built",
+            primary: "Visitors and buyers need a complete funnel path with clear offers, checkout flow, CRM tracking, and support touchpoints instead of disconnected pages and manual follow-up.",
+            secondary: "Built a complete GoHighLevel funnel system for FORGE Performance with a supplement bundle, order bump, upsells, downsell, VIP subscription, CRM pipeline, tags, workflow automations, abandoned order recovery, refund/cancellation handling, and AI chat support.",
+            whatThisProves: "Shows the ability to build GoHighLevel as a full revenue and customer journey system covering funnel architecture, product setup, CRM tracking, automation, AI chat support, and post-purchase lifecycle management.",
+            tools: ["GoHighLevel", "Funnels", "CRM Pipelines", "AI Chat Assistant"],
+            impact: [
+              { label: "Funnel Flow", value: "6 pages", text: "Landing, order, OTO, downsell, and thank-you flow." },
+              { label: "Offer Structure", value: "5 offers", text: "Starter bundle, upsells, downsells, and membership offer." },
+              { label: "Automation Layer", value: "5 workflows", text: "Order follow-up, OTO handling, refund/cancel, VIP, and upsell logic." },
+              { label: "CRM + AI Support", value: "20 tags", text: "Buyer tags, pipeline tracking, and AI chat support." }
+            ],
+            images: [
+              { src: "./assets/GHL Forge/Landing Page Funnel.png", alt: "FORGE GoHighLevel landing page funnel screenshot", title: "Landing Page Funnel", function: "Visitors need a clear entry point that explains the offer and pushes them toward the first conversion step.", outcome: "Built a premium FORGE landing page for the starter bundle with desktop and mobile responsive presentation.", proves: "Shows funnel page planning, offer framing, call-to-action placement, and responsive layout direction inside GoHighLevel." },
+              { src: "./assets/GHL Forge/Order Page Funnel.png", alt: "FORGE GoHighLevel checkout order page screenshot", title: "Checkout / Order Page", function: "Buyers need a clear checkout page with product summary, order details, and simple customer fields.", outcome: "Created the FORGE checkout page with product summary, add-on offer, order total, and customer information fields.", proves: "Shows checkout flow setup, offer presentation, and purchase-form structure inside GoHighLevel." },
+              { src: "./assets/GHL Forge/OTO Page Funnel.png", alt: "FORGE GoHighLevel OTO 1 upsell page screenshot", title: "OTO 1 Upsell Page", function: "Customers who buy the starter bundle need a clear next-step offer without confusing the buying journey.", outcome: "Built the 90-day program upsell page with offer details, benefits, price, and accept/decline path.", proves: "Shows one-click upsell strategy, offer sequencing, and post-purchase revenue path planning." },
+              { src: "./assets/GHL Forge/Downsell Page Funnel.png", alt: "FORGE GoHighLevel downsell page screenshot", title: "Downsell Page", function: "Not every buyer will accept the higher-priced upsell, so the funnel needs a lower-ticket alternative.", outcome: "Created the Recomp Lite downsell page with a simpler offer, lower price point, and clear CTA.", proves: "Shows fallback offer logic and how to recover potential lost buyers with a lower-friction option." },
+              { src: "./assets/GHL Forge/OTO 2 Page Funnel.png", alt: "FORGE GoHighLevel OTO 2 membership page screenshot", title: "OTO 2 Membership Page", function: "Buyers need a final recurring offer path for accountability, coaching, and community support.", outcome: "Built the FORGE Inner Circle membership upsell page with recurring monthly pricing and benefits.", proves: "Shows multi-step funnel monetization, recurring offer structure, and final upgrade positioning." },
+              { src: "./assets/GHL Forge/Thank You Page Funnel.png", alt: "FORGE GoHighLevel thank you page screenshot", title: "Thank You Page", function: "After purchase, customers need a clear confirmation page with access instructions and next steps.", outcome: "Created a branded thank-you page with confirmation message, bonus access, community button, support button, and next-step checklist.", proves: "Shows post-purchase experience design and customer handoff after checkout." },
+              { src: "./assets/GHL Forge/Funnel Overview.png", alt: "FORGE GoHighLevel funnel step overview screenshot", title: "Funnel Step Overview", function: "Funnels become messy when landing pages, order pages, upsells, downsells, and thank-you pages are not organized.", outcome: "Structured the funnel steps for landing page, order page, OTO 1, downsell, OTO 2, and thank-you page.", proves: "Shows the full funnel architecture and how each page connects to the customer journey." },
+              { src: "./assets/GHL Forge/Products.png", alt: "FORGE GoHighLevel products and offers setup screenshot", title: "Products & Offers", function: "Funnel offers need to be properly organized as products so checkout, upsells, and order tracking can work cleanly.", outcome: "Added FORGE products including starter bundle, shaker/recipe guide, VIP community, Recomp Lite, and 90-day program.", proves: "Shows GoHighLevel product setup for multiple offers across a funnel system." },
+              { src: "./assets/GHL Forge/Pipelines.png", alt: "FORGE GoHighLevel sales pipeline screenshot", title: "Sales Pipeline", function: "Funnel activity needs to be tracked beyond page visits so leads, buyers, refunds, and nurture contacts stay organized.", outcome: "Created a FORGE sales pipeline with stages for new leads, page visits, purchases, OTO accepted/declined, VIP members, refunds, and nurture.", proves: "Shows CRM pipeline visibility for tracking customer movement through the funnel." },
+              { src: "./assets/GHL Forge/Tags.png", alt: "FORGE GoHighLevel CRM tags screenshot", title: "CRM Tags", function: "Contacts need clean labels so automations and segmentation do not become confusing.", outcome: "Created organized tags for abandoned orders, buyers, downsell accepted/declined, refunds, subscribers, VIP members, and page behavior.", proves: "Shows CRM segmentation planning and automation-ready contact labeling." },
+              { src: "./assets/GHL Forge/Workflows.png", alt: "FORGE GoHighLevel workflow automations screenshot", title: "Workflow Automations", function: "Funnel follow-up, order actions, refund handling, and VIP onboarding should not rely on manual tracking.", outcome: "Created workflow automation structure for order follow-up, OTO decisions, refunds/cancellations, VIP onboarding, and upsell handling.", proves: "Shows automation planning around buyer behavior and post-purchase operations." },
+              { src: "./assets/GHL Forge/Ai Chat Assistant Settings.png", alt: "FORGE AI assistant bot settings in GoHighLevel screenshot", title: "AI Assistant Bot Settings", function: "Customers may ask product, bundle, shipping, support, or program questions before buying.", outcome: "Configured the FORGE Assistant in GoHighLevel with chat support and auto-pilot behavior.", proves: "Shows AI chat assistant setup for supporting funnel visitors and reducing manual inquiry handling." },
+              { src: "./assets/GHL Forge/Ai Chat Widget.png", alt: "FORGE live AI chat widget screenshot", title: "Live AI Chat Widget", function: "Visitors need an easy way to ask questions directly on the funnel pages.", outcome: "Added a customer-facing FORGE chat widget that can answer questions about the starter bundle, 90-day program, VIP community, shipping, guarantee, and support.", proves: "Shows buyer-facing AI support integrated into the funnel experience." }
+            ]
+          }
         ]
       },
       crm: {
@@ -2579,25 +2572,17 @@
       Tally: "./assets/logos/Tally%20Icon.svg",
       "CRM Pipelines": "./assets/logos/crm pipelines.png",
       Funnels: "./assets/logos/funnel.png",
+      Workflows: "./assets/logos/Highlevel.jpg",
+      Products: "./assets/logos/Highlevel.jpg",
+      Tags: "./assets/logos/Highlevel.jpg",
+      "AI Chat Assistant": "./assets/logos/openai-logo.png",
       Email: "./assets/logos/gmail.png",
       Calendar: "./assets/logos/google-calendar-icon-2020-.svg",
       PostgreSQL: "./assets/logos/PostgreSQL%20Icon.png",
       PGVector: "./assets/logos/PostgreSQL%20Icon.png"
     };
 
-    const proofMainImage = document.getElementById("proof-main-image");
-    const proofMainOpen = document.getElementById("proof-main-open");
-    const proofTitle = document.getElementById("proof-title");
-    const proofPrimaryLabel = document.getElementById("proof-primary-label");
-    const proofSecondaryLabel = document.getElementById("proof-secondary-label");
-    const proofProblem = document.getElementById("proof-problem");
-    const proofSystem = document.getElementById("proof-system");
-    const proofProves = document.getElementById("proof-proves");
-    const proofTools = document.getElementById("proof-tools");
-    const proofImageCount = document.getElementById("proof-image-count");
-    const proofGalleryOpen = document.getElementById("proof-gallery-open");
-    const proofImpact = document.getElementById("proof-impact");
-    const proofImpactGrid = document.getElementById("proof-impact-grid");
+    const proofProjects = document.getElementById("proof-projects");
     const tabs = Array.from(document.querySelectorAll(".proof-tab"));
     const lightbox = document.getElementById("proofLightbox");
     const lightboxImage = document.getElementById("lightboxImage");
@@ -2616,6 +2601,24 @@
     let currentProofImages = proofData.n8n.images;
     let currentProofImage = proofData.n8n.images[0];
     let currentProofIndex = 0;
+
+    function getProjectsForTab(tabName) {
+      if (tabName === "n8n") {
+        const dentalProject = proofData.n8n;
+        const leadCaptureProject = proofData.crm;
+        const movedProjects = [];
+        if (dentalProject) movedProjects.push(dentalProject);
+        if (leadCaptureProject) movedProjects.push(leadCaptureProject);
+        return movedProjects;
+      }
+
+      if (tabName === "crm") return [];
+
+      const tabData = proofData[tabName];
+      if (!tabData) return [];
+      if (Array.isArray(tabData.projects) && tabData.projects.length > 0) return tabData.projects;
+      return [tabData];
+    }
 
     function getImageDetails(image) {
       return {
@@ -2688,9 +2691,7 @@
     }
 
 
-    function renderProofImpact(data) {
-      if (!proofImpact || !proofImpactGrid) return;
-
+    function renderProofImpact(data, proofImpact, proofImpactGrid) {
       const impactItems = Array.isArray(data.impact) ? data.impact : [];
       proofImpact.hidden = impactItems.length === 0;
       proofImpactGrid.innerHTML = "";
@@ -2718,33 +2719,86 @@
       });
     }
 
-    function renderProof(tabName) {
-      const data = proofData[tabName];
-      if (!data) return;
+    function buildProofCard(data) {
+      const card = document.createElement("div");
+      card.className = "grid gap-8 border border-[rgba(22,24,26,0.12)] bg-white p-4 transition-colors duration-300 dark:border-border-subtle dark:bg-deep-blueprint/30 lg:grid-cols-12 lg:p-6";
+      const mainImage = data.images?.[0];
+      card.innerHTML = `
+        <div class="lg:col-span-8">
+          <button class="proof-open aspect-[16/10] w-full overflow-hidden rounded-sm border border-[rgba(22,24,26,0.12)] bg-[#101214] dark:border-border-subtle" data-proof-main-open type="button">
+            <img class="proof-image" data-proof-main-image src="${mainImage?.src || ""}" alt="${mainImage?.alt || ""}" />
+          </button>
+          <div class="proof-gallery-strip mt-2">
+            <p class="proof-gallery-count" data-proof-image-count>${data.images.length} proof images</p>
+            <button class="proof-gallery-button" data-proof-gallery-open type="button">View Gallery</button>
+          </div>
+          <div class="proof-impact-panel mt-2" data-proof-impact aria-label="System impact">
+            <div class="proof-impact-header">
+              <span>System Impact</span>
+              <span class="proof-impact-badge">Project Metrics</span>
+            </div>
+            <div class="proof-impact-grid" data-proof-impact-grid></div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4 lg:col-span-4">
+          <div class="border border-[rgba(22,24,26,0.12)] bg-[#F5F3EF] p-5 transition-colors duration-300 dark:border-border-subtle dark:bg-dark-panel">
+            <h3 class="mb-3 font-display text-2xl font-bold text-[#16181A] transition-colors duration-300 dark:text-machine-off-white">${data.title}</h3>
+            <div class="space-y-4">
+              <div>
+                <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue">${data.primaryLabel}</span>
+                <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80">${data.primary}</p>
+              </div>
+              <div>
+                <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue">${data.secondaryLabel}</span>
+                <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80">${data.secondary}</p>
+              </div>
+              <div>
+                <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#2563EB] dark:text-drafting-blue">What This Proves</span>
+                <p class="mt-1 text-sm leading-relaxed text-[#5F676D] transition-colors duration-300 dark:text-machine-off-white/80">${data.whatThisProves}</p>
+              </div>
+            </div>
+          </div>
+          <div class="border border-[rgba(22,24,26,0.12)] bg-white p-5 transition-colors duration-300 dark:border-border-subtle dark:bg-dark-panel">
+            <span class="mb-3 block font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#2563EB] dark:text-drafting-blue">Tools Used</span>
+            <div class="flex flex-wrap gap-2" data-proof-tools></div>
+          </div>
+        </div>
+      `;
 
-      proofTitle.textContent = data.title;
-      proofPrimaryLabel.textContent = data.primaryLabel;
-      proofSecondaryLabel.textContent = data.secondaryLabel;
-      proofProblem.textContent = data.primary;
-      proofSystem.textContent = data.secondary;
-      proofProves.textContent = data.whatThisProves;
-      proofMainImage.src = data.images[0].src;
-      proofMainImage.alt = data.images[0].alt;
-      currentProofData = data;
-      currentProofImages = data.images;
-      currentProofImage = data.images[0];
-      currentProofIndex = 0;
-      proofImageCount.textContent = `${data.images.length} proof images`;
-
-      proofTools.innerHTML = "";
+      const toolsWrap = card.querySelector("[data-proof-tools]");
       data.tools.forEach((tool) => {
         const pill = document.createElement("span");
         pill.className = "flex items-center gap-2 rounded-full border border-[#2563EB]/30 bg-[#F5F3EF] px-3 py-1 font-mono text-[10px] font-bold text-[#2563EB] transition-colors duration-300 dark:border-drafting-blue/30 dark:bg-soft-surface dark:text-drafting-blue";
         pill.innerHTML = logoMap[tool] ? `<img class="h-4 w-4 object-contain" src="${logoMap[tool]}" alt="" />${tool}` : tool;
-        proofTools.appendChild(pill);
+        toolsWrap.appendChild(pill);
       });
 
-      renderProofImpact(data);
+      renderProofImpact(data, card.querySelector("[data-proof-impact]"), card.querySelector("[data-proof-impact-grid]"));
+
+      const openGallery = () => {
+        currentProofData = data;
+        currentProofImages = data.images;
+        currentProofImage = data.images[0];
+        currentProofIndex = 0;
+        openLightbox(currentProofImage, currentProofIndex);
+      };
+      card.querySelector("[data-proof-main-open]").addEventListener("click", openGallery);
+      card.querySelector("[data-proof-gallery-open]").addEventListener("click", openGallery);
+      return card;
+    }
+
+    function renderProof(tabName) {
+      const projects = getProjectsForTab(tabName);
+      if (!projects.length) return;
+      currentProofData = projects[0];
+      currentProofImages = projects[0].images;
+      currentProofImage = projects[0].images[0];
+      currentProofIndex = 0;
+
+      proofProjects.innerHTML = "";
+      projects.forEach((project) => {
+        proofProjects.appendChild(buildProofCard(project));
+      });
 
       tabs.forEach((tab) => {
         const isActive = tab.dataset.tab === tabName;
@@ -2758,11 +2812,23 @@
     }
 
     tabs.forEach((tab) => {
-      tab.addEventListener("click", () => renderProof(tab.dataset.tab));
+      tab.addEventListener("click", () => {
+        const tabName = tab.dataset.tab;
+        const projects = getProjectsForTab(tabName);
+        if (!projects.length) return;
+        renderProof(tabName);
+      });
     });
 
-    proofMainOpen.addEventListener("click", () => openLightbox(currentProofImage, currentProofIndex));
-    proofGalleryOpen.addEventListener("click", () => openLightbox(currentProofImage, currentProofIndex));
+    tabs.forEach((tab) => {
+      const projects = getProjectsForTab(tab.dataset.tab);
+      if (!projects.length) {
+        tab.hidden = true;
+        tab.setAttribute("aria-hidden", "true");
+        tab.setAttribute("tabindex", "-1");
+      }
+    });
+
     lightboxPrev.addEventListener("click", () => showNextProofImage(-1));
     lightboxNext.addEventListener("click", () => showNextProofImage(1));
     document.querySelectorAll("[data-lightbox-close]").forEach((button) => {
